@@ -45,9 +45,21 @@ export default function HeroPage() {
       <Typography variant="h6" sx={{ fontSize: { xs: '1rem', md: '1.5rem' }, marginBottom: '2rem' }}>
         Esha Arab Nursing Consultancy
       </Typography>
-      <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', md: '4rem' }, fontWeight: 'bold', marginBottom: '1rem' }}>
-        Your Gateway to Global <br /> Careers!
-      </Typography>
+      <Typography 
+            variant="h1" 
+            sx={{ 
+              fontSize: { xs: '2.5rem', md: '4rem' }, 
+              fontWeight: 'bold', 
+              marginBottom: '1rem',
+              display: 'block', 
+              lineHeight: 1.2, 
+            }}
+          >
+            Your Gateway to Global{' '}
+            <Box component="span" sx={{ display: { xs: 'inline', md: 'block' } }}>
+              Careers!
+            </Box>
+          </Typography>
       <Button 
         variant="contained" 
         className='hero-btn'
