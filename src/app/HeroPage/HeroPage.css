@@ -52,9 +52,9 @@
 }
 @media (min-width: 768px) and (max-width: 1000px) {
   .hero-container {
-    height: 100vh; /* Full viewport height */
-    background-size: cover; /* Ensures the image fills the container without gaps */
-    background-position: center; /* Keeps the image centered */
-    background-repeat: no-repeat; /* Prevents image repetition */
+    height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
   }
 }
