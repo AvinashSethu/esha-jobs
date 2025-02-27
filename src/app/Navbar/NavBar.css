@@ -1,0 +1,103 @@
+.navbar {
+    width: 100%;
+}
+
+.navbar-container {
+    background-color: #000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0 20px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.hamburger-icon {
+    cursor: pointer;
+    display: none; /* Hidden by default, shown on mobile */
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        margin: 0 10px;
+        height: 60px;
+        max-width: calc(100% - 20px);
+        padding: 0 15px;
+        border-radius: 15px !important;
+    }
+
+    .nav-title {
+        font-size: 15px !important;
+    }
+
+    .esha-text {
+        color: #2196f3 !important; /* Blue for "Esha" in mobile view */
+        margin-left: -14px !important;
+    }
+
+    .jobs-text {
+        color: #fff !important; /* White for "Jobs" in mobile view */
+        margin-left: 7px !important;
+    }
+
+    .navbar-right {
+        align-items: center;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+    .navbar-logo {
+        flex-direction: row;
+    }
+
+    .navbar-logo img {
+        height: 40px;
+        width: 40px;
+        margin-right: 5px;
+    }
+
+    .desktop-button {
+        display: none;
+    }
+
+    .hamburger-icon {
+        display: block;
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger-icon {
+        display: none;
+    }
+
+    .desktop-button {
+        display: block;
+    }
+
+    .esha-text {
+        color: #fff !important; /* Ensure "Esha" stays white on desktop */
+    }
+
+    .jobs-text {
+        color: #fff !important; /* Ensure "Jobs" stays white on desktop */
+    }
+
+    .mobile-menu {
+        display: none; /* Ensure mobile menu is hidden on desktop */
+    }
+}
