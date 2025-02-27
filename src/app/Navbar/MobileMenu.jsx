@@ -53,7 +53,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, logoSrc }) => {
                     </Typography>
                 </Box>
                 <CloseIcon
-                    sx={{ color: '#fff', fontSize: '30px', cursor: 'pointer' }}
+                    sx={{ color: 'var(--primary)', fontSize: '30px', cursor: 'pointer' }}
                     onClick={toggleMenu}
                 />
             </Box>
