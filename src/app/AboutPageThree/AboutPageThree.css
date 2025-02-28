@@ -1,5 +1,6 @@
 @media (max-width: 768px) {
-    .about-who-text{
-        margin-left: 240px;
+    .Three-con{
+        height: 36vh !important;
     }
+    
 }

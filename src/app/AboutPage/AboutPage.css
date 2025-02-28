@@ -34,6 +34,7 @@
     .about-esha-text {
         justify-content: center !important; /* Center the flex content */
         text-align: center; /* Center the text itself */
+        padding-top: 70px !important;
       }
   
     .dream-job-text {
