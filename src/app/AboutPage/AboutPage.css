@@ -1,0 +1,56 @@
+.about-page-container {
+    width: 100%;
+    max-width: calc(100% - 40px); /* Account for 20px padding on each side */
+    margin: 0 auto;
+    padding: 0 20px; /* 20px padding on left and right only */
+    
+  }
+  
+  .left-section {
+    transition: all 0.3s ease;
+  }
+  
+  .browse-button-container {
+    transition: all 0.3s ease;
+  }
+  
+  /* Mobile-first approach */
+  @media (max-width: 768px) {
+    .about-page-container {
+      flex-direction: column;
+      height: auto;
+      padding: 0 20px; /* Maintain 20px padding on left and right */
+      height: 40vh !important;
+    }
+    .left-section{
+        padding-left: 0px !important;
+    }
+  
+    .left-section,
+    .browse-button-container {
+      width: 100% !important;
+      padding: 0;
+    }
+    .about-esha-text {
+        justify-content: center !important; /* Center the flex content */
+        text-align: center; /* Center the text itself */
+      }
+  
+    .dream-job-text {
+      font-size: 24.3px !important; 
+      font-weight: bold !important;
+    }
+    .future-text{
+        font-size: 13px !important;
+    }
+  
+    .browse-button-container {
+      justify-content: center !important;
+      display: none !important;
+    }
+  
+    .MuiButton-outlined {
+      width: 100%;
+      max-width: 200px;
+    }
+  }

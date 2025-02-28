@@ -1,0 +1,91 @@
+@keyframes scrollLoop {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-240px); /* Total height of 3 cards (3 * 80px) */
+    }
+}
+  
+  /* Mobile view - 768px and below */
+  @media (max-width: 768px) {
+    /* Override the main container */
+    .job-cards-container {
+      width: 115% !important; /* Override the 600px width */
+      height: auto !important; /* Override the fixed 400px height */
+      padding: 15px !important; /* Slightly reduce padding */
+      margin: 0 !important;
+      margin-top: -30px !important;
+      
+    }
+  
+    /* Header section with "Jobs" and dots */
+    .job-header {
+      margin-bottom: 12px !important; /* Reduce margin */
+   
+    }
+  
+    /* Scroll container */
+    .scroll-container {
+      height: 250px !important; /* Reduce height for mobile */
+    }
+  
+    /* Individual job card */
+    .job-card {
+      height: 90px !important; /* Reduce card height */
+      padding: 10px !important; /* Reduce padding */
+      margin-bottom: 10px;
+    }
+  
+    /* Job title text */
+    .job-title {
+      font-size: 14px !important; /* Reduce font size */
+    }
+  
+    /* Location and salary text */
+    .job-details {
+      font-size: 13px !important; /* Reduce font size */
+    }
+  
+    /* Icons */
+    .job-icon {
+      font-size: 14px !important; /* Reduce icon size */
+    }
+  
+    /* Adjust animation speed for mobile */
+    @keyframes scrollLoop {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-240px); /* Total height of 3 cards (3 * 80px) */
+        }
+    }
+  
+    /* Ensure smooth scrolling on mobile */
+    .scroll-content {
+      animation: scrollLoop 8s infinite linear !important; /* Slower scroll on mobile */
+      width: 100%;
+    }
+  }
+  
+  /* Ensure smooth scrolling behavior across all devices */
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+
+  .scroll-container {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
