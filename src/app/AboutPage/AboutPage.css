@@ -20,7 +20,7 @@
       flex-direction: column;
       height: auto;
       padding: 0 20px; /* Maintain 20px padding on left and right */
-      height: 40vh !important;
+      height: 30vh !important;
     }
     .left-section{
         padding-left: 0px !important;
@@ -37,11 +37,12 @@
       }
   
     .dream-job-text {
-      font-size: 24.3px !important; 
+      font-size: 30px !important; 
       font-weight: bold !important;
     }
     .future-text{
         font-size: 13px !important;
+        margin-top: -10px !important;
     }
   
     .browse-button-container {
@@ -52,5 +53,8 @@
     .MuiButton-outlined {
       width: 100%;
       max-width: 200px;
+    }
+    .underline{
+      flex: 1 !important;
     }
   }

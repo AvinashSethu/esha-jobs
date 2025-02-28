@@ -40,24 +40,30 @@ export default function AboutPage() {
             gap: "10px"
           }}
         >
-          <Box sx={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }}></Box>
+          <Box sx={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }} className="underline"></Box>
           ABOUT ESHA JOBS
-          <Box sx={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }}></Box>
+          <Box sx={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }}  className="underline"></Box>
         </Typography>
         
         <Typography 
-          className="dream-job-text"
-          variant="h1"
-          sx={{ 
-            color: "#000", 
-            fontSize: "42px", 
-            marginBottom: "16px",
-            paddingTop:'15px'
-          }}
-        >
-          Your Dream <span style={{color:'var(--primary)'}}>Job Abroad</span> is <br /> 
-          Just One Click Away!
-        </Typography>
+  className="dream-job-text"
+  variant="h1"
+  sx={{ 
+    color: "#000", 
+    fontSize: "42px", 
+    marginBottom: "16px",
+    paddingTop: "15px",
+    "& br": { 
+      display: { 
+        xs: "none", // hides br on mobile (extra small screens)
+        sm: "inline" // shows br on larger screens
+      }
+    }
+  }}
+>
+  Your Dream <span style={{color:'var(--primary)'}}>Job Abroad</span> is <br /> 
+  Just One Click Away!
+</Typography>
         
         <Typography 
           className="future-text"
