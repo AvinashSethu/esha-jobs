@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+    .Nurse-con{
+        height:105vh !important;
+    }
+    .mis-con{
+        width: 250px !important;
+        height: auto !important;
+        margin-left: 20px !important;
+        margin-top: 10px !important;
+    }
+    .vis-con{
+        width: 250px !important;
+        height: 150px !important;
+        margin-left: 20px !important;
+        margin-top: 10px !important;
+    }
+}

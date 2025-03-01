@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+    .Esha-text{
+        margin-left: 2px !important;
+        line-height: 1.6 !important;
+    }
+    .Car-text{
+        font-size: 25px !important;
+    }
+    .Who-text{
+        font-size: 21px !important;
+    }
+    .hor-line{
+        margin-left: 2px !important;
+        width: 100% !important;
+    }
+    .Three-main{
+        height: 20vh !important;
+    }
+}
