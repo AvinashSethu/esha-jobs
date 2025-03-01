@@ -115,15 +115,17 @@ export default function() {
                                     backgroundColor: '#FFFFFF',
                                     borderRadius: '20px',
                                     padding: '20px 25px', // Increased padding for better spacing
-                                    width: { xs: '100%', md: '220px' }, // Full width on mobile, fixed width on desktop
+                                    width: { xs: '100%', md: '280px' }, // Full width on mobile, fixed width on desktop
                                     boxShadow: '0 8px 15px rgba(0, 0, 255, 0.3)', // Blue box shadow at the bottom
                                     display: 'flex',
                                     flexDirection: 'column', // Stack title and text vertically
                                     alignItems: 'flex-start', // Align content to the left
-                                    marginTop:'100px'
+                                    marginTop:'100px',
+                                    height:'230px'
                                 }}
                             >
                                 <Typography
+                                className="mis-text"
                                     variant="body2"
                                     sx={{
                                         color: '#000000',
@@ -131,13 +133,15 @@ export default function() {
                                         marginBottom: '8px', // Space between title and text
                                         display: 'flex',
                                         alignItems: 'center',
+                                        fontSize:'23px'
                                     }}
                                 >
-                                    <CenterFocusStrong sx={{ marginRight: '8px', color: 'var(--primary)' }} /> Mission
+                                    <CenterFocusStrong sx={{ marginRight: '8px', color: 'var(--primary)',fontSize:'30px' }} /> Mission
                                 </Typography>
                                 <Typography
+                                className="mis-texttwo"
                                     variant="body2"
-                                    sx={{ color: '#666666' }}
+                                    sx={{ color: '#666666',fontSize:'18px',paddingTop:'15px' }}
                                 >
                                     Empowering nurses with seamless overseas job opportunities for a brighter future!
                                 </Typography>
@@ -150,15 +154,17 @@ export default function() {
                                     backgroundColor: '#FFFFFF',
                                     borderRadius: '20px',
                                     padding: '20px 25px', // Increased padding for better spacing
-                                    width: { xs: '100%', md: '220px' }, // Full width on mobile, fixed width on desktop
+                                    width: { xs: '100%', md: '280px' }, // Full width on mobile, fixed width on desktop
                                     boxShadow: '0 8px 15px rgba(0, 0, 255, 0.3)', // Blue box shadow at the bottom
                                     display: 'flex',
                                     flexDirection: 'column', // Stack title and text vertically
                                     alignItems: 'flex-start', // Align content to the left
-                                    marginTop:'100px'
+                                    marginTop:'100px',
+                                    height:'230px'
                                 }}
                             >
                                 <Typography
+                                className="vis-text"
                                     variant="body2"
                                     sx={{
                                         color: '#000000',
@@ -166,13 +172,15 @@ export default function() {
                                         marginBottom: '8px', // Space between title and text
                                         display: 'flex',
                                         alignItems: 'center',
+                                        fontSize:'23px'
                                     }}
                                 >
-                                    <Rocket sx={{ marginRight: '8px', color: 'var(--primary)' }} /> Vision
+                                    <Rocket sx={{ marginRight: '8px', color: 'var(--primary)',fontSize:'30px' }} /> Vision
                                 </Typography>
                                 <Typography
+                                className="vis-texttwo"
                                     variant="body2"
-                                    sx={{ color: '#666666' }}
+                                    sx={{ color: '#666666',fontSize:'18px',paddingTop:'15px' }}
                                 >
                                     Placing 100+ nurses abroad every year, transforming lives through global careers!
                                 </Typography>

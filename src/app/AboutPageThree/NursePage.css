@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
     .Nurse-con{
-        height:105vh !important;
+        height:110vh !important;
     }
     .mis-con{
         width: 250px !important;
@@ -10,8 +10,20 @@
     }
     .vis-con{
         width: 250px !important;
-        height: 150px !important;
+        height:  170px !important;
         margin-left: 20px !important;
         margin-top: 10px !important;
+    }
+    .mis-text{
+        font-size: 19px !important;
+    }
+    .mis-texttwo{
+        font-size: 14px !important;
+    }
+    .vis-text{
+        font-size: 19px !important;
+    }
+    .vis-texttwo{
+        font-size: 14px !important;
     }
 }
