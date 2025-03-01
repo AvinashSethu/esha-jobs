@@ -1,0 +1,102 @@
+/* Grid container for 3-column desktop layout */
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    gap: 20px;
+    padding: 40px;
+}
+
+/* Base card styling */
+.service-card {
+    background: white;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    height: 450px !important;
+}
+
+
+.service-icon{
+    color: var(--primary);
+}
+.service-title{
+    font-size: 32px !important;
+    margin-top: 20px !important;
+    font-weight: bold !important;
+}
+.service-desc{
+    font-size: 20px !important;
+    color: #999999;
+    margin-top: 30px !important;
+}
+.arrow-icon{
+    margin-top: 20px !important;
+    color: var(--primary);
+    font-size: 40px !important;
+}
+
+/* Right-side staggered step effect */
+.stagger-0 { transform: translateY(0px); }   /* Rightmost box (highest) */
+.stagger-1 { transform: translateY(90px); }  /* Middle box lower */
+.stagger-2 { transform: translateY(180px); }  /* Leftmost box lowest */
+.stagger-3 { transform: translateY(50px); }   /* Second row restart */
+.stagger-4 { transform: translateY(140px); }
+.stagger-5 { transform: translateY(240px); }
+
+/* Reverse order for right-side stagger */
+.services-container {
+    direction: rtl;
+}
+.service-card {
+    direction: ltr;
+}
+
+/* 📌 Responsive for Tablets (2 columns) */
+@media (max-width: 1024px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        padding: 30px;
+    }
+    
+    /* Adjust stagger effect for 2-column layout */
+    .stagger-0, .stagger-2, .stagger-4 { transform: translateY(0px); } 
+    .stagger-1, .stagger-3, .stagger-5 { transform: translateY(30px); }  
+}
+
+/* 📌 Responsive for Mobile (1 column) */
+@media (max-width: 768px) {
+    .services-container {
+        grid-template-columns: repeat(1, 1fr); /* 1 column */
+        padding: 20px;
+    }
+
+    /* Remove stagger effect on mobile for better UX */
+    .service-card {
+        transform: translateY(0px);
+    }
+}
+
+/* Hover effect for service card */
+.service-card:hover {
+    background: var(--primary);
+}
+
+.service-card:hover .service-icon {
+    color: #fff;
+}
+
+.service-card:hover .service-title {
+    color: #fff;
+}
+
+.service-card:hover .service-desc {
+    color: #fff;
+}
+
+.service-card:hover .arrow-icon {
+    color: #fff;
+}
+.service-card:hover{
+    margin-top: -5px !important;
+}

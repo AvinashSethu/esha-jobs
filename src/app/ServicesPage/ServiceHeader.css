@@ -1,0 +1,62 @@
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 100px 20px; /* Increased top padding */
+    flex-wrap: wrap;
+    height: 40vh;
+  }
+  
+  .service-text {
+    max-width: 50%;
+  }
+  
+  .service-subtitle {
+    color: var(--primary);
+    font-weight: bold !important;
+    text-transform: uppercase;
+    font-size: 20px !important;
+  }
+  
+  .service-title {
+    font-weight: bold;
+    margin-top: 20px !important;
+    font-size: 42px !important;
+  }
+  
+  .service-buttons {
+    display: flex;
+    gap: 40px !important;
+  }
+  
+  .claim-btn {
+    background-color: var(--primary) !important;
+    color: white;
+    border-radius: 25px !important;
+    padding: 10px 20px;
+    height: 60px !important;
+    width: 170px !important;
+  }
+  
+  .contact-btn {
+    border: 1px solid #999999 !important;
+    border-radius: 25px !important;
+    color: #000 !important;
+    padding: 10px 20px;
+    height: 60px !important;
+    width: 170px !important;
+  }
+  
+  @media (max-width: 768px) {
+    .service-header {
+      flex-direction: column;
+      text-align: center;
+      padding-top: 30px; /* Adjusted for mobile */
+    }
+  
+    .service-text {
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+  
