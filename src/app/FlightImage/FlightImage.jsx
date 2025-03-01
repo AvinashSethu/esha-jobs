@@ -1,14 +1,39 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // Import the forward arrow icon
+import Image from "next/image";
+import FlightImg from "@/public/Images/Flight.png";
 import "../FlightImage/FlightImage.css";
 
-export default function FlightImage(){
-    return(
-        <Box sx={{height:'100vh'}}>
-            <Box>
-                
-            </Box>
+export default function FlightImage() {
+  return (
+    <Box sx={{ height: "100vh", width: "100vw", position: "relative", marginTop: "20%" }}>
+      <Image src={FlightImg} alt="Flight Image" layout="fill" objectFit="cover" />
 
-        </Box>
-    );
+      {/* Overlay for text and button on the left side */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: "65%",
+          left: "6%",
+          transform: "translateY(-50%)",
+          color: "white",
+          textAlign: "left",
+          p: 2,
+          backgroundColor: "transparent", 
+          borderRadius: 2,
+        }}
+      >
+        <Typography variant="h3" gutterBottom className="fli-title">
+          Take the First Step Towards <br /> Your Dream Job!
+        </Typography>
+        <Typography variant="h5" gutterBottom  className="fli-subtitle">
+           Top Nursing Jobs in India & Abroad – No Hassle, No Delays!
+        </Typography>
+        <Button variant="contained" size="large" sx={{ mt: 2, }} endIcon={<ArrowForwardIcon />}  className="fli-btn">
+          Fly High
+        </Button>
+      </Box>
+    </Box>
+  );
 }

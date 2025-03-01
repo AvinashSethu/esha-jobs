@@ -80,6 +80,7 @@
 /* Hover effect for service card */
 .service-card:hover {
     background: var(--primary);
+    cursor: pointer;
 }
 
 .service-card:hover .service-icon {
