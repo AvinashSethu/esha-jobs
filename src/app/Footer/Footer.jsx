@@ -1,23 +1,56 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { Box, Typography, Button, IconButton, useTheme } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Image from "next/image"; // Import Next.js Image component
+import Link from "next/link"; // Import Next.js Link for navigation
 import "../Footer/Footer.css";
 import Logo from "@/public/Icons/Esha-Logo.png";
 
 export default function Footer() {
   const theme = useTheme(); // Access MUI theme for breakpoints
+  const [activeLink, setActiveLink] = useState('#home'); // Track active link state
+
+  // Handle scroll to update active link
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'jobs', 'process', 'contact'];
+      let newActiveLink = activeLink;
+
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom > 0) {
+            newActiveLink = `#${section}`;
+          }
+        }
+      });
+
+      setActiveLink(newActiveLink);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeLink]); // Include activeLink as dependency to ensure updates
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link); // Set active link immediately
+    const element = document.querySelector(link);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <Box
-    className="fot-con"
+      className="fot-con"
       sx={{
         backgroundColor: "#fff",
-        paddingTop: "20px", 
+        paddingTop: "20px",
         [theme.breakpoints.down("sm")]: {
           padding: "10px",
         },
@@ -46,7 +79,7 @@ export default function Footer() {
               flex: "100%", // Full width on mobile
               textAlign: "center",
             },
-            backgroundColor:'#c9e3f5'
+            backgroundColor: '#c9e3f5'
           }}
         >
           <Typography
@@ -58,7 +91,7 @@ export default function Footer() {
               [theme.breakpoints.down("sm")]: {
                 fontSize: "1.2rem",
               },
-              fontSize:'24px'
+              fontSize: '24px'
             }}
           >
             Esha Arab Nursing Consultancy
@@ -71,7 +104,7 @@ export default function Footer() {
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",
               },
-              fontSize:'17px'
+              fontSize: '17px'
             }}
           >
             Your Dream Job is Just a Step Away!
@@ -89,8 +122,8 @@ export default function Footer() {
                 width: "100%",
                 fontSize: "0.8rem",
               },
-              height:'50px',
-              width:'170px',
+              height: '50px',
+              width: '170px',
             }}
           >
             Vacancies
@@ -122,66 +155,96 @@ export default function Footer() {
           >
             Quick Links
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#666",
-              marginBottom: "5px",
-              [theme.breakpoints.down("sm")]: {
-                fontSize: "0.9rem",
-              },
-            }}
-          >
-            Home
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#666",
-              marginBottom: "5px",
-              [theme.breakpoints.down("sm")]: {
-                fontSize: "0.9rem",
-              },
-            }}
-          >
-            About us
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#666",
-              marginBottom: "5px",
-              [theme.breakpoints.down("sm")]: {
-                fontSize: "0.9rem",
-              },
-            }}
-          >
-            Jobs
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#666",
-              marginBottom: "5px",
-              [theme.breakpoints.down("sm")]: {
-                fontSize: "0.9rem",
-              },
-            }}
-          >
-            Process
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#666",
-              marginBottom: "5px",
-              [theme.breakpoints.down("sm")]: {
-                fontSize: "0.9rem",
-              },
-            }}
-          >
-            Contact
-          </Typography>
+          <Link href="#home" passHref>
+            <Typography
+              variant="body2"
+              onClick={() => handleLinkClick('#home')}
+              sx={{
+                color: activeLink === '#home' ? 'var(--primary)' : '#666',
+                marginBottom: "5px",
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': { color: 'var(--primary)' },
+                [theme.breakpoints.down("sm")]: {
+                  fontSize: "0.9rem",
+                },
+              }}
+            >
+              Home
+            </Typography>
+          </Link>
+          <Link href="#about" passHref>
+            <Typography
+              variant="body2"
+              onClick={() => handleLinkClick('#about')}
+              sx={{
+                color: activeLink === '#about' ? 'var(--primary)' : '#666',
+                marginBottom: "5px",
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': { color: 'var(--primary)' },
+                [theme.breakpoints.down("sm")]: {
+                  fontSize: "0.9rem",
+                },
+              }}
+            >
+              About us
+            </Typography>
+          </Link>
+          <Link href="#services" passHref>
+            <Typography
+              variant="body2"
+              onClick={() => handleLinkClick('#services')}
+              sx={{
+                color: activeLink === '#jobs' ? 'var(--primary)' : '#666',
+                marginBottom: "5px",
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': { color: 'var(--primary)' },
+                [theme.breakpoints.down("sm")]: {
+                  fontSize: "0.9rem",
+                },
+              }}
+            >
+              Services
+            </Typography>
+          </Link>
+          <Link href="#jobs" passHref>
+            <Typography
+              variant="body2"
+              onClick={() => handleLinkClick('#jobs')}
+              sx={{
+                color: activeLink === '#process' ? 'var(--primary)' : '#666',
+                marginBottom: "5px",
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': { color: 'var(--primary)' },
+                [theme.breakpoints.down("sm")]: {
+                  fontSize: "0.9rem",
+                },
+              }}
+            >
+              Jobs
+            </Typography>
+          </Link>
+          <Link href="#contact" passHref>
+            <Typography
+              variant="body2"
+              onClick={() => handleLinkClick('#contact')}
+              sx={{
+                color: activeLink === '#contact' ? 'var(--primary)' : '#666',
+                marginBottom: "5px",
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': { color: 'var(--primary)' },
+                [theme.breakpoints.down("sm")]: {
+                  fontSize: "0.9rem",
+                },
+              }}
+            >
+              Contact
+            </Typography>
+          </Link>
           <Box
             sx={{
               marginTop: "15px", // Space between Quick Links and social icons
