@@ -13,6 +13,8 @@ import ServiceMain from "./ServicesPage/ServiceMain";
 import FlightImage from "./FlightImage/FlightImage";
 import Contact from "./Contact/Contact";
 import Incrix from "./Incrix/Incrix";
+import JobVaccancy from "./JobVaccancy/JobVaccancy";
+import Footer from "./Footer/Footer";
 
 
 
@@ -30,8 +32,11 @@ export default function Home() {
       <ServiceHeader />
       <ServiceMain />
       <FlightImage />
+      <JobVaccancy />
       <Contact />
       <Incrix />
+      <Footer />
+      
 
       
     </Box>

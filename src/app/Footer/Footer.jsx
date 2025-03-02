@@ -17,7 +17,6 @@ export default function Footer() {
       sx={{
         backgroundColor: "#fff",
         paddingTop: "20px",
-        borderTop: "1px solid #e0e0e0",
         [theme.breakpoints.down("sm")]: {
           padding: "10px",
         },
