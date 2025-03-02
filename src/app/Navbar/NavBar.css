@@ -63,7 +63,7 @@
 @media (max-width: 768px) {
     .navbar-container {
         margin: 0 10px;
-        height: 60px;
+        height: 60px !important;
         max-width: calc(100% - 20px);
         padding: 0 15px;
         border-radius: 15px !important;

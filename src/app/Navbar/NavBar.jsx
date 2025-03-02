@@ -32,7 +32,7 @@ export default function NavBar() {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     margin: '0 10px',
-                    height: '80px',
+                    height: '70px',
                     padding: '0 20px',
                     backgroundColor: '#000',
                     maxWidth: 'calc(100% - 20px)',
