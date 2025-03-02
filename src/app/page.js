@@ -16,29 +16,40 @@ import Incrix from "./Incrix/Incrix";
 import JobVaccancy from "./JobVaccancy/JobVaccancy";
 import Footer from "./Footer/Footer";
 
-
-
 export default function Home() {
   return (
     <Box>
-      <HeroPage />
-      <AboutPage />
-      <AboutPageTwo />
-      <AboutPageThree />
-      <AboutThreeMain />
-      <NursePage />
-      <HireProcess />
-      <HireProcessMain />
-      <ServiceHeader />
-      <ServiceMain />
+      <Box id="home">
+        <HeroPage />
+      </Box>
+      <Box id="about">
+        <AboutPage />
+        <AboutPageTwo />
+        <AboutPageThree />
+        <AboutThreeMain />
+        <NursePage />
+      </Box>
+      <Box>
+        <HireProcess />
+        <HireProcessMain />
+      </Box>
+      <Box id="services">
+        <ServiceHeader />
+        <ServiceMain />
+      </Box>
+      <Box>
       <FlightImage />
-      <JobVaccancy />
-      <Contact />
-      <Incrix />
-      <Footer />
-      
-
-      
+      </Box>
+      <Box id="jobs">
+        <JobVaccancy />
+      </Box>
+      <Box id="contact">
+        <Contact />
+      </Box>
+      <Box>
+        <Incrix />
+        <Footer />
+      </Box>
     </Box>
   );
 }

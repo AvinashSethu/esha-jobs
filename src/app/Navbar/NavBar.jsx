@@ -1,16 +1,78 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import './NavBar.css';
 import LogoImage from '@/public/Icons/Esha-Logo.png';
 import Image from 'next/image';
 import MobileMenu from './MobileMenu';
+import Link from 'next/link';
 
 export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState('#home');
+    
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    // Effect to disable/enable body scrolling when mobile menu is open/closed
+    useEffect(() => {
+        const body = document.body;
+        if (isMenuOpen) {
+            console.log('Menu opened: Disabling scroll'); // Debug log
+            body.style.overflow = 'hidden';
+            body.style.height = '100vh'; // Lock viewport height
+            body.style.position = 'fixed'; // Prevent any movement
+            body.style.width = '100%'; // Ensure full width
+        } else {
+            console.log('Menu closed: Enabling scroll'); // Debug log
+            body.style.overflow = '';
+            body.style.height = '';
+            body.style.position = '';
+            body.style.width = '';
+        }
+
+        // Cleanup on unmount
+        return () => {
+            console.log('Cleanup: Restoring scroll'); // Debug log
+            body.style.overflow = '';
+            body.style.height = '';
+            body.style.position = '';
+            body.style.width = '';
+        };
+    }, [isMenuOpen]);
+
+    // Scroll tracking effect
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ['home', 'about', 'services', 'jobs', 'contact'];
+            let newActiveLink = activeLink;
+
+            sections.forEach((section) => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 150 && rect.bottom > 0) {
+                        newActiveLink = `#${section}`;
+                    }
+                }
+            });
+
+            setActiveLink(newActiveLink);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const handleLinkClick = (link) => {
+        setActiveLink(link);
+        setIsMenuOpen(false); // Close menu on link click
+        const element = document.querySelector(link);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     return (
@@ -78,68 +140,87 @@ export default function NavBar() {
                 {/* Navigation Links and Button/Hamburger */}
                 <Box className="navbar-right">
                     <Box className="navbar-links">
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                color: '#fff',
-                                marginRight: '2rem',
-                                cursor: 'pointer',
-                                '&:hover': { color: 'var(--primary)' },
-                            }}
-                        >
-                            Home
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                color: '#fff',
-                                marginRight: '2rem',
-                                cursor: 'pointer',
-                                '&:hover': { color: 'var(--primary)' },
-                            }}
-                        >
-                            About us
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                color: '#fff',
-                                marginRight: '2rem',
-                                cursor: 'pointer',
-                                '&:hover': { color: 'var(--primary)' },
-                            }}
-                        >
-                            Services
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                color: '#fff',
-                                marginRight: '3rem',
-                                cursor: 'pointer',
-                                '&:hover': { color: 'var(--primary)' },
-                            }}
-                        >
-                            Jobs
-                        </Typography>
+                        <Link href="#home" passHref>
+                            <Typography
+                                variant="body1"
+                                onClick={() => handleLinkClick('#home')}
+                                sx={{
+                                    color: activeLink === '#home' ? 'var(--primary)' : '#fff',
+                                    marginRight: '2rem',
+                                    cursor: 'pointer',
+                                    '&:hover': { color: 'var(--primary)' },
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                Home
+                            </Typography>
+                        </Link>
+                        <Link href="#about" passHref>
+                            <Typography
+                                variant="body1"
+                                onClick={() => handleLinkClick('#about')}
+                                sx={{
+                                    color: activeLink === '#about' ? 'var(--primary)' : '#fff',
+                                    marginRight: '2rem',
+                                    cursor: 'pointer',
+                                    '&:hover': { color: 'var(--primary)' },
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                About us
+                            </Typography>
+                        </Link>
+                        <Link href="#services" passHref>
+                            <Typography
+                                variant="body1"
+                                onClick={() => handleLinkClick('#services')}
+                                sx={{
+                                    color: activeLink === '#services' ? 'var(--primary)' : '#fff',
+                                    marginRight: '2rem',
+                                    cursor: 'pointer',
+                                    '&:hover': { color: 'var(--primary)' },
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                Services
+                            </Typography>
+                        </Link>
+                        <Link href="#jobs" passHref>
+                            <Typography
+                                variant="body1"
+                                onClick={() => handleLinkClick('#jobs')}
+                                sx={{
+                                    color: activeLink === '#jobs' ? 'var(--primary)' : '#fff',
+                                    marginRight: '3rem',
+                                    cursor: 'pointer',
+                                    '&:hover': { color: 'var(--primary)' },
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                Jobs
+                            </Typography>
+                        </Link>
                     </Box>
 
                     {/* Desktop Button */}
                     <Box className="desktop-button">
-                        <Button
-                            variant="contained"
-                            sx={{
-                                backgroundColor: 'var(--primary)',
-                                color: '#fff',
-                                borderRadius: '30px',
-                                padding: '10px 20px',
-                                fontSize: '1rem',
-                                textTransform: 'none',
-                                '&:hover': { backgroundColor: '#1976d2' },
-                            }}
-                        >
-                            Get Hired
-                        </Button>
+                        <Link href="#contact" passHref>
+                            <Button
+                                variant="contained"
+                                onClick={() => handleLinkClick('#contact')}
+                                sx={{
+                                    backgroundColor: 'var(--primary)',
+                                    color: '#fff',
+                                    borderRadius: '30px',
+                                    padding: '10px 20px',
+                                    fontSize: '1rem',
+                                    textTransform: 'none',
+                                    '&:hover': { backgroundColor: '#1976d2' },
+                                }}
+                            >
+                                Get Hired
+                            </Button>
+                        </Link>
                     </Box>
 
                     {/* Hamburger Icon */}
@@ -150,7 +231,13 @@ export default function NavBar() {
             </Box>
 
             {/* Mobile Menu Component */}
-            <MobileMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu}  logoSrc={LogoImage.src}  />
-     </Box>
+            <MobileMenu 
+                isMenuOpen={isMenuOpen} 
+                toggleMenu={toggleMenu} 
+                logoSrc={LogoImage.src}
+                activeLink={activeLink}
+                handleLinkClick={handleLinkClick}
+            />
+        </Box>
     );
 }
