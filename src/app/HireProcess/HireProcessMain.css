@@ -5,6 +5,7 @@
     border-radius: 10px;
     margin: 20px 40px; /* Left & Right Margin */
     height: 100vh;
+    position: relative !important;
   }
   
   /* Top Section: Left-aligned text & Right-aligned Button */
@@ -97,6 +98,7 @@
     width: 100%;
     overflow: hidden;
     padding: 0 20px !important; /* Ensures padding from left & right */
+    position: relative !important;
 }
 
 .progress-bar {
@@ -105,7 +107,7 @@
     height: 4px;
     background-color: var(--primary);
     transition: width 0.2s ease-out;
-    z-index: 1000;
+    z-index: 1;
 }
   
   

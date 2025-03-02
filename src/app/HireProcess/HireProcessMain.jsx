@@ -16,7 +16,9 @@ export default function HireProcessMain() {
 
       if (stepsContainerRef.current) {
         const containerWidth = stepsContainerRef.current.offsetWidth;
-        setScrollWidth((progress / 100) * containerWidth);
+        // Cap the progress width to not exceed the container's width
+        const cappedWidth = Math.min((progress / 100) * containerWidth, containerWidth);
+        setScrollWidth(cappedWidth);
       }
     };
 
@@ -39,7 +41,7 @@ export default function HireProcessMain() {
         </Button>
       </Box>
 
-      {/* Progress Line */}
+      {/* Progress Line - Positioned relative to the container, not the viewport */}
       <Box className="progress-wrapper">
         <Box
           className="progress-bar"
