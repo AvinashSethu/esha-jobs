@@ -4,7 +4,7 @@ import "../HireProcess/HireProcess.css";
 
 export default function HireProcess(){
     return(
-        <Box sx={{height:'26vh', backgroundColor:'#fff'}}>
+        <Box sx={{height:'26vh', backgroundColor:'#fff'}} className="hire-con">
             
 
         </Box>

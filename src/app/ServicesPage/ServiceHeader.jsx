@@ -7,10 +7,22 @@ export default function ServiceHeader() {
   return (
     <Box className="service-header">
       <Box className="service-text">
-        <Typography variant="caption" className="service-subtitle">
+        <Typography
+          variant="caption"
+          className="service-subtitle"
+          sx={{ color: "var(--primary)", fontWeight: "bold", textTransform: "uppercase", fontSize: { xs: 16, md: 20 } }}
+        >
           OUR SERVICES/
         </Typography>
-        <Typography variant="h4" className="service-title">
+        <Typography
+          component="h1" // Use a semantic tag, avoid variant conflicts
+          className="service-title"
+          sx={{
+            fontWeight: "bold",
+            mt: 2, // margin-top: 20px
+            fontSize: { xs: 22, md: 42 }, // 22px on mobile, 42px on desktop
+          }}
+        >
           Unlock Your Dream <br /> Career Worldwide!
         </Typography>
       </Box>

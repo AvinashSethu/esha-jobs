@@ -11,19 +11,6 @@
     max-width: 50%;
   }
   
-  .service-subtitle {
-    color: var(--primary);
-    font-weight: bold !important;
-    text-transform: uppercase;
-    font-size: 20px !important;
-  }
-  
-  .service-title {
-    font-weight: bold;
-    margin-top: 20px !important;
-    font-size: 42px !important;
-  }
-  
   .service-buttons {
     display: flex;
     gap: 40px !important;
@@ -52,11 +39,27 @@
       flex-direction: column;
       text-align: center;
       padding-top: 30px; /* Adjusted for mobile */
+      margin-top: 30px;
+      height: auto !important;
     }
   
     .service-text {
       max-width: 100%;
       margin-bottom: 15px;
+      
     }
+    .service-buttons {
+      flex-direction: column;
+      gap: 20px !important; /* Reduced gap for mobile */
+      align-items: center;
+      width: 100%;
+    }
+  
+    .claim-btn,
+    .contact-btn {
+      width: 100%;
+      max-width: 200px; /* Keeps buttons from getting too wide */
+    }
+
   }
   
