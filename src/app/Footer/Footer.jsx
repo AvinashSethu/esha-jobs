@@ -14,9 +14,10 @@ export default function Footer() {
 
   return (
     <Box
+    className="fot-con"
       sx={{
         backgroundColor: "#fff",
-        paddingTop: "20px",
+        paddingTop: "20px", 
         [theme.breakpoints.down("sm")]: {
           padding: "10px",
         },
