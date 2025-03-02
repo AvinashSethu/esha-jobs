@@ -46,7 +46,7 @@ export default function Footer() {
               flex: "100%", // Full width on mobile
               textAlign: "center",
             },
-            backgroundColor:'#A0DCF5'
+            backgroundColor:'#c9e3f5'
           }}
         >
           <Typography
@@ -77,6 +77,7 @@ export default function Footer() {
             Your Dream Job is Just a Step Away!
           </Typography>
           <Button
+            className="fot-btn"
             variant="contained"
             endIcon={<ArrowForwardIcon />}
             sx={{
@@ -188,13 +189,13 @@ export default function Footer() {
               justifyContent: "center", // Center social icons on both desktop and mobile
             }}
           >
-            <IconButton aria-label="Facebook" sx={{ color: "#4267B2" }}>
+            <IconButton aria-label="Facebook" sx={{ color: "#000" }}>
               <FacebookIcon />
             </IconButton>
-            <IconButton aria-label="Twitter" sx={{ color: "#1DA1F2" }}>
+            <IconButton aria-label="Twitter" sx={{ color: "#000" }}>
               <TwitterIcon />
             </IconButton>
-            <IconButton aria-label="LinkedIn" sx={{ color: "#0A66C2" }}>
+            <IconButton aria-label="LinkedIn" sx={{ color: "#000" }}>
               <LinkedInIcon />
             </IconButton>
           </Box>
