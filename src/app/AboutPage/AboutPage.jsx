@@ -40,9 +40,9 @@ export default function AboutPage() {
             gap: "10px"
           }}
         >
-          <Box sx={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }} className="underline"></Box>
+          <span style={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }} className="underline"></span>
           ABOUT ESHA JOBS
-          <Box sx={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }}  className="underline"></Box>
+          <span style={{ flex: 0.1, borderBottom: "1px solid var(--primary)" }}  className="underline"></span>
         </Typography>
         
         <Typography 

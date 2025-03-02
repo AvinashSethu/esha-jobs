@@ -10,13 +10,14 @@ import HireProcessMain from "./HireProcess/HireProcessMain";
 import ServiceHeader from "./ServicesPage/ServiceHeader";
 import ServiceMain from "./ServicesPage/ServiceMain";
 import FlightImage from "./FlightImage/FlightImage";
-import Footer from "./Footer/Footer";
+import Contact from "./Contact/Contact";
+import { Box } from "@mui/material";
 
 
 
 export default function Home() {
   return (
-    <div>
+    <Box>
       <HeroPage />
       <AboutPage />
       <AboutPageTwo />
@@ -28,8 +29,8 @@ export default function Home() {
       <ServiceHeader />
       <ServiceMain />
       <FlightImage />
-      <Footer />
+      <Contact />
       
-    </div>
+    </Box>
   );
 }
