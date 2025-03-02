@@ -10,6 +10,7 @@ import HireProcessMain from "./HireProcess/HireProcessMain";
 import ServiceHeader from "./ServicesPage/ServiceHeader";
 import ServiceMain from "./ServicesPage/ServiceMain";
 import FlightImage from "./FlightImage/FlightImage";
+import Footer from "./Footer/Footer";
 
 
 
@@ -27,6 +28,7 @@ export default function Home() {
       <ServiceHeader />
       <ServiceMain />
       <FlightImage />
+      <Footer />
       
     </div>
   );
