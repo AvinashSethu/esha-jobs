@@ -121,9 +121,12 @@ export default function ContactForm() {
               ),
             }}
           >
-            <MenuItem value="Developer">Developer</MenuItem>
-            <MenuItem value="Designer">Designer</MenuItem>
-            <MenuItem value="Manager">Manager</MenuItem>
+            <MenuItem value="Developer">Apostille & Certificate Verification</MenuItem>
+            <MenuItem value="Designer">Emigration & Attestation Services</MenuItem>
+            <MenuItem value="Manager">Ticketing & Visa Stamping</MenuItem>
+            <MenuItem value="Manager">License Assistance</MenuItem>
+            <MenuItem value="Manager">Dataflow & Exam Booking</MenuItem>
+            <MenuItem value="Manager">Travel Insurance & Medical Appointments</MenuItem>
           </TextField>
         </Box>
 
