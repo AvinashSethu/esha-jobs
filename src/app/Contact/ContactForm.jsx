@@ -97,9 +97,12 @@ export default function ContactForm() {
                 ),
               }}
             >
-              <MenuItem value="Service 1">Service 1</MenuItem>
-              <MenuItem value="Service 2">Service 2</MenuItem>
-              <MenuItem value="Service 3">Service 3</MenuItem>
+              <MenuItem value="Developer">Apostille & Certificate Verification</MenuItem>
+            <MenuItem value="Designer">Emigration & Attestation Services</MenuItem>
+            <MenuItem value="Manager">Ticketing & Visa Stamping</MenuItem>
+            <MenuItem value="Manager">License Assistance</MenuItem>
+            <MenuItem value="Manager">Dataflow & Exam Booking</MenuItem>
+            <MenuItem value="Manager">Travel Insurance & Medical Appointments</MenuItem>
             </TextField>
           </Box>
         </Box>
@@ -121,12 +124,12 @@ export default function ContactForm() {
               ),
             }}
           >
-            <MenuItem value="Developer">Apostille & Certificate Verification</MenuItem>
-            <MenuItem value="Designer">Emigration & Attestation Services</MenuItem>
-            <MenuItem value="Manager">Ticketing & Visa Stamping</MenuItem>
-            <MenuItem value="Manager">License Assistance</MenuItem>
-            <MenuItem value="Manager">Dataflow & Exam Booking</MenuItem>
-            <MenuItem value="Manager">Travel Insurance & Medical Appointments</MenuItem>
+            <MenuItem value="Developer">Job1</MenuItem>
+            <MenuItem value="Designer">Job2</MenuItem>
+            <MenuItem value="Manager">Job3</MenuItem>
+            <MenuItem value="Manager">Job4</MenuItem>
+            <MenuItem value="Manager">Job5</MenuItem>
+            <MenuItem value="Manager">Job6</MenuItem>
           </TextField>
         </Box>
 
