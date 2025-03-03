@@ -59,3 +59,16 @@
       flex: 1 !important;
     }
   }
+
+  @media screen and (min-width: 900px) and (max-width: 1106px) {
+    .about-page-container {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 900px) {
+  .browse-button-container {
+    display: none !important;
+      
+  }
+}

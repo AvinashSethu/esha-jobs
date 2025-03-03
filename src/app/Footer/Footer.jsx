@@ -79,14 +79,14 @@ export default function Footer() {
               flex: "100%", // Full width on mobile
               textAlign: "center",
             },
-            backgroundColor: 'var(--secondary)'
+            backgroundColor: '#c5e7ff'
           }}
         >
           <Typography
             variant="h6"
             sx={{
               fontWeight: "bold",
-              color: "#fff",
+              color: "#000",
               marginBottom: "13px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "1.2rem",
@@ -99,7 +99,7 @@ export default function Footer() {
           <Typography
             variant="body2"
             sx={{
-              color: "#fff",
+              color: "#000",
               marginBottom: "10px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",

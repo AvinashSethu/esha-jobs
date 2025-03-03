@@ -27,3 +27,37 @@
         font-size: 14px !important;
     }
 }
+
+@media screen and (min-width: 900px) and (max-width: 1250px) {
+    .mis-con{
+        height: 200px !important;
+        width: 200px !important;
+    }
+    .vis-con{
+        height: 200px !important;
+        width: 200px !important;
+    }
+    .mis-texttwo{
+        font-size: 14px !important;
+    }
+    .vis-texttwo{
+        font-size: 14px !important;
+    }
+
+    
+}
+@media screen and (min-width: 769px) and (max-width: 899px) {
+    .mis-con{
+        height: 200px !important;
+        width: 400px !important;
+    }
+    .vis-con{
+        height: 200px !important;
+        width: 400px !important;
+        margin-top:-10px !important ;
+    }
+    .Nurse-con{
+        height:auto !important;
+    }
+    
+}

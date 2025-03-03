@@ -173,3 +173,17 @@
       font-size: 15px !important;
     }
   }
+
+  @media screen and (min-width: 769px) and (max-width: 1070px) {
+    .hire-process-container {
+      height: auto !important;
+
+    }
+    
+  }
+  @media screen and (min-width: 769px) and (max-width: 900px) {
+    .hire-process-container {
+      margin-top: -90px !important;
+    }
+
+  }
