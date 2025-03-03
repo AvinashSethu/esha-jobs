@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import PublicIcon from "@mui/icons-material/Public";
-import MoneyIcon from "@mui/icons-material/Money";
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import CheckIcon from "@mui/icons-material/Check";
 import Logo from "@/public/Icons/Logo-Esha.png";
 
@@ -51,7 +51,7 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
           color: "white",
           borderRadius: "15px",
           px: { xs: 1.5, sm: 2 },
-          fontSize: { xs: "12px", sm: "14px",md:"12px" },
+          fontSize: { xs: "12px", sm: "10px",md:"12px" },
           "&:hover": { bgcolor: "gray" },
           width:'auto',
           height:'40px'
@@ -81,7 +81,7 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
       >
         <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "primary.main" }} />
         {location}
-        <MoneyIcon sx={{ verticalAlign: "middle", ml: 2, mr: 1, color: "primary.main" }} />
+        <LocalAtmIcon sx={{ verticalAlign: "middle", ml: 2, mr: 1, color: "primary.main" }} />
         {salary}
       </Typography>
     </Box>
