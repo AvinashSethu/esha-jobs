@@ -14,14 +14,14 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
       borderRadius: 5,
       boxShadow: 1,
       p: { xs: 2, sm: 3 },
-      height: "450px",
+      height: "auto",
     }}
   >
     {/* Job Title, Logo, and View More Button */}
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", sm: "row" },
+        flexDirection: { xs: "row", sm: "row" },
         justifyContent: "space-between",
         alignItems: { xs: "flex-start", sm: "center" },
         mb: 3,
@@ -53,6 +53,8 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
           px: { xs: 1.5, sm: 2 },
           fontSize: { xs: "12px", sm: "14px" },
           "&:hover": { bgcolor: "gray" },
+          width:'auto',
+          height:'auto'
         }}
       >
         View More

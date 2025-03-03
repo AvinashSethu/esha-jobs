@@ -79,7 +79,7 @@ export default function Footer() {
               flex: "100%", // Full width on mobile
               textAlign: "center",
             },
-            backgroundColor: '#c5e7ff'
+            backgroundColor: '#dff3ff'
           }}
         >
           <Typography
