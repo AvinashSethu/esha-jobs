@@ -49,12 +49,12 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
         sx={{
           bgcolor: "black",
           color: "white",
-          borderRadius: 20,
+          borderRadius: "15px",
           px: { xs: 1.5, sm: 2 },
-          fontSize: { xs: "12px", sm: "14px" },
+          fontSize: { xs: "12px", sm: "14px",md:"12px" },
           "&:hover": { bgcolor: "gray" },
           width:'auto',
-          height:'auto'
+          height:'40px'
         }}
       >
         View More
