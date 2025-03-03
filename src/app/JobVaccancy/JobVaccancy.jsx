@@ -11,7 +11,7 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
     sx={{
       maxWidth: { xs: "100%", sm: "500px", md: "500px" },
       bgcolor: "white",
-      borderRadius: 5,
+      borderRadius: 2,
       boxShadow: 1,
       p: { xs: 2, sm: 3 },
       height: "auto",

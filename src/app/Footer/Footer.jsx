@@ -139,6 +139,7 @@ export default function Footer() {
 
         {/* Second Box (4 parts) - Quick Links and Social Media Icons (All Centered) */}
         <Box
+        className="sec-box"
           sx={{
             flex: "4", // 4 parts of the total 12 parts (33.33% on desktop)
             minWidth: "0", // Ensures box shrinks properly
@@ -147,6 +148,7 @@ export default function Footer() {
             [theme.breakpoints.down("sm")]: {
               flex: "100%", // Full width on mobile
             },
+            paddingTop:'10px'
           }}
         >
           <Typography
