@@ -4,7 +4,7 @@
     align-items: center;
     padding: 40px 100px 20px; /* Increased top padding */
     flex-wrap: wrap;
-    height: 40vh;
+    height: auto;
   }
   
   .service-text {

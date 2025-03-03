@@ -7,19 +7,32 @@ import Link from 'next/link';
 
 export default function HireProcessMain() {
   const [scrollWidth, setScrollWidth] = useState(0);
-  const stepsContainerRef = useRef(null);
+  const containerRef = useRef(null); // Changed to reference the whole container
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
+      if (containerRef.current) {
+        const container = containerRef.current;
+        const containerTop = container.getBoundingClientRect().top;
+        const containerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
 
-      if (stepsContainerRef.current) {
-        const containerWidth = stepsContainerRef.current.offsetWidth;
-        // Cap the progress width to not exceed the container's width
-        const cappedWidth = Math.min((progress / 100) * containerWidth, containerWidth);
-        setScrollWidth(cappedWidth);
+        // Calculate when container enters viewport and how far we've scrolled through it
+        const scrollPosition = window.scrollY;
+        const startPoint = container.offsetTop - windowHeight;
+        const endPoint = container.offsetTop + containerHeight - windowHeight;
+
+        if (scrollPosition >= startPoint && scrollPosition <= endPoint) {
+          // Calculate progress within the container
+          const progress = ((scrollPosition - startPoint) / (endPoint - startPoint)) * 100;
+          const containerWidth = container.offsetWidth;
+          const cappedWidth = Math.min((progress / 100) * containerWidth, containerWidth);
+          setScrollWidth(cappedWidth);
+        } else if (scrollPosition < startPoint) {
+          setScrollWidth(0); // Before container
+        } else if (scrollPosition > endPoint) {
+          setScrollWidth(container.offsetWidth); // After container
+        }
       }
     };
 
@@ -28,7 +41,7 @@ export default function HireProcessMain() {
   }, []);
 
   return (
-    <Box className="hire-process-container">
+    <Box className="hire-process-container" ref={containerRef}>
       {/* Top Section */}
       <Box className="top-section">
         <Box className="text-container">
@@ -38,22 +51,26 @@ export default function HireProcessMain() {
         </Box>
 
         <Link href="#jobs" passHref>
-        <Button className="cta-btn" endIcon={<ArrowForwardIcon />} sx={{bgcolor:'var(--primary)',borderRadius:'15px',height:'60px',color:'#fff',padding:'25px'}}>
-          Explore Vacancies
-        </Button>
+          <Button 
+            className="cta-btn" 
+            endIcon={<ArrowForwardIcon />} 
+            sx={{bgcolor:'var(--primary)',borderRadius:'15px',height:'60px',color:'#fff',padding:'25px'}}
+          >
+            Explore Vacancies
+          </Button>
         </Link>
       </Box>
 
-      {/* Progress Line - Positioned relative to the container, not the viewport */}
+      {/* Progress Line */}
       <Box className="progress-wrapper">
         <Box
           className="progress-bar"
-          style={{ width: `${scrollWidth}px` }} // Fixed width to stop at the last step
+          style={{ width: `${scrollWidth}px` }}
         />
       </Box>
 
       {/* Steps Section */}
-      <Box className="steps-container" ref={stepsContainerRef}>
+      <Box className="steps-container">
         {[
           {
             step: "01",

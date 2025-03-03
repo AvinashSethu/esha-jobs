@@ -4,6 +4,7 @@
     grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
     gap: 20px;
     padding: 40px;
+    margin-top: -80px;
 }
 
 /* Base card styling */
@@ -42,7 +43,7 @@
 .stagger-2 { transform: translateY(180px); }  /* Leftmost box lowest */
 .stagger-3 { transform: translateY(50px); }   /* Second row restart */
 .stagger-4 { transform: translateY(140px); }
-.stagger-5 { transform: translateY(240px); }
+.stagger-5 { transform: translateY(200px); }
 
 /* Reverse order for right-side stagger */
 .services-container {
@@ -57,6 +58,7 @@
     .services-container {
         grid-template-columns: repeat(2, 1fr); /* 2 columns */
         padding: 30px;
+        margin-top: 0 !important;
     }
     
     /* Adjust stagger effect for 2-column layout */
@@ -69,6 +71,7 @@
     .services-container {
         grid-template-columns: repeat(1, 1fr); /* 1 column */
         padding: 20px;
+        margin-top: 0 !important;
     }
 
     /* Remove stagger effect on mobile for better UX */

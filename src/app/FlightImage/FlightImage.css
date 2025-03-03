@@ -11,3 +11,18 @@
     width: 200px !important;
     margin-top: 30px !important;
 }
+
+@media (max-width: 768px) {
+    .fli-title{
+        font-size: 17px !important;
+    }
+    .fli-subtitle{
+        font-size: 16px !important;
+    }
+    .fli-btn{
+        width:150px !important;
+        height: 50px !important;
+        font-size: 12px !important;
+    }
+
+}

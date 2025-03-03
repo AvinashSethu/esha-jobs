@@ -1,10 +1,10 @@
 .hire-process-container {
     background-color: var(--secondary);
     color: white;
-    padding: 120px 30px; /* Increased padding inside */
+    padding: 80px 30px; /* Increased padding inside */
     border-radius: 10px;
     margin: 20px 40px; /* Left & Right Margin */
-    height: 100vh;
+    height: auto !important;
     position: relative !important;
   }
   
@@ -95,21 +95,17 @@
   /* Scroll Progress Bar */
 /* Scroll Progress Bar (Placed Above Steps Section) */
 .progress-wrapper {
-    width: 100%;
-    overflow: hidden;
-    padding: 0 20px !important; /* Ensures padding from left & right */
-    position: relative !important;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 20px;
+  position: relative; /* Changed from sticky to relative for container-specific behavior */
 }
 
 .progress-bar {
-    position: sticky;
-    top: 0;
-    height: 4px;
-    background-color: var(--primary);
-    transition: width 0.2s ease-out;
-    z-index: 1;
+  height: 4px;
+  background-color: var(--primary);
+  transition: width 0.2s ease-out;
 }
-  
   
   
   /* Responsive Design */

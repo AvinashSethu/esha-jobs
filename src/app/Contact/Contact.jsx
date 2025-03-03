@@ -98,35 +98,35 @@ export default function Contact() {
             <Box sx={{ marginTop: "50px", width: "100%", textAlign: "left" }}>
               {/* Email */}
               <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-                <EmailIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"var(--primary)",borderRadius:'50%',padding:'7px',height:'40px',width:'40px' }} />
+                <EmailIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"black",borderRadius:'50%',padding:'9px',height:'50px',width:'50px' }} />
                 <Box>
-                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999' }}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999',fontSize:{xs:"18px",sm:"30px",} }}>
                     Send me an email
                   </Typography>
-                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold'}}>eshaarabconsultancy@gmail.com</Typography>
+                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',fontSize:{xs:'16px',sm:'20px'}}}>eshaarabconsultancy@gmail.com</Typography>
                 </Box>
               </Box>
 
               {/* Phone */}
               <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2,marginTop:'40px' }}>
-                <PhoneIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"var(--primary)",borderRadius:'50%',padding:'7px',height:'40px',width:'40px',cursor:'pointer' }} onClick={handlePhoneCall}/>
+                <PhoneIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"black",borderRadius:'50%',padding:'9px',height:'50px',width:'50px',cursor:'pointer' }} onClick={handlePhoneCall}/>
                 <Box>
-                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999',cursor:'pointer' }} onClick={handlePhoneCall}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999',cursor:'pointer',fontSize:{xs:"18px",sm:"30px",} }} onClick={handlePhoneCall}>
                     Give me a call
                   </Typography>
-                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',cursor:'pointer'}} onClick={handlePhoneCall}>+91 9788903129</Typography>
+                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',cursor:'pointer',fontSize:{xs:'16px',sm:'20px'}}} onClick={handlePhoneCall}>+91 9788903129</Typography>
                 </Box>
               </Box>
 
               {/* Address */}
               <Box sx={{ display: "flex", alignItems: "center", gap: 2,marginTop:'40px' }}>
-                <LocationOnIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"var(--primary)",borderRadius:'50%',padding:'7px',height:'40px',width:'40px' }} />
+                <LocationOnIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"black",borderRadius:'50%',padding:'9px',height:'50px',width:'50px' }} />
                 <Box>
-                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999' }}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999',fontSize:{xs:"18px",sm:"30px",} }}>
                     Address
                   </Typography>
-                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold'}}>
-                    Thengapattinam, <br /> Kanyakumari District,<br /> Tamil Nadu, India
+                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',fontSize:{xs:'16px',sm:'20px'}}}>
+                    Thengapattinam, Kanyakumari District,<br /> Tamil Nadu, India
                   </Typography>
                   <Typography variant="body2" sx={{color:'#000',fontWeight:'bold'}}>Pin: 629173</Typography>
                 </Box>
