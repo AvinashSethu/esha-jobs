@@ -1,5 +1,5 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Box,
   TextField,
@@ -12,9 +12,25 @@ import ArrowForward from "@mui/icons-material/ArrowForward";
 import "../Contact/Contact.css";
 
 export default function ContactForm() {
+  const [servicesAnchorEl, setServicesAnchorEl] = useState(null);
+  const [jobTitleAnchorEl, setJobTitleAnchorEl] = useState(null);
+
+  const handleServicesClick = (event) => {
+    setServicesAnchorEl(event.currentTarget);
+  };
+
+  const handleJobTitleClick = (event) => {
+    setJobTitleAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setServicesAnchorEl(null);
+    setJobTitleAnchorEl(null);
+  };
+
   return (
     <Box
-    sx={{
+      sx={{
         flex: 1,
         width: { xs: "100%", md: "50%" },
         margin: 0,
@@ -28,10 +44,10 @@ export default function ContactForm() {
           color: "#fff",
           width: { xs: "100%", md: "50%" },
           overflow: "visible",
-          position: "absolute", // Add position relative to allow offset
-        top: { md: "10%" }, // Position from the top of the parent (adjust as needed)
-        left: { md: "0" }, // Position from the left (adjust as needed)
-        zIndex: 10,
+          position: "absolute",
+          top: { md: "10%" },
+          left: { md: "0" },
+          zIndex: 10,
         }}
       >
         {/* First Row - Full Name & Email Address */}
@@ -49,7 +65,9 @@ export default function ContactForm() {
               label="FULL NAME"
               variant="standard"
               InputLabelProps={{ style: { color: "#fff" } }}
-              InputProps={{ style: { color: "#fff", borderBottom: "1px solid #fff" } }}
+              InputProps={{
+                style: { color: "#fff", borderBottom: "1px solid #fff" },
+              }}
             />
           </Box>
           <Box sx={{ flex: 1, width: "100%" }}>
@@ -58,7 +76,9 @@ export default function ContactForm() {
               label="EMAIL ADDRESS"
               variant="standard"
               InputLabelProps={{ style: { color: "#fff" } }}
-              InputProps={{ style: { color: "#fff", borderBottom: "1px solid #fff" } }}
+              InputProps={{
+                style: { color: "#fff", borderBottom: "1px solid #fff" },
+              }}
             />
           </Box>
         </Box>
@@ -78,7 +98,9 @@ export default function ContactForm() {
               label="PHONE NUMBER"
               variant="standard"
               InputLabelProps={{ style: { color: "#fff" } }}
-              InputProps={{ style: { color: "#fff", borderBottom: "1px solid #fff" } }}
+              InputProps={{
+                style: { color: "#fff", borderBottom: "1px solid #fff" },
+              }}
             />
           </Box>
           <Box sx={{ flex: 1, width: "100%" }}>
@@ -92,17 +114,32 @@ export default function ContactForm() {
                 style: { color: "#fff", borderBottom: "1px solid #fff" },
                 endAdornment: (
                   <InputAdornment position="end">
-                    <ArrowDropDownIcon sx={{ color: "#fff" }} />
+                    <ArrowDropDownIcon
+                      sx={{ color: "#fff", cursor: "pointer" }}
+                      onClick={handleServicesClick}
+                    />
                   </InputAdornment>
                 ),
               }}
+              SelectProps={{
+                open: Boolean(servicesAnchorEl),
+                onClose: handleClose,
+                onOpen: handleServicesClick,
+                MenuProps: { anchorEl: servicesAnchorEl },
+              }}
             >
-              <MenuItem value="Developer">Apostille & Certificate Verification</MenuItem>
-            <MenuItem value="Designer">Emigration & Attestation Services</MenuItem>
-            <MenuItem value="Manager">Ticketing & Visa Stamping</MenuItem>
-            <MenuItem value="Manager">License Assistance</MenuItem>
-            <MenuItem value="Manager">Dataflow & Exam Booking</MenuItem>
-            <MenuItem value="Manager">Travel Insurance & Medical Appointments</MenuItem>
+              <MenuItem value="Developer">
+                Apostille & Certificate Verification
+              </MenuItem>
+              <MenuItem value="Designer">
+                Emigration & Attestation Services
+              </MenuItem>
+              <MenuItem value="Manager">Ticketing & Visa Stamping</MenuItem>
+              <MenuItem value="Manager">License Assistance</MenuItem>
+              <MenuItem value="Manager">Dataflow & Exam Booking</MenuItem>
+              <MenuItem value="Manager">
+                Travel Insurance & Medical Appointments
+              </MenuItem>
             </TextField>
           </Box>
         </Box>
@@ -119,9 +156,18 @@ export default function ContactForm() {
               style: { color: "#fff", borderBottom: "1px solid #fff" },
               endAdornment: (
                 <InputAdornment position="end">
-                  <ArrowDropDownIcon sx={{ color: "#fff" }} />
+                  <ArrowDropDownIcon
+                    sx={{ color: "#fff", cursor: "pointer" }}
+                    onClick={handleJobTitleClick}
+                  />
                 </InputAdornment>
               ),
+            }}
+            SelectProps={{
+              open: Boolean(jobTitleAnchorEl),
+              onClose: handleClose,
+              onOpen: handleJobTitleClick,
+              MenuProps: { anchorEl: jobTitleAnchorEl },
             }}
           >
             <MenuItem value="Developer">Job1</MenuItem>
@@ -134,7 +180,12 @@ export default function ContactForm() {
         </Box>
 
         {/* Fourth Row - Message */}
-        <Box sx={{ marginBottom: { xs: 4, md: 4 }, marginTop: { md: 12, xs: 10 } }}>
+        <Box
+          sx={{
+            marginBottom: { xs: 4, md: 4 },
+            marginTop: { md: 12, xs: 10 },
+          }}
+        >
           <TextField
             fullWidth
             multiline
@@ -142,7 +193,9 @@ export default function ContactForm() {
             placeholder="PLEASE TYPE YOUR MESSAGE HERE..."
             variant="standard"
             InputLabelProps={{ style: { color: "#fff" } }}
-            InputProps={{ style: { color: "#fff", borderBottom: "1px solid #fff" } }}
+            InputProps={{
+              style: { color: "#fff", borderBottom: "1px solid #fff" },
+            }}
           />
         </Box>
 
@@ -158,7 +211,7 @@ export default function ContactForm() {
               textTransform: "none",
               "&:hover": { backgroundColor: "#0056b3" },
               fontSize: { xs: "14px", sm: "16px" },
-              height:'60px'
+              height: "60px",
             }}
             endIcon={<ArrowForward sx={{ color: "#fff" }} />}
           >
