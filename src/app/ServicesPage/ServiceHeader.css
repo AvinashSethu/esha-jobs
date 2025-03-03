@@ -49,9 +49,10 @@
       
     }
     .service-buttons {
-      flex-direction: column;
+      flex-direction: row;
       gap: 20px !important; /* Reduced gap for mobile */
       align-items: center;
+      justify-content: center;
       width: 100%;
     }
   
