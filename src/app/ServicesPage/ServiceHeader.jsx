@@ -20,8 +20,9 @@ export default function ServiceHeader() {
           className="service-title"
           sx={{
             fontWeight: "bold",
-            mt: 2, // margin-top: 20px
-            fontSize: { xs: 22, md: 42 }, // 22px on mobile, 42px on desktop
+            mt: 2,
+            fontSize: { xs: 18, md: 42 },
+            "&.service-title": { fontSize: { xs: "21px !important", md: "42px !important" } },
           }}
         >
           Unlock Your Dream <br /> Career Worldwide!
