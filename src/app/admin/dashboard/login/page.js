@@ -32,7 +32,7 @@ export default function AdminLogin() {
   return (
     <Box
       sx={{
-        minHeight: {xs:"93.3vh",md:"100vh"},
+        minHeight: {xs:"100vh",md:"100vh"},
         width: '100%',
         backgroundImage: `url(${BackgroundImage.src})`,
         backgroundSize: 'cover',
