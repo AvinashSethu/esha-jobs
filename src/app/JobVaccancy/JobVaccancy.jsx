@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import PublicIcon from "@mui/icons-material/Public";
-import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import { PiMoneyWavyBold } from "react-icons/pi";
 import CheckIcon from "@mui/icons-material/Check";
 import Logo from "@/public/Icons/Logo-Esha.png";
 
@@ -79,9 +79,9 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
           flexWrap: "wrap",
         }}
       >
-        <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "primary.main" }} />
+        <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "var(--primary)" }} />
         {location}
-        <LocalAtmIcon sx={{ verticalAlign: "middle", ml: 2, mr: 1, color: "primary.main" }} />
+        <PiMoneyWavyBold style={{ verticalAlign: "middle", marginLeft: 40, marginRight: 8, color: "var(--primary)",fontSize:'22px' }} />
         {salary}
       </Typography>
     </Box>

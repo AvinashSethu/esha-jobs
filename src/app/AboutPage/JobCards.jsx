@@ -3,6 +3,9 @@ import { Box, Typography } from "@mui/material";
 import PublicIcon from "@mui/icons-material/Public";
 import MoneyIcon from "@mui/icons-material/Money";
 import "../AboutPage/JobCards.css";
+import { PiMoneyWavyBold } from "react-icons/pi";
+
+
 
 export default function JobCards() {
   return (
@@ -116,11 +119,11 @@ export default function JobCards() {
                     Staff Nurse
                   </Typography>
                   <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                    <MoneyIcon
+                  <PiMoneyWavyBold // Replace MoneyIcon with PiMoneyWavyBold
                       className="job-icon"
-                      sx={{
+                      style={{
                         color: "var(--primary)",
-                        fontSize: { xs: "14px", md: "16px" }, // Smaller icon on mobile
+                        fontSize: "22px", // Phosphor icons use style prop instead of sx
                       }}
                     />
                     <Typography
