@@ -4,6 +4,7 @@ import NurseImg from "@/public/Images/Nurse.png";
 import { Rocket, CenterFocusStrong } from "@mui/icons-material"; // Updated to use CenterFocusStrong instead of Target
 import "../AboutPageThree/NursePage.css";
 import Image from "next/image";
+import Link from 'next/link';
 
 export default function() {
     return (
@@ -64,7 +65,8 @@ export default function() {
                         {/* Added horizontal line below Typography */}
                         <hr style={{ width: "136%", border: "0.1px solid #999999", margin: "0 0 20px 0", marginLeft: '30px', marginTop: '30px' }} className="hor-line" />
                         <Box>
-                            <Button
+                        <Link href="#contact" passHref>
+                        <Button
                                 sx={{
                                     backgroundColor: "var(--primary)",
                                     color: "#FFFFFF",
@@ -81,7 +83,9 @@ export default function() {
                             >
                                 GET HIRED →
                             </Button>
-                            <Button
+                        </Link>
+                        <Link href="#services" passHref>
+                        <Button
                                 sx={{
                                     backgroundColor: "transparent",
                                     color: "#FFFFFF",
@@ -96,6 +100,7 @@ export default function() {
                             >
                                 SERVICES
                             </Button>
+                        </Link>
                         </Box>
 
                         {/* New Cards for Mission and Vision */}

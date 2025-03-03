@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import "../AboutPage/AboutPage.css";
+import Link from 'next/link';
 
 export default function AboutPage() {
   return (
@@ -93,6 +94,7 @@ export default function AboutPage() {
           padding: 0 // Remove default padding to control with container
         }}
       >
+        <Link href="#services" passHref>
         <Button 
           className="MuiButton-outlined"
           variant="outlined" 
@@ -106,6 +108,7 @@ export default function AboutPage() {
         >
           BROWSE ALL
         </Button>
+        </Link>
       </Box>
     </Box>
   );

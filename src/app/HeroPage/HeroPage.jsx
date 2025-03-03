@@ -6,6 +6,7 @@ import './HeroPage.css';
 import HeroImg1 from "@/public/Images/Hero1.png";
 import HeroImg2 from "@/public/Images/Hero2.png";
 import Navbar from '../Navbar/NavBar';
+import Link from 'next/link';
 
 export default function HeroPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -109,6 +110,7 @@ export default function HeroPage() {
           >
             {renderTitle(heroContent[currentIndex].title, currentIndex)}
           </Typography>
+          <Link href="#jobs" passHref>
           <Button 
             variant="contained" 
             className='hero-btn'
@@ -127,6 +129,7 @@ export default function HeroPage() {
           >
             {heroContent[currentIndex].buttonText}
           </Button>
+          </Link>
         </Box>
       </Box>
     </Box>

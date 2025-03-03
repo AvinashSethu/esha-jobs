@@ -4,6 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // Import the f
 import Image from "next/image";
 import FlightImg from "@/public/Images/Flight.png";
 import "../FlightImage/FlightImage.css";
+import Link from 'next/link';
 
 export default function FlightImage() {
   return (
@@ -30,9 +31,11 @@ export default function FlightImage() {
         <Typography variant="h5" gutterBottom  className="fli-subtitle">
            Top Nursing Jobs in India & Abroad – No Hassle, No Delays!
         </Typography>
+        <Link href="#contact" passHref>
         <Button variant="contained" size="large" sx={{ mt: 2, }} endIcon={<ArrowForwardIcon />}  className="fli-btn">
           Fly High
         </Button>
+        </Link>
       </Box>
     </Box>
   );

@@ -79,14 +79,14 @@ export default function Footer() {
               flex: "100%", // Full width on mobile
               textAlign: "center",
             },
-            backgroundColor: '#c9e3f5'
+            backgroundColor: 'var(--secondary)'
           }}
         >
           <Typography
             variant="h6"
             sx={{
               fontWeight: "bold",
-              color: "#000",
+              color: "#fff",
               marginBottom: "13px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "1.2rem",
@@ -99,7 +99,7 @@ export default function Footer() {
           <Typography
             variant="body2"
             sx={{
-              color: "#000",
+              color: "#fff",
               marginBottom: "10px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",
@@ -109,6 +109,7 @@ export default function Footer() {
           >
             Your Dream Job is Just a Step Away!
           </Typography>
+          <Link href="#jobs" passHref>
           <Button
             className="fot-btn"
             variant="contained"
@@ -128,6 +129,7 @@ export default function Footer() {
           >
             Vacancies
           </Button>
+          </Link>
         </Box>
 
         {/* Second Box (4 parts) - Quick Links and Social Media Icons (All Centered) */}

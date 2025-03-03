@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "../HireProcess/HireProcessMain.css";
+import Link from 'next/link';
 
 export default function HireProcessMain() {
   const [scrollWidth, setScrollWidth] = useState(0);
@@ -36,9 +37,11 @@ export default function HireProcessMain() {
           <Typography className="description">Get Hired in Just 4 Easy Steps.</Typography>
         </Box>
 
+        <Link href="#jobs" passHref>
         <Button className="cta-button" endIcon={<ArrowForwardIcon />}>
           Explore Vacancies
         </Button>
+        </Link>
       </Box>
 
       {/* Progress Line - Positioned relative to the container, not the viewport */}

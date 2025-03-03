@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "../ServicesPage/ServiceHeader.css";
+import Link from 'next/link';
 
 export default function ServiceHeader() {
   return (
@@ -28,12 +29,16 @@ export default function ServiceHeader() {
       </Box>
 
       <Box className="service-buttons">
-        <Button variant="contained" className="claim-btn" endIcon={<ArrowForwardIosIcon />}>
+      <Link href="#jobs" passHref>
+      <Button variant="contained" className="claim-btn" endIcon={<ArrowForwardIosIcon />}>
           Claim It
         </Button>
-        <Button variant="outlined" className="contact-btn">
+      </Link>
+      <Link href="#contact" passHref>
+      <Button variant="outlined" className="contact-btn">
           Contact Us
         </Button>
+      </Link>
       </Box>
     </Box>
   );
