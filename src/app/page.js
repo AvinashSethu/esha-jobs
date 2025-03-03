@@ -25,7 +25,7 @@ export default function Home() {
       <Box id="about">
         <AboutPage />
         <AboutPageTwo />
-        <AboutPageThree />
+        
         <AboutThreeMain />
         <NursePage />
       </Box>

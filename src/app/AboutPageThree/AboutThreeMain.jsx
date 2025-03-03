@@ -5,7 +5,7 @@ import "../AboutPageThree/AboutThreeMain.css";
 
 export default function AboutThreeMain() {
   return (
-    <Box sx={{ height: "30vh", backgroundColor: "var(--secondary)" }} className="Three-main">
+    <Box sx={{ height: "auto", backgroundColor: "var(--secondary)" }} className="Three-main">
       {/* "Center Text" */}
       <Box
         sx={{

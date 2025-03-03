@@ -49,7 +49,7 @@ export default function AboutPageTwo() {
           alt="About page image"
           sx={{
             position: "absolute",
-            top: { xs: "-50%", md: "-10%" }, // Position at the top, with half extending upward (same for mobile and desktop)
+            top: { xs: "-70%", md: "-10%" }, // Position at the top, with half extending upward (same for mobile and desktop)
             left: "50%",
             transform: "translateX(-50%)", // Center horizontally only
             width: "700px", // Slightly larger to ensure half overflows upward

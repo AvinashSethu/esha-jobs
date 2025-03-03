@@ -42,7 +42,7 @@
 .stagger-1 { transform: translateY(90px); }  /* Middle box lower */
 .stagger-2 { transform: translateY(180px); }  /* Leftmost box lowest */
 .stagger-3 { transform: translateY(50px); }   /* Second row restart */
-.stagger-4 { transform: translateY(140px); }
+.stagger-4 { transform: translateY(150px); }
 .stagger-5 { transform: translateY(200px); }
 
 /* Reverse order for right-side stagger */
