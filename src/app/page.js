@@ -47,8 +47,8 @@ export default function Home() {
         <Contact />
       </Box>
       <Box>
-        <Incrix />
         <Footer />
+        <Incrix />
       </Box>
     </Box>
   );

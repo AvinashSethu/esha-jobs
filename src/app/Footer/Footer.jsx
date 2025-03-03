@@ -54,6 +54,7 @@ export default function Footer() {
         [theme.breakpoints.down("sm")]: {
           padding: "10px",
         },
+        marginTop:'7%'
       }}
     >
       <Box

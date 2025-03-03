@@ -11,10 +11,11 @@ export default function Incrix() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-end",
+        alignItems: "center",
         justifyContent: "center",
-        height: "15vh",
-        pr: 10, // Padding for right alignment
+        height: "auto", // Padding for right alignment
+        marginTop:'50px',
+        paddingBottom:'30px'
       }}
     >
       {/* First Line: Typography and Logo */}
@@ -36,6 +37,10 @@ export default function Incrix() {
       {/* Second Line: Copyright Text */}
       <Typography variant="body2" sx={{ color: "#666", mt: 1 }}>
         © Copyright 2025, All Rights Reserved by Esha jobs
+      </Typography>
+
+      <Typography sx={{color:'#666',mt:1}}>
+        Terms and conditions | privacy policy
       </Typography>
     </Box>
   );

@@ -15,6 +15,12 @@
         background-color: var(--primary) !important;
     }
     .fot-con{
-        margin-top: 600px;
+        margin-top: 700px !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 900px) {
+    .fot-con {
+        margin-top: 540px !important;
     }
 }
