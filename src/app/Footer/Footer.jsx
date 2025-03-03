@@ -84,7 +84,7 @@ export default function Footer() {
               flex: "100%", // Full width on mobile
               textAlign: "center",
             },
-            backgroundColor: '#dff3ff'
+            backgroundColor: '#fff'
           }}
         >
           <Typography

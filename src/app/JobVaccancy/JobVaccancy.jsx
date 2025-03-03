@@ -51,10 +51,10 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
           color: "white",
           borderRadius: "15px",
           px: { xs: 1.5, sm: 2 },
-          fontSize: { xs: "12px", sm: "10px",md:"12px" },
+          fontSize: { xs: "12px", sm: "10px", md: "12px" },
           "&:hover": { bgcolor: "gray" },
-          width:'auto',
-          height:'40px'
+          width: "auto",
+          height: "40px",
         }}
       >
         View More
@@ -62,9 +62,7 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
     </Box>
 
     {/* Job Description */}
-    <Typography
-      sx={{ color: "#666666", mb: 3, fontSize: { xs: "12px", sm: "14px" } }}
-    >
+    <Typography sx={{ color: "#666666", mb: 3, fontSize: { xs: "12px", sm: "14px" } }}>
       {description}
     </Typography>
 
@@ -81,7 +79,15 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
       >
         <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "var(--primary)" }} />
         {location}
-        <PiMoneyWavyBold style={{ verticalAlign: "middle", marginLeft: 40, marginRight: 8, color: "var(--primary)",fontSize:'22px' }} />
+        <PiMoneyWavyBold
+          style={{
+            verticalAlign: "middle",
+            marginLeft: 40,
+            marginRight: 8,
+            color: "var(--primary)",
+            fontSize: "22px",
+          }}
+        />
         {salary}
       </Typography>
     </Box>
@@ -98,7 +104,13 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
         }}
       >
         <CheckIcon
-          sx={{ color: "#fff", bgcolor: "#000", borderRadius: "50%", fontSize: { xs: "16px", sm: "20px" }, mr: 1 }}
+          sx={{
+            color: "#fff",
+            bgcolor: "#000",
+            borderRadius: "50%",
+            fontSize: { xs: "16px", sm: "20px" },
+            mr: 1,
+          }}
         />
         {requirement1}
       </Typography>
@@ -113,7 +125,13 @@ const JobCard = ({ title, gender, location, salary, description, requirement1, r
         }}
       >
         <CheckIcon
-          sx={{ color: "#fff", bgcolor: "#000", borderRadius: "50%", fontSize: { xs: "16px", sm: "20px" }, mr: 1 }}
+          sx={{
+            color: "#fff",
+            bgcolor: "#000",
+            borderRadius: "50%",
+            fontSize: { xs: "16px", sm: "20px" },
+            mr: 1,
+          }}
         />
         {requirement2}
       </Typography>
@@ -172,19 +190,36 @@ export default function JobVacancy() {
       </Box>
 
       {/* Job Cards Container */}
-      <Box 
-        sx={{ 
-          maxWidth: "1200px", 
-          margin: "0 auto", 
+      <Box
+        sx={{
+          maxWidth: "1200px",
+          margin: "0 auto",
           mt: 4,
           display: "flex",
           flexWrap: "wrap",
           gap: 3,
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         {/* Job Cards */}
-        <Box sx={{ flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 12px)" } }}>
+        <Box
+          sx={{
+            flex: {
+              xs: "1 1 100%", // Full width below 600px
+              sm: "1 1 100%", // Full width below 800px
+              md: "1 1 calc(50% - 12px)", // Two columns above 800px
+            },
+            display: "flex",
+            justifyContent: "center", // Center the card horizontally
+            maxWidth: { xs: "500px", sm: "500px", md: "100%" }, // Limit width for centering
+            mx: "auto", // Center the Box itself within the parent
+            "@media (min-width: 800px)": {
+              flex: "1 1 calc(50% - 12px)", // Two columns above 800px
+              maxWidth: "100%", // Reset maxWidth above 800px
+              mx: 0, // Remove margin above 800px
+            },
+          }}
+        >
           <JobCard
             title="Staff Nurse"
             gender="Male"
@@ -195,7 +230,24 @@ export default function JobVacancy() {
             requirement2="Prometric Passed Required"
           />
         </Box>
-        <Box sx={{ flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 12px)" } }}>
+        <Box
+          sx={{
+            flex: {
+              xs: "1 1 100%", // Full width below 600px
+              sm: "1 1 100%", // Full width below 800px
+              md: "1 1 calc(50% - 12px)", // Two columns above 800px
+            },
+            display: "flex",
+            justifyContent: "center", // Center the card horizontally
+            maxWidth: { xs: "500px", sm: "500px", md: "100%" }, // Limit width for centering
+            mx: "auto", // Center the Box itself within the parent
+            "@media (min-width: 800px)": {
+              flex: "1 1 calc(50% - 12px)", // Two columns above 800px
+              maxWidth: "100%", // Reset maxWidth above 800px
+              mx: 0, // Remove margin above 800px
+            },
+          }}
+        >
           <JobCard
             title="Staff Nurse"
             gender="Male"
@@ -206,7 +258,24 @@ export default function JobVacancy() {
             requirement2="Prometric Passed Required"
           />
         </Box>
-        <Box sx={{ flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 12px)" } }}>
+        <Box
+          sx={{
+            flex: {
+              xs: "1 1 100%", // Full width below 600px
+              sm: "1 1 100%", // Full width below 800px
+              md: "1 1 calc(50% - 12px)", // Two columns above 800px
+            },
+            display: "flex",
+            justifyContent: "center", // Center the card horizontally
+            maxWidth: { xs: "500px", sm: "500px", md: "100%" }, // Limit width for centering
+            mx: "auto", // Center the Box itself within the parent
+            "@media (min-width: 800px)": {
+              flex: "1 1 calc(50% - 12px)", // Two columns above 800px
+              maxWidth: "100%", // Reset maxWidth above 800px
+              mx: 0, // Remove margin above 800px
+            },
+          }}
+        >
           <JobCard
             title="Staff Nurse"
             gender="Male"
@@ -217,7 +286,24 @@ export default function JobVacancy() {
             requirement2="Prometric Passed Required"
           />
         </Box>
-        <Box sx={{ flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 12px)" } }}>
+        <Box
+          sx={{
+            flex: {
+              xs: "1 1 100%", // Full width below 600px
+              sm: "1 1 100%", // Full width below 800px
+              md: "1 1 calc(50% - 12px)", // Two columns above 800px
+            },
+            display: "flex",
+            justifyContent: "center", // Center the card horizontally
+            maxWidth: { xs: "500px", sm: "500px", md: "100%" }, // Limit width for centering
+            mx: "auto", // Center the Box itself within the parent
+            "@media (min-width: 800px)": {
+              flex: "1 1 calc(50% - 12px)", // Two columns above 800px
+              maxWidth: "100%", // Reset maxWidth above 800px
+              mx: 0, // Remove margin above 800px
+            },
+          }}
+        >
           <JobCard
             title="Staff Nurse"
             gender="Male"
