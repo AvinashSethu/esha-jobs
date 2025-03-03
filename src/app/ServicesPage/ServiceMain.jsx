@@ -10,6 +10,7 @@ import {
     ArrowForward,
 } from "@mui/icons-material";
 import "../ServicesPage/ServiceMain.css";
+import Link from "next/link";
 
 const services = [
     { icon: <WorkspacePremiumIcon />, title: "Apostille & Certificate Verification", description: "Get your credentials authenticated easily." },
@@ -25,12 +26,14 @@ export default function ServiceMain() {
     return (
         <Box className="services-container">
             {services.map((service, index) => (
-                <Box key={index} className={`service-card stagger-${index}`}>
+                <Link href="#jobs" passHref>
+                    <Box key={index} className={`service-card stagger-${index}`}>
                     <Box className="service-icon">{service.icon}</Box>
                     <Typography variant="h6" className="service-title">{service.title}</Typography>
                     <Typography variant="body2" className="service-desc">{service.description}</Typography>
                     <ArrowForward className="arrow-icon" />
                 </Box>
+                </Link>
             ))}
         </Box>
     );
