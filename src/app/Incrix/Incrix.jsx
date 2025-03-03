@@ -40,7 +40,7 @@ export default function Incrix() {
       </Typography>
 
       <Typography sx={{color:'#666',mt:1}}>
-        Terms and conditions | privacy policy
+        Terms and conditions | Privacy Policy
       </Typography>
     </Box>
   );

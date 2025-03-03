@@ -118,7 +118,7 @@ export default function Footer() {
             sx={{
               backgroundColor: "var(--primary)",
               color: "#fff",
-              borderRadius: "20px",
+              borderRadius: "15px",
               "&:hover": { backgroundColor: "var(--primary)" },
               [theme.breakpoints.down("sm")]: {
                 width: "100%",
@@ -341,7 +341,7 @@ export default function Footer() {
               },
             }}
           >
-            ESHAAARBCONSULTANCY@GMAIL.COM
+            ESHAARABCONSULTANCY@GMAIL.COM
           </Typography>
         </Box>
       </Box>

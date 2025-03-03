@@ -154,10 +154,11 @@ export default function ContactForm() {
               backgroundColor: "#007BFF",
               color: "#fff",
               padding: { xs: "8px 16px", sm: "10px 20px" },
-              borderRadius: "50px",
+              borderRadius: "15px",
               textTransform: "none",
               "&:hover": { backgroundColor: "#0056b3" },
               fontSize: { xs: "14px", sm: "16px" },
+              height:'60px'
             }}
             endIcon={<ArrowForward sx={{ color: "#fff" }} />}
           >

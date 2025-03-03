@@ -38,7 +38,7 @@ export default function HireProcessMain() {
         </Box>
 
         <Link href="#jobs" passHref>
-        <Button className="cta-button" endIcon={<ArrowForwardIcon />}>
+        <Button className="cta-btn" endIcon={<ArrowForwardIcon />} sx={{bgcolor:'var(--primary)',borderRadius:'15px',height:'60px',color:'#fff',padding:'25px'}}>
           Explore Vacancies
         </Button>
         </Link>

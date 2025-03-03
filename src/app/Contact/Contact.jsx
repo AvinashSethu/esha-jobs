@@ -100,7 +100,7 @@ export default function Contact() {
                   <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999' }}>
                     Send me an email
                   </Typography>
-                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold'}}>esharaabconsultancy@gmail.com</Typography>
+                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold'}}>eshaarabconsultancy@gmail.com</Typography>
                 </Box>
               </Box>
 
