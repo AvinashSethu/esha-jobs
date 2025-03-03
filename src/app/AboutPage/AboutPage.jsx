@@ -59,7 +59,8 @@ export default function AboutPage() {
         xs: "none", // hides br on mobile (extra small screens)
         sm: "inline" // shows br on larger screens
       }
-    }
+    },
+    fontWeight:'bold'
   }}
 >
   Your Dream <span style={{color:'var(--primary)'}}>Job Abroad</span> is <br /> 

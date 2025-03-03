@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 import HeroPage from "./HeroPage/HeroPage";
 import AboutPage from "./AboutPage/AboutPage";
 import AboutPageTwo from "./AboutPageTwo/AboutPageTwo";
-import AboutPageThree from "./AboutPageThree/AboutPageThree";
 import AboutThreeMain from "./AboutPageThree/AboutThreeMain";
 import NursePage from "./AboutPageThree/NursePage";
 import HireProcess from "./HireProcess/HireProcess";
@@ -25,7 +24,6 @@ export default function Home() {
       <Box id="about">
         <AboutPage />
         <AboutPageTwo />
-        
         <AboutThreeMain />
         <NursePage />
       </Box>
