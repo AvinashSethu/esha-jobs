@@ -8,6 +8,9 @@ import "../Contact/Contact.css";
 import ContactForm from "./ContactForm";
 
 export default function Contact() {
+  const handlePhoneCall = () => {
+    window.location.href = 'tel: 9788903129'; // Initiates the call
+  };
   return (
     <Box
       sx={{
@@ -106,12 +109,12 @@ export default function Contact() {
 
               {/* Phone */}
               <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2,marginTop:'40px' }}>
-                <PhoneIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"var(--primary)",borderRadius:'50%',padding:'7px',height:'40px',width:'40px' }} />
+                <PhoneIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"var(--primary)",borderRadius:'50%',padding:'7px',height:'40px',width:'40px',cursor:'pointer' }} onClick={handlePhoneCall}/>
                 <Box>
-                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999' }}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999',cursor:'pointer' }} onClick={handlePhoneCall}>
                     Give me a call
                   </Typography>
-                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold'}}>+91 9788903129</Typography>
+                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',cursor:'pointer'}} onClick={handlePhoneCall}>+91 9788903129</Typography>
                 </Box>
               </Box>
 

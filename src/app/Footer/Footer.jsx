@@ -45,6 +45,10 @@ export default function Footer() {
     }
   };
 
+  const handlePhoneCall = () => {
+    window.location.href = 'tel: 9788903129'; // Initiates the call
+  };
+
   return (
     <Box
       className="fot-con"
@@ -320,6 +324,7 @@ export default function Footer() {
             PIN 629173
           </Typography>
           <Typography
+          onClick={handlePhoneCall}
             variant="body2"
             sx={{
               color: "#666",
@@ -327,9 +332,10 @@ export default function Footer() {
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",
               },
+              cursor:'pointer'
             }}
           >
-            +91 97880903129
+            +91 9788903129
           </Typography>
           <Typography
             variant="body2"
