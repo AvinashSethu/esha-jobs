@@ -1,0 +1,9 @@
+@media (max-width: 670px) {
+    .nav-con{
+        display: none !important;
+    }
+}
+.nav-con{
+    position: fixed !important;
+    width: 100%;
+}

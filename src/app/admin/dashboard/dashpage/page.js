@@ -1,14 +1,18 @@
 import React from "react";
-import { Box,Typography } from "@mui/material";
+import { Box,} from "@mui/material";
+import NavbarDash from "../navbar/navbar";
+import Navbarbottom from "../navbarbotttom/navbarbotttom";
 
 export default function DashboardPage(){
     return(
-        <Box>
+        <Box sx={{backgroundColor:'#E6F3FF',height:'100vh'}}>
             <Box>
-                <Typography>
-                    Hello
-                </Typography>
+                <NavbarDash />
+
+
                 
+               
+                <Navbarbottom />
             </Box>
         </Box>
     );

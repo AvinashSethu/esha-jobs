@@ -1,0 +1,49 @@
+.navbar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000; /* Black background like in your image */
+    padding: 10px 0;
+    border-top: 1px solid #333;
+    height: 70px;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-transform: none;
+    color: #fff !important;
+}
+
+.nav-button svg {
+    font-size: 20px; /* Adjust icon size as needed */
+}
+
+@media screen and (min-width: 670px) {
+    .navbar-bottom {
+        display: none; /* Hide navbar on screens 670px and wider */
+    }
+}
+
+/* Remove any margins/padding on body if needed */
+body {
+    margin: 0;
+    padding: 0;
+}
