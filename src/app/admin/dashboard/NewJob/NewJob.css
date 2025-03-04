@@ -1,0 +1,191 @@
+.new-job-container {
+    padding: 100px;
+    max-width: 100%;
+    margin: 0 20px;
+    background-color: #fff;
+  }
+  .job-avatar{
+    background-color: var(--primary) !important;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px; /* Increased from 30px to 50px for more space between columns */
+    margin-bottom: 40px; /* Increased from 30px to 40px */
+  }
+  
+  .left-column,
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Increased from 10px to 15px for more spacing between elements */
+  }
+  .right-column {
+    margin-top: -26px;
+  }
+  
+  .salary-image-row {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Increased from 20px to 25px */
+  }
+  .form-title{
+    font-weight: bold !important;
+  }
+  
+  .job-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* Increased from 10px to 12px */
+  }
+  
+  .job-image span {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .other-details {
+    margin-top: 30px; /* Increased from 20px to 30px */
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 15px; /* Increased from 10px to 15px */
+    justify-content: center;
+    margin-top: 40px; /* Increased from 30px to 40px */
+  }
+
+  .form-title {
+    font-weight: bold;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+  }
+  
+  .custom-textfield {
+    background-color: #DCE5EE;
+    border-radius: 7px;
+  }
+  .job-field{
+    margin-bottom: 20px !important;
+  }
+  
+  .custom-textfield .MuiInputBase-root {
+    background-color: #DCE5EE;
+    border-radius: 7px;
+    box-shadow: inset 0 2px 4px #B6EAFF;
+  }
+  
+  .custom-textfield .MuiInputBase-root.Mui-focused,
+  .custom-textfield .MuiInputBase-root:hover {
+    background-color: #DCE5EE;
+  }
+  
+  .custom-textfield .MuiInputBase-root input:not(:placeholder-shown),
+  .custom-textfield .MuiInputBase-root textarea:not(:placeholder-shown) {
+    background-color: #fff;
+  }
+  
+  .custom-textfield .MuiInputBase-input::placeholder {
+    color: #757575;
+    opacity: 1;
+  }
+  
+  .custom-textfield .MuiInputLabel-root {
+    color: #666;
+  }
+  
+  .custom-textfield .MuiInputLabel-root.Mui-focused {
+    color: #000;
+  }
+  
+  .custom-textfield .MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+  }
+  
+  .salary-field {
+    flex: 1 !important;
+  }
+  
+  .job-avatar {
+    width: 100px !important;
+    height: 100px !important;
+    background-color: var(--primary);
+    cursor: pointer;
+  }
+  
+  .gender-radio-group {
+    margin: 16px 0;
+  }
+  
+  .key-features-title {
+    margin-bottom: 8px;
+  }
+  
+  .submit-button {
+    background-color: var(--primary) !important;
+    height: 60px !important;
+    width: 180px !important;
+    text-transform: none !important;
+    font-size: 17px !important;
+    border-radius: 13px !important;
+  }
+  
+  .clear-button {
+    color: var(--primary)  !important;
+    border: 1px solid var(--primary)  !important;
+    height: 60px !important;
+    width: 180px !important;
+    text-transform: none !important;
+    font-size: 17px !important;
+    border-radius: 13px !important;
+  }
+
+  /* Add these styles to your existing NewJob.css file */
+.custom-select {
+    background-color: #DCE5EE;
+    border-radius: 7px;
+  }
+  
+  .custom-select .MuiInputBase-root {
+    background-color: #DCE5EE;
+    border-radius: 7px;
+    box-shadow: inset 0 2px 4px #B6EAFF;
+  }
+  
+  .custom-select .MuiInputBase-root.Mui-focused,
+  .custom-select .MuiInputBase-root:hover {
+    background-color: #DCE5EE;
+  }
+  
+  /* This ensures the selected value maintains the white background */
+  .custom-select .MuiInputBase-root.Mui-focused:not(.Mui-disabled),
+  .custom-select .MuiInputBase-root:not(.Mui-disabled) .MuiSelect-select:not(:empty) {
+    background-color: #fff;
+  }
+  
+  .custom-select .MuiInputLabel-root {
+    color: #666 !important;
+  }
+  
+  .custom-select .MuiInputLabel-root.Mui-focused {
+    color: #000;
+  }
+  
+  .custom-select .MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      gap: 30px; /* Adjusted spacing for mobile view */
+    }
+    .new-job-container{
+        padding: 20px !important;
+        padding-bottom: 40px !important;
+        margin: 0 !important;
+    }
+  }
