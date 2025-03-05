@@ -5,21 +5,28 @@ import Image from 'next/image';
 import "../NewJob/NewJob.css";
 import axios from "axios";
 
+const countries = [
+    { code: 'AF', name: 'Afghanistan' },
+    { code: 'AL', name: 'Albania' },
+    { code: 'DZ', name: 'Algeria' },
+    // ... (rest of your countries array here)
+];
+
 export default function NewJob() {
   const [formData, setFormData] = useState({
     jobTitle: "",
     salary: "",
-    country: "",
-    gender: "male",
+    location: "",
+    gender: "",
     description: "",
     keyFeatures: ["", ""],
     jobDetails: "",
     benefits: "",
     otherDetails: "",
-    jobImage: null,
+    jobImage: null, // Store the File object here
   });
   
-  // Add loading state
+  const [imagePreview, setImagePreview] = useState(null); // Separate state for preview URL
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -44,15 +51,23 @@ export default function NewJob() {
     if (file) {
       setFormData((prev) => ({
         ...prev,
-        jobImage: URL.createObjectURL(file),
+        jobImage: file, // Store the file object
       }));
+      setImagePreview(URL.createObjectURL(file)); // Set preview URL
     }
+  };
+
+  const removeImage = () => {
+    setFormData((prev) => ({
+      ...prev,
+      jobImage: null,
+    }));
+    setImagePreview(null); // Clear preview
+    URL.revokeObjectURL(imagePreview); // Clean up memory
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Set loading state to true
     setIsLoading(true);
 
     const formDataToSend = new FormData();
@@ -60,10 +75,7 @@ export default function NewJob() {
       if (key === 'keyFeatures') {
         formDataToSend.append(key, JSON.stringify(formData[key]));
       } else if (key === 'jobImage' && formData[key]) {
-        const fileInput = document.querySelector('input[type="file"]');
-        if (fileInput && fileInput.files[0]) {
-          formDataToSend.append('jobImage', fileInput.files[0]);
-        }
+        formDataToSend.append('jobImage', formData[key]); // Append the file object
       } else {
         formDataToSend.append(key, formData[key]);
       }
@@ -72,19 +84,16 @@ export default function NewJob() {
     try {
       const response = await axios.post('http://your-backend-api-endpoint/jobs', formDataToSend, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       });
-      
       console.log('Success:', response.data);
-      // Show success alert
       alert("Job created successfully!");
-      // Reset form
       setFormData({
         jobTitle: "",
         salary: "",
-        country: "",
-        gender: "male",
+        location: "",
+        gender: "",
         description: "",
         keyFeatures: ["", ""],
         jobDetails: "",
@@ -92,12 +101,11 @@ export default function NewJob() {
         otherDetails: "",
         jobImage: null,
       });
+      setImagePreview(null); // Reset preview
     } catch (error) {
       console.error('Error:', error.response?.data || error.message);
-      // Show error alert
       alert("Failed to create job: " + (error.response?.data?.message || error.message));
     } finally {
-      // Reset loading state regardless of success or failure
       setIsLoading(false);
     }
   };
@@ -119,22 +127,24 @@ export default function NewJob() {
               margin="normal"
               InputProps={{ maxLength: 250 }}
               className="custom-textfield job-field"
-              disabled={isLoading} // Disable when loading
+              disabled={isLoading}
             />
             <Select
-              name="country"
-              value={formData.country}
+              name="location"
+              value={formData.location}
               onChange={handleChange}
               displayEmpty
               fullWidth
               margin="normal"
               className="custom-select"
-              disabled={isLoading} // Disable when loading
+              disabled={isLoading}
             >
               <MenuItem value="" disabled>Choose country</MenuItem>
-              <MenuItem value="usa">USA</MenuItem>
-              <MenuItem value="uk">UK</MenuItem>
-              <MenuItem value="canada">Canada</MenuItem>
+              {countries.map((location) => (
+                <MenuItem key={location.code} value={location.name}>
+                  {location.name}
+                </MenuItem>
+              ))}
             </Select>
             <TextField
               name="description"
@@ -148,7 +158,7 @@ export default function NewJob() {
               rows={6}
               InputProps={{ maxLength: 250 }}
               className="custom-textfield"
-              disabled={isLoading} // Disable when loading
+              disabled={isLoading}
             />
             <TextField
               name="jobDetails"
@@ -162,7 +172,7 @@ export default function NewJob() {
               rows={6}
               InputProps={{ maxLength: 350 }}
               className="custom-textfield"
-              disabled={isLoading} // Disable when loading
+              disabled={isLoading}
             />
           </Box>
 
@@ -177,37 +187,45 @@ export default function NewJob() {
                 onChange={handleChange}
                 margin="normal"
                 className="custom-textfield salary-field"
-                disabled={isLoading} // Disable when loading
+                disabled={isLoading}
               />
               <Box className="job-image">
                 <Avatar className="job-avatar">
-                  {formData.jobImage ? (
+                  {imagePreview ? (
                     <Image
-                      src={formData.jobImage}
+                      src={imagePreview}
                       alt="Job Image"
                       width={90}
                       height={90}
                       style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                     />
-                  ) : (
-                    <IconButton
-                      color="inherit"
-                      aria-label="upload picture"
-                      component="label"
-                      disabled={isLoading} // Disable when loading
-                    >
-                      <input
-                        hidden
-                        accept="image/*"
-                        type="file"
-                        onChange={handleImageUpload}
-                        disabled={isLoading} // Disable when loading
-                      />
-                      <PhotoCamera  sx={{height:'35px',width:'35px'}}/>
-                    </IconButton>
-                  )}
+                  ) : null}
                 </Avatar>
-                <span style={{fontWeight:'bold'}}>Job Image</span>
+                <IconButton
+                  color="inherit"
+                  aria-label="upload picture"
+                  component="label"
+                  disabled={isLoading}
+                >
+                  <input
+                    hidden
+                    accept="image/*"
+                    type="file"
+                    onChange={handleImageUpload}
+                    disabled={isLoading}
+                  />
+                  <PhotoCamera sx={{ height: '25px', width: '25px',marginTop:'-10px' }} />
+                </IconButton>
+                {imagePreview && (
+                  <Button
+                    onClick={removeImage}
+                    color="error"
+                    disabled={isLoading}
+                  >
+                    Remove
+                  </Button>
+                )}
+                <span style={{ fontWeight: 'bold' }}>Job Image</span>
               </Box>
             </Box>
             <RadioGroup
@@ -234,7 +252,7 @@ export default function NewJob() {
                 rows={2}
                 InputProps={{ maxLength: 100 }}
                 className="custom-textfield"
-                disabled={isLoading} // Disable when loading
+                disabled={isLoading}
               />
               <TextField
                 name="keyFeatures2"
@@ -247,7 +265,7 @@ export default function NewJob() {
                 rows={2}
                 InputProps={{ maxLength: 100 }}
                 className="custom-textfield"
-                disabled={isLoading} // Disable when loading
+                disabled={isLoading}
               />
             </Box>
             <TextField
@@ -262,7 +280,7 @@ export default function NewJob() {
               rows={4}
               InputProps={{ maxLength: 350 }}
               className="custom-textfield"
-              disabled={isLoading} // Disable when loading
+              disabled={isLoading}
             />
           </Box>
         </Box>
@@ -279,35 +297,38 @@ export default function NewJob() {
             multiline
             rows={4}
             className="custom-textfield"
-            disabled={isLoading} // Disable when loading
+            disabled={isLoading}
           />
         </Box>
 
         <Box className="button-container">
-          <Button 
-            type="submit" 
-            variant="contained" 
+          <Button
+            type="submit"
+            variant="contained"
             className="submit-button"
-            disabled={isLoading} // Disable button when loading
+            disabled={isLoading}
           >
-            {isLoading ? "Creating..." : "Create Job"} {/* Change text when loading */}
+            {isLoading ? "Creating..." : "Create Job"}
           </Button>
-          <Button 
-            variant="outlined" 
-            className="clear-button" 
-            onClick={() => setFormData({
-              jobTitle: "",
-              salary: "",
-              country: "",
-              gender: "male",
-              description: "",
-              keyFeatures: ["", ""],
-              jobDetails: "",
-              benefits: "",
-              otherDetails: "",
-              jobImage: null,
-            })}
-            disabled={isLoading} // Disable when loading
+          <Button
+            variant="outlined"
+            className="clear-button"
+            onClick={() => {
+              setFormData({
+                jobTitle: "",
+                salary: "",
+                location: "",
+                gender: "",
+                description: "",
+                keyFeatures: ["", ""],
+                jobDetails: "",
+                benefits: "",
+                otherDetails: "",
+                jobImage: null,
+              });
+              setImagePreview(null);
+            }}
+            disabled={isLoading}
           >
             Clear All
           </Button>

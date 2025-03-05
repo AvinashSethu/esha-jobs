@@ -1,146 +1,53 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
-import Image from "next/image";
-import PublicIcon from "@mui/icons-material/Public";
-import { PiMoneyWavyBold } from "react-icons/pi";
-import CheckIcon from "@mui/icons-material/Check";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Logo from "@/public/Icons/Logo-Esha.png";
+import { Box, Table, TableHead, TableRow, TableCell, Button } from "@mui/material";
+import "../Applicants/Applicants.css";
 
-export default function Applicants({ title, gender, location, salary, description, requirement1, requirement2 }) {
+export default function Applicants({ applicants }) {
+  // Check if applicants is undefined or null, and provide a fallback empty array
+  const applicantList = applicants || [];
+
   return (
     <Box>
-      <Box
-        sx={{
-          maxWidth: { xs: "100%", sm: "500px", md: "500px" },
-          bgcolor: "white",
-          borderRadius: 2,
-          boxShadow: 1,
-          p: { xs: 2, sm: 3 },
-          p:2,
-          height: "auto",
-          marginTop:{xs:0,sm:2},
-          marginLeft:{xs:0,sm:2},
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }}
-      >
-        {/* Job Title, Logo */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "row", sm: "row" },
-            justifyContent: "space-between",
-            alignItems: { xs: "flex-start", sm: "center" },
-            mb: 3,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: { xs: 2, sm: 0 } }}>
-            <Image src={Logo} alt="Company Logo" width={50} height={50} style={{ objectFit: "contain" }} />
-            <Box>
-              <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>{title}</Typography>
-              <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>{gender}</Typography>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Job Description */}
-        <Typography sx={{ color: "#666666", mb: 3, fontSize: { xs: "12px", sm: "14px" } }}>{description}</Typography>
-
-        {/* Location and Salary */}
-        <Box sx={{ mb: 3, borderTop: "2px solid #000", pt: 2, px: 1 }}>
-          <Typography
-            sx={{
-              fontWeight: "bold",
-              fontSize: { xs: "14px", sm: "16px" },
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "var(--primary)" }} />
-            {location}
-            <PiMoneyWavyBold
-              style={{
-                verticalAlign: "middle",
-                marginLeft: 160,
-                marginRight: 8,
-                color: "var(--primary)",
-                fontSize: "22px",
-              }}
-            />
-            {salary}
-          </Typography>
-        </Box>
-
-        {/* Requirements */}
-        <Box sx={{ mb: 4, borderTop: "2px solid #000", pt: 2, px: 1 }}>
-          <Typography
-            sx={{
-              color: "#333333",
-              display: "flex",
-              alignItems: "center",
-              pb: 2,
-              fontSize: { xs: "12px", sm: "14px" },
-            }}
-          >
-            <CheckIcon
-              sx={{
-                color: "#fff",
-                bgcolor: "#000",
-                borderRadius: "50%",
-                fontSize: { xs: "16px", sm: "20px" },
-                mr: 1,
-              }}
-            />
-            {requirement1}
-          </Typography>
-          <Typography
-            sx={{
-              color: "#333333",
-              pt: 2,
-              display: "flex",
-              alignItems: "center",
-              borderTop: "2px solid #000",
-              fontSize: { xs: "12px", sm: "14px" },
-            }}
-          >
-            <CheckIcon
-              sx={{
-                color: "#fff",
-                bgcolor: "#000",
-                borderRadius: "50%",
-                fontSize: { xs: "16px", sm: "20px" },
-                mr: 1,
-              }}
-            />
-            {requirement2}
-          </Typography>
-        </Box>
-
-        {/* Bottom Bar */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            bgcolor: "black",
-            color: "white",
-            width: "100%",
-            p: 2,
-            borderRadius: "8px",
-          }}
-        >
-          <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
-            <EditIcon /> Edit Job
-          </Button>
-          <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
-            <DeleteIcon /> Delete
-          </Button>
-        </Box>
-      </Box>
+      <Table>
+        <TableHead>
+          <TableRow style={{ backgroundColor: '#e3f2fd' }}> {/* Light blue background */}
+            <TableCell>S.No</TableCell>
+            <TableCell>Name / Email</TableCell>
+            <TableCell>Phone No</TableCell>
+            <TableCell>Job Title</TableCell>
+            <TableCell>Services</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell>Action</TableCell>
+          </TableRow>
+        </TableHead>
+        <tbody>
+          {applicantList.length === 0 ? (
+            <TableRow style={{ backgroundColor: '#5D88B2',color:'#fff' }}> {/* Light gray for empty row */}
+              <TableCell colSpan={7} align="center">
+                No applicants found.
+              </TableCell>
+            </TableRow>
+          ) : (
+            applicantList.map((applicant, index) => (
+              <TableRow key={index} style={{ backgroundColor: '#5D88B2' }}> {/* Light gray for rows */}
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>
+                  {applicant.fullName || "Full Name"} / {applicant.email || "Email"}
+                </TableCell>
+                <TableCell>{applicant.phone || "Phone"}</TableCell>
+                <TableCell>{applicant.jobTitle || "Job Title"}</TableCell>
+                <TableCell>{applicant.services || "Services"}</TableCell>
+                <TableCell>{applicant.date || "Date"}</TableCell>
+                <TableCell>
+                  <Button variant="contained" color="primary" href="#" size="small">
+                    View More
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
+        </tbody>
+      </Table>
     </Box>
   );
 }

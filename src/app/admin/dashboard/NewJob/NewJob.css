@@ -22,7 +22,7 @@
     gap: 15px; /* Increased from 10px to 15px for more spacing between elements */
   }
   .right-column {
-    margin-top: -26px;
+    margin-top: -47px;
   }
   
   .salary-image-row {
@@ -187,5 +187,8 @@
         padding: 20px !important;
         padding-bottom: 40px !important;
         margin: 0 !important;
+    }
+    .right-column {
+      margin-top: 0px !important;
     }
   }
