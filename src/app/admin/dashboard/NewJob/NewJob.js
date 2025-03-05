@@ -82,7 +82,7 @@ export default function NewJob() {
     });
 
     try {
-      const response = await axios.post('http://your-backend-api-endpoint/jobs', formDataToSend, {
+      const response = await axios.post('/api/jobs', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

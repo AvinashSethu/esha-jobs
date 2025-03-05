@@ -21,8 +21,8 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
           padding: '10px 20px',
           borderRadius: '10px',
           color: '#fff',
-          marginLeft: '20px',
-          marginRight: '20px',
+          marginLeft: '40px',
+          marginRight: '40px',
           height: '80px'
         }}
       >
