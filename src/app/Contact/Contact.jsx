@@ -122,13 +122,13 @@ export default function Contact() {
               <Box sx={{ display: "flex", alignItems: "center", gap: 2,marginTop:'40px' }}>
                 <LocationOnIcon sx={{ fontSize: 35, color: "#fff",backgroundColor:"var(--primary)",borderRadius:'50%',padding:'9px',height:'50px',width:'50px' }} />
                 <Box>
-                  <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999',fontSize:{xs:"18px",sm:"24px",} }}>
+                  <Typography variant="body1" sx={{ color:'#999999',fontSize:{xs:"18px",sm:"24px",} }}>
                     Address
                   </Typography>
-                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',fontSize:{xs:'16px',sm:'20px'}}}>
+                  <Typography variant="body2" sx={{color:'#000',fontSize:{xs:'16px',sm:'20px'}}}>
                     Thengapattinam, Kanyakumari District,<br /> Tamil Nadu, India
                   </Typography>
-                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold'}}>Pin: 629173</Typography>
+                  <Typography variant="body2" sx={{color:'#000',fontSize:{xs:'16px',sm:'20px',fontFamily:"var(--font-onest)"}}}>Pin: 629173</Typography>
                 </Box>
               </Box>
             </Box>

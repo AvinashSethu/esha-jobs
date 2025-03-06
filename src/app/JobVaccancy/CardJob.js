@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid";
 import Logo from "@/public/Icons/Logo-Esha.png";
 
-export default function JobCards({
+export default function CardJob({
   jobtitle,
   gender,
   location,
@@ -199,7 +199,7 @@ export default function JobCards({
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "center",
               alignItems: "center",
               bgcolor: "black",
               color: "white",
@@ -212,10 +212,7 @@ export default function JobCards({
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
-              <EditIcon /> Edit Job
-            </Button>
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
-              <DeleteIcon /> Delete
+              <EditIcon /> Apply Now
             </Button>
           </Box>
         </Box>
@@ -312,7 +309,7 @@ export default function JobCards({
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "center",
               alignItems: "center",
               bgcolor: "black",
               color: "white",
@@ -325,10 +322,7 @@ export default function JobCards({
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
-              <EditIcon /> Edit Job
-            </Button>
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
-              <DeleteIcon /> Delete
+              <EditIcon /> Apply Now
             </Button>
           </Box>
         </Box>

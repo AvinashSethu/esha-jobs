@@ -378,10 +378,10 @@ export default function NewJob() {
               multiline
               rows={6}
               InputProps={{ maxLength: 250 }}
-              className="custom-textfield"
+              className="custom-textfield no-background-change"
               disabled={isLoading}
             />
-            <Typography>(Max 250 Characters)</Typography>
+            <Typography sx={{color:'#666'}}>(Max 250 Characters)</Typography>
             <TextField
               name="jobDetails"
               label="Job Details"
@@ -393,9 +393,10 @@ export default function NewJob() {
               multiline
               rows={6}
               InputProps={{ maxLength: 350 }}
-              className="custom-textfield"
+              className="custom-textfield no-background-change"
               disabled={isLoading}
             />
+            <Typography sx={{color:'#666'}}>(Max 350 Characters)</Typography>
           </Box>
 
           {/* Right Column */}
@@ -501,9 +502,10 @@ export default function NewJob() {
                 multiline
                 rows={2}
                 InputProps={{ maxLength: 100 }}
-                className="custom-textfield"
+                className="custom-textfield no-background-change"
                 disabled={isLoading}
               />
+              <Typography sx={{color:'#666'}}>(Max 100 Characters)</Typography>
               <TextField
                 name="keyFeatures2"
                 placeholder="E.g., Prometric Passed Required"
@@ -514,9 +516,10 @@ export default function NewJob() {
                 multiline
                 rows={2}
                 InputProps={{ maxLength: 100 }}
-                className="custom-textfield"
+                className="custom-textfield no-background-change"
                 disabled={isLoading}
               />
+              <Typography sx={{color:'#666'}}>(Max 100 Characters)</Typography>
             </Box>
             <TextField
               name="benefits"
@@ -529,9 +532,10 @@ export default function NewJob() {
               multiline
               rows={4}
               InputProps={{ maxLength: 350 }}
-              className="custom-textfield"
+              className="custom-textfield no-background-change"
               disabled={isLoading}
             />
+            <Typography sx={{color:'#666'}}>(Max 350 Characters)</Typography>
           </Box>
         </Box>
 
@@ -546,7 +550,7 @@ export default function NewJob() {
             margin="normal"
             multiline
             rows={4}
-            className="custom-textfield"
+            className="custom-textfield no-background-change"
             disabled={isLoading}
           />
         </Box>

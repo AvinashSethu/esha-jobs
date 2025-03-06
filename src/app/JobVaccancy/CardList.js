@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import axios from "axios";
-import JobCards from "./dashboard/JobCards/JobCards";
+import CardJob from "./CardJob";
 
-export default function JobList() {
+export default function CardList() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -74,7 +74,7 @@ export default function JobList() {
       }}
     >
       {jobs.map((job) => (
-        <JobCards
+        <CardJob
           key={job._id}
           jobtitle={job.jobTitle}
           gender={job.gender}

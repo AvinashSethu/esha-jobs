@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Box,Typography} from "@mui/material";
-import JobList from "../admin/JobList";
+import CardList from "./CardList";
 
 
 export default function JobVacancy() {
@@ -40,7 +40,7 @@ export default function JobVacancy() {
 
       {/* Job Cards */}
       <Box sx={{height:'auto',marginTop:'30px'}}>
-      <JobList />
+      <CardList />
 
     </Box>
      

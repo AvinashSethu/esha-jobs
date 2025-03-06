@@ -24,6 +24,9 @@
   .right-column {
     margin-top: -35px;
   }
+  .left-column{
+    gap: 30px;
+  }
   
   .salary-image-row {
     display: flex;
@@ -83,10 +86,7 @@
     background-color: #DCE5EE;
   }
   
-  .custom-textfield .MuiInputBase-root input:not(:placeholder-shown),
-  .custom-textfield .MuiInputBase-root textarea:not(:placeholder-shown) {
-    background-color: #fff;
-  }
+ 
   
   .custom-textfield .MuiInputBase-input::placeholder {
     color: #757575;
