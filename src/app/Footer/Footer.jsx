@@ -58,7 +58,7 @@ export default function Footer() {
         [theme.breakpoints.down("sm")]: {
           padding: "10px",
         },
-        marginTop:'7%'
+        marginTop:'7%',
       }}
     >
       <Box
@@ -75,6 +75,7 @@ export default function Footer() {
       >
         {/* First Box (4 parts) - Esha Arab Nursing Consultancy */}
         <Box
+        className="first-con"
           sx={{
             flex: "4", // 4 parts of the total 12 parts (33.33% on desktop)
             minWidth: "0", // Ensures box shrinks properly
@@ -84,7 +85,6 @@ export default function Footer() {
               flex: "100%", // Full width on mobile
               textAlign: "center",
             },
-            backgroundColor: '#fff'
           }}
         >
           <Typography

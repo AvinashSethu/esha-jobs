@@ -6,10 +6,21 @@ import { PiMoneyWavyBold } from "react-icons/pi";
 import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid"; // For flip icon
+import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid";
 import Logo from "@/public/Icons/Logo-Esha.png";
 
-export default function JobCards({ jobtitle, gender, location, salary, description, keyFeatures,benifits,otherDetails,jobDetails,jobImage }) {
+export default function JobCards({
+  jobtitle,
+  gender,
+  location,
+  salary,
+  description,
+  keyFeatures = ["", ""],
+  benefits,
+  otherDetails,
+  jobDetails,
+  jobImage,
+}) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {
@@ -19,147 +30,171 @@ export default function JobCards({ jobtitle, gender, location, salary, descripti
   return (
     <Box
       sx={{
-        perspective: "1000px", // Enable 3D perspective for the flip effect
-        maxWidth: { xs: "100%", sm: "500px", md: "500px" },
-        marginTop: { xs: 0, sm: 0 },
-        marginLeft: { xs: 0, sm: 20 },
-        paddingTop:{xs:0,sm:2}
+        width: "100%",
+        maxWidth: "500px",
+        mx: "auto",
+        perspective: "1000px",
       }}
     >
       <Box
         sx={{
           position: "relative",
           width: "100%",
-          height: "100%",
+          height: "500px",
           transition: "transform 0.6s",
           transformStyle: "preserve-3d",
           transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front Side (Current Card) - Unchanged */}
+        {/* Front Side */}
         <Box
           sx={{
-            maxWidth: { xs: "100%", sm: "500px", md: "500px" },
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            maxWidth: "500px",
             bgcolor: "white",
             borderRadius: 2,
             boxShadow: 1,
-            p: { xs: 2, sm: 3 },
-            p: 2,
-            height: "auto",
-            position: "absolute",
-            width: "100%",
-            backfaceVisibility: "hidden", // Hide back when flipped
+            backfaceVisibility: "hidden",
+            display: "flex", // Use flexbox to structure content
+            flexDirection: "column",
+            overflow: "hidden", // Prevent overflow outside card
           }}
         >
-          {/* Job Title, Logo, and View More Button */}
+          {/* Scrollable Content */}
           <Box
             sx={{
-              display: "flex",
-              flexDirection: { xs: "row", sm: "row" },
-              justifyContent: "space-between",
-              alignItems: { xs: "flex-start", sm: "center" },
-              mb: 3,
+              flex: 1, // Take available space
+              overflowY: "auto", // Scroll vertically if needed
+              overflowX: "hidden", // No horizontal scroll
+              wordWrap: "break-word",
+              p: { xs: 2, sm: 3 },
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: { xs: 2, sm: 0 } }}>
-              <Image src={Logo || jobImage} alt="Company Logo" width={50} height={50} style={{ objectFit: "contain" }} />
-              <Box>
-                <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>{jobtitle || "JobTitle"}</Typography>
-                <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>{gender || "Gender"}</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "row", sm: "row" },
+                justifyContent: "space-between",
+                alignItems: { xs: "flex-start", sm: "center" },
+                mb: 3,
+                overflowX: "hidden",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: { xs: 2, sm: 0 } }}>
+                <Image
+                  src={jobImage || Logo}
+                  alt="Company Logo"
+                  width={50}
+                  height={50}
+                  style={{ objectFit: "contain" }}
+                />
+                <Box sx={{ overflowX: "hidden" }}>
+                  <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>
+                    {jobtitle || "Job Title"}
+                  </Typography>
+                  <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
+                    {gender || "Gender"}
+                  </Typography>
+                </Box>
               </Box>
+              <Button
+                onClick={handleFlip}
+                sx={{
+                  bgcolor: "black",
+                  color: "white",
+                  borderRadius: "4px",
+                  padding: "4px 12px",
+                  fontSize: { xs: "12px", sm: "14px" },
+                  "&:hover": { bgcolor: "#333" },
+                  flexShrink: 0,
+                }}
+              >
+                View More
+              </Button>
             </Box>
-            <Button
-              onClick={handleFlip}
-              sx={{
-                bgcolor: "black",
-                color: "white",
-                borderRadius: "4px",
-                padding: "4px 12px",
-                fontSize: { xs: "12px", sm: "14px" },
-                "&:hover": {
-                  bgcolor: "#333",
-                },
-              }}
-            >
-              View More
-            </Button>
-          </Box>
 
-          {/* Job Description */}
-          <Typography sx={{ color: "#666666", mb: 3, fontSize: { xs: "12px", sm: "14px" } }}>{description || "Description"}</Typography>
-
-          {/* Location and Salary */}
-          <Box sx={{ mb: 3, borderTop: "2px solid #000", pt: 2, px: 1 }}>
-            <Typography
-              sx={{
-                fontWeight: "bold",
-                fontSize: { xs: "14px", sm: "16px" },
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-              }}
-            >
-              <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "var(--primary)" }} />
-              {location || "Location"}
-              <PiMoneyWavyBold
-                style={{
-                  verticalAlign: "middle",
-                  marginLeft: 160,
-                  marginRight: 8,
-                  color: "var(--primary)",
-                  fontSize: "22px",
-                }}
-              />
-              {salary || "Salary"}
+            <Typography sx={{ color: "#666666", mb: 3, fontSize: { xs: "12px", sm: "14px" }, wordWrap: "break-word" }}>
+              {description || "Description"}
             </Typography>
-          </Box>
 
-          {/* Requirements */}
-          <Box sx={{ mb: 4, borderTop: "2px solid #000", pt: 2, px: 1 }}>
-            <Typography
-              sx={{
-                color: "#333333",
-                display: "flex",
-                alignItems: "center",
-                pb: 2,
-                fontSize: { xs: "12px", sm: "14px" },
-              }}
-            >
-              <CheckIcon
+            <Box sx={{ mb: 3, borderTop: "2px solid #000", pt: 2, px: 1, overflowX: "hidden" }}>
+              <Typography
                 sx={{
-                  color: "#fff",
-                  bgcolor: "#000",
-                  borderRadius: "50%",
-                  fontSize: { xs: "16px", sm: "20px" },
-                  mr: 1,
+                  fontWeight: "bold",
+                  fontSize: { xs: "14px", sm: "16px" },
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  overflowX: "hidden",
                 }}
-              />
-              {keyFeatures || "keyfeatures0"}
-            </Typography>
-            <Typography
-              sx={{
-                color: "#333333",
-                pt: 2,
-                display: "flex",
-                alignItems: "center",
-                borderTop: "2px solid #000",
-                fontSize: { xs: "12px", sm: "14px" },
-              }}
-            >
-              <CheckIcon
+              >
+                <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "var(--primary)" }} />
+                {location || "Location"}
+                <PiMoneyWavyBold
+                  style={{
+                    verticalAlign: "middle",
+                    marginLeft: 160,
+                    marginRight: 8,
+                    color: "var(--primary)",
+                    fontSize: "22px",
+                  }}
+                />
+                {salary || "Salary"}
+              </Typography>
+            </Box>
+
+            <Box sx={{ borderTop: "2px solid #000", pt: 2, px: 1, overflowX: "hidden" }}>
+              <Typography
                 sx={{
-                  color: "#fff",
-                  bgcolor: "#000",
-                  borderRadius: "50%",
-                  fontSize: { xs: "16px", sm: "20px" },
-                  mr: 1,
+                  color: "#333333",
+                  display: "flex",
+                  alignItems: "center",
+                  pb: 2,
+                  fontSize: { xs: "12px", sm: "14px" },
+                  wordWrap: "break-word",
                 }}
-              />
-              {keyFeatures || "KeyFeatures1"}
-            </Typography>
+              >
+                <CheckIcon
+                  sx={{
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "50%",
+                    fontSize: { xs: "16px", sm: "20px" },
+                    mr: 1,
+                  }}
+                />
+                {keyFeatures[0] || "Key Feature 1"}
+              </Typography>
+              <Typography
+                sx={{
+                  color: "#333333",
+                  pt: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  borderTop: "2px solid #000",
+                  fontSize: { xs: "12px", sm: "14px" },
+                  wordWrap: "break-word",
+                }}
+              >
+                <CheckIcon
+                  sx={{
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "50%",
+                    fontSize: { xs: "16px", sm: "20px" },
+                    mr: 1,
+                  }}
+                />
+                {keyFeatures[1] || "Key Feature 2"}
+              </Typography>
+            </Box>
           </Box>
 
-          {/* Bottom Bar */}
+          {/* Fixed Button Box */}
           <Box
             sx={{
               display: "flex",
@@ -169,7 +204,10 @@ export default function JobCards({ jobtitle, gender, location, salary, descripti
               color: "white",
               width: "100%",
               p: 2,
-              borderRadius: "8px",
+              borderBottomLeftRadius: "8px",
+              borderBottomRightRadius: "8px",
+              overflowX: "hidden",
+              flexShrink: 0, // Prevent shrinking
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
@@ -181,71 +219,95 @@ export default function JobCards({ jobtitle, gender, location, salary, descripti
           </Box>
         </Box>
 
-        {/* Back Side (Flipped View) */}
+        {/* Back Side */}
         <Box
           sx={{
-            maxWidth: { xs: "100%", sm: "500px", md: "500px" },
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            maxWidth: "500px",
             bgcolor: "white",
             borderRadius: 2,
             boxShadow: 1,
-            p: { xs: 2, sm: 3 },
-            p: 2,
-            height: "auto",
-            position: "absolute",
-            width: "100%",
-            backfaceVisibility: "hidden", // Hide front when flipped
-            transform: "rotateY(180deg)", // Start flipped
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            display: "flex", // Use flexbox to structure content
+            flexDirection: "column",
+            overflow: "hidden",
           }}
         >
-          {/* Logo, Job Title, and Flip Icon */}
+          {/* Scrollable Content */}
           <Box
             sx={{
-              display: "flex",
-              flexDirection: { xs: "row", sm: "row" },
-              justifyContent: "space-between",
-              alignItems: { xs: "flex-start", sm: "center" },
-              mb: 3,
+              flex: 1, // Take available space
+              overflowY: "auto", // Scroll vertically if needed
+              overflowX: "hidden", // No horizontal scroll
+              wordWrap: "break-word",
+              p: { xs: 2, sm: 3 },
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: { xs: 2, sm: 0 } }}>
-              <Image src={Logo || jobImage} alt="Company Logo" width={50} height={50} style={{ objectFit: "contain" }} />
-              <Box>
-                <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>{jobtitle || "JobTitle"}</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "row", sm: "row" },
+                justifyContent: "space-between",
+                alignItems: { xs: "flex-start", sm: "center" },
+                mb: 3,
+                overflowX: "hidden",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: { xs: 2, sm: 0 } }}>
+                <Image
+                  src={jobImage || Logo}
+                  alt="Company Logo"
+                  width={50}
+                  height={50}
+                  style={{ objectFit: "contain" }}
+                />
+                <Box sx={{ overflowX: "hidden" }}>
+                  <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>
+                    {jobtitle || "Job Title"}
+                  </Typography>
+                </Box>
+              </Box>
+              <IconButton onClick={handleFlip} sx={{ color: "black", flexShrink: 0 }}>
+                <FlipCameraAndroidIcon />
+              </IconButton>
+            </Box>
+
+            <Box sx={{ mb: 3, overflowX: "hidden" }}>
+              <Typography sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "14px", sm: "16px" } }}>
+                Job Details:
+              </Typography>
+              <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" }, wordWrap: "break-word" }}>
+                {jobDetails || "Job Details"}
+              </Typography>
+            </Box>
+
+            <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, overflowX: "hidden" }}>
+              <Box sx={{ flex: 1, borderTop: "2px solid #000", pt: 2, px: 1, width: "50%" }}>
+                <Typography sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "14px", sm: "16px" } }}>
+                  Benefits:
+                </Typography>
+                <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" }, wordWrap: "break-word" }}>
+                  {benefits || "Benefits"}
+                </Typography>
+              </Box>
+
+              <Box sx={{ flex: 1, borderTop: "2px solid #000", pt: 2, px: 1, width: "100%" }}>
+                <Typography sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "14px", sm: "16px" } }}>
+                  Eligibility:
+                </Typography>
+                <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" }, wordWrap: "break-word" }}>
+                  {otherDetails || "Other Details"}
+                </Typography>
               </Box>
             </Box>
-            <IconButton onClick={handleFlip} sx={{ color: "black" }}>
-              <FlipCameraAndroidIcon />
-            </IconButton>
           </Box>
 
-          {/* Job Details */}
-          <Box sx={{ mb: 3 }}>
-            <Typography sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "14px", sm: "16px" } }}>Job Details:</Typography>
-            <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
-              {jobDetails || "JobDetails"}
-            </Typography>
-          </Box>
-
-          {/* Benefits and Eligibility in One Row */}
-          <Box sx={{ mb: 4, display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2 }}>
-            {/* Benefits */}
-            <Box sx={{ flex: 1, borderTop: "2px solid #000", pt: 2, px: 1, width: "100%" }}>
-              <Typography sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "14px", sm: "16px" } }}>Benefits:</Typography>
-              <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
-                {benifits || "Benifits"}
-              </Typography>
-            </Box>
-
-            {/* Eligibility */}
-            <Box sx={{ flex: 1, borderTop: "2px solid #000", pt: 2, px: 1, width: "100%" }}>
-              <Typography sx={{ fontWeight: "bold", mb: 1, fontSize: { xs: "14px", sm: "16px" } }}>Eligibility:</Typography>
-              <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
-                {otherDetails || "OtherDetails"}
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* Bottom Bar (same as front) */}
+          {/* Fixed Button Box */}
           <Box
             sx={{
               display: "flex",
@@ -255,7 +317,10 @@ export default function JobCards({ jobtitle, gender, location, salary, descripti
               color: "white",
               width: "100%",
               p: 2,
-              borderRadius: "8px",
+              borderBottomLeftRadius: "8px",
+              borderBottomRightRadius: "8px",
+              overflowX: "hidden",
+              flexShrink: 0, // Prevent shrinking
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>

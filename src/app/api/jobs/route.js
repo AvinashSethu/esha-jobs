@@ -1,88 +1,66 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
-import { NextResponse } from 'next/server';
-import mongoose from 'mongoose';
-import Job from '@/src/app/models/job'; 
-
-// MongoDB connection string from environment variables
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const dbName = 'esha-jobs';
-
-let client;
-let clientPromise;
-
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable');
-}
-
-// Use a singleton pattern for the MongoDB client
-if (!client) {
-  client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  });
-  clientPromise = client.connect();
-}
-
-// Connect Mongoose to MongoDB
-mongoose.connect(uri, { dbName })
-  .then(() => console.log('Mongoose connected to MongoDB'))
-  .catch(err => console.error('Mongoose connection error:', err));
+import connectMongo from "@/lib/connectMongo";
+import Job from "@/src/app/models/job";
 
 export async function POST(request) {
   try {
-    const formData = await request.formData();
-    const jobData = {
-      jobTitle: formData.get('jobTitle'),
-      salary: formData.get('salary'),
-      location: formData.get('location'),
-      gender: formData.get('gender'),
-      description: formData.get('description'),
-      keyFeatures: JSON.parse(formData.get('keyFeatures') || '["", ""]'),
-      jobDetails: formData.get('jobDetails'),
-      benefits: formData.get('benefits'),
-      otherDetails: formData.get('otherDetails'),
-      jobImage: null, // We'll handle image storage later
-    };
+    await connectMongo(); // Connect to MongoDB
 
-    // Handle image upload (mock for now, store file name/path)
-    const imageFile = formData.get('jobImage');
-    if (imageFile) {
-      const imageName = `${Date.now()}-${imageFile.name}`;
-      const imagePath = path.join(process.cwd(), 'public', 'uploads', imageName);
-      await fs.mkdir(path.dirname(imagePath), { recursive: true });
-      const arrayBuffer = await imageFile.arrayBuffer();
-      await fs.writeFile(imagePath, Buffer.from(arrayBuffer));
-      jobData.jobImage = `/uploads/${imageName}`; // Store relative path
+    // Parse JSON payload
+    const jobData = await request.json();
+
+    // Ensure keyFeatures is an array (in case it's sent as a string)
+    if (typeof jobData.keyFeatures === "string") {
+      jobData.keyFeatures = JSON.parse(jobData.keyFeatures);
+    } else if (!Array.isArray(jobData.keyFeatures)) {
+      jobData.keyFeatures = ["", ""];
     }
 
-    const newJob = new Job(jobData);
+    // Validate required fields (optional, but recommended)
+    const requiredFields = [
+      "jobTitle",
+      "salary",
+      "location",
+      "gender",
+      "description",
+    ];
+    for (const field of requiredFields) {
+      if (!jobData[field]) {
+        return new Response(JSON.stringify({ error: `${field} is required` }), {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    // Create a new job document using the Job model
+    const newJob = new Job(jobData); // Correct instantiation
     const savedJob = await newJob.save();
 
-    return NextResponse.json({ success: true, job: savedJob }, { status: 201 });
+    return new Response(JSON.stringify({ success: true, job: savedJob }), {
+      status: 201,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("Error saving job:", error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
 
 export async function GET() {
   try {
+    await connectMongo(); // Connect to MongoDB
     const jobs = await Job.find({}).sort({ createdAt: -1 }); // Sort by newest first
-    return NextResponse.json({ jobs }, { status: 200 });
+    return new Response(JSON.stringify({ jobs }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
-
-// Close connections on server shutdown
-process.on('SIGTERM', async () => {
-  if (client) await client.close();
-  await mongoose.connection.close();
-});
-
-process.on('SIGINT', async () => {
-  if (client) await client.close();
-  await mongoose.connection.close();
-});

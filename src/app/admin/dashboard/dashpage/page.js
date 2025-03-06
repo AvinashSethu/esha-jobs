@@ -5,51 +5,52 @@ import NavbarDash from "../navbar/navbar";
 import Navbarbottom from "../navbarbotttom/navbarbotttom";
 import NewJob from "../NewJob/NewJob";
 import Applicants from "../Applicants/Applicants";
+import JobList from "../../JobList";
+
 export default function DashboardPage() {
-  const [activeView, setActiveView] = useState("dashboard"); // Default view is "dashboard"
+  const [activeView, setActiveView] = useState("dashboard");
 
   const handleNewJobsClick = () => {
-    setActiveView("newJobs"); // Switch to NewJob view when "New Jobs" is clicked
+    setActiveView("newJobs");
   };
 
   const handleDashboardClick = () => {
-    setActiveView("dashboard"); // Switch back to dashboard view when "Jobs" is clicked
+    setActiveView("dashboard");
   };
 
   const handleApplicantsClick = () => {
-    setActiveView("applicants"); // Switch to Applicants view when "Applicants" is clicked
+    setActiveView("applicants");
   };
 
   return (
-    <Box sx={{ backgroundColor: '#E6F3FF', minHeight: '100vh', paddingBottom: '40px' }}>
-      <Box>
-        <NavbarDash 
-          activeView={activeView} // Pass the current active view
-          onNewJobsClick={handleNewJobsClick} 
-          onDashboardClick={handleDashboardClick} 
-          onApplicantsClick={handleApplicantsClick} // Pass the new handler
-        /> {/* Pass all click handlers and activeView to NavbarDash */}
-        
-        {/* Conditionally render content based on activeView */}
+    <Box sx={{ backgroundColor: "#E6F3FF", minHeight: "100vh", paddingBottom: "40px" }}>
+      <Box sx={{ width: "100%", maxWidth: "100%", mx: "auto", px: { xs: 2, sm: 0 } }}>
+        <NavbarDash
+          activeView={activeView}
+          onNewJobsClick={handleNewJobsClick}
+          onDashboardClick={handleDashboardClick}
+          onApplicantsClick={handleApplicantsClick}
+        />
+
         {activeView === "dashboard" ? (
           <Box>
-            <Typography variant="h6" sx={{ textAlign: 'center', pt: 4 }}>
+            <Typography variant="h6" sx={{ textAlign: "center", pt: 4 }}>
               Welcome to Esha Jobs Dashboard
             </Typography>
-            {/* Add more dashboard content here if needed */}
+            <JobList />
           </Box>
         ) : activeView === "newJobs" ? (
-          <NewJob /> // Render NewJob component when activeView is "newJobs"
+          <NewJob />
         ) : (
-          <Applicants /> // Render Applicants component when activeView is "applicants"
+          <Applicants />
         )}
 
-        <Navbarbottom 
-          activeView={activeView} // Pass the current active view
-          onNewJobsClick={handleNewJobsClick} 
-          onDashboardClick={handleDashboardClick} 
-          onApplicantsClick={handleApplicantsClick} // Pass the new handler
-        /> {/* Pass all click handlers and activeView to Navbarbottom */}
+        <Navbarbottom
+          activeView={activeView}
+          onNewJobsClick={handleNewJobsClick}
+          onDashboardClick={handleDashboardClick}
+          onApplicantsClick={handleApplicantsClick}
+        />
       </Box>
     </Box>
   );
