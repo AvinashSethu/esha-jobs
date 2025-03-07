@@ -37,9 +37,10 @@
     }
   
     .fli-title {
-      font-size: 28px !important;
+      font-size: 30px !important;
       font-weight: bold !important;
       width: 90% !important;
+      line-height: 40px !important;
     }
     .fli-title br {
         display: none; /* Hide <br> on mobile */
@@ -47,12 +48,13 @@
   
     .fli-subtitle {
       font-size: 17px !important;
-      width: 75% !important;
+      width: 83% !important;
+      line-height: 28px !important;
     }
   
     .fli-btn {
-      width: 150px !important;
-      height: 50px !important;
+      width: 180px !important;
+      height: 60px !important;
       font-size: 12px !important;
       margin-top: 20px !important;
     }
@@ -63,6 +65,7 @@
       padding: 1rem !important;
     }
     .fli-con{
-        margin-top: -30px !important;
+        margin-top: 20px !important;
+        height: 60vh !important;
     }
   }

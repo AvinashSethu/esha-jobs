@@ -60,6 +60,7 @@ export default function AboutPage() {
         sm: "inline" // shows br on larger screens
       }
     },
+    fontWeight:'bold'
   }}
 >
   Your Dream <span style={{color:'var(--primary)'}}>Job Abroad</span> is <br /> 

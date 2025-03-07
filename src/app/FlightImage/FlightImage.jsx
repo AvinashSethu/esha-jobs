@@ -3,9 +3,9 @@ import { Box, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Image from "next/image";
 import FlightImg from "@/public/Images/Flight.png";
-import FlightImgMobile from "@/public/Images/Flight-Mobile.png";
 import "../FlightImage/FlightImage.css";
 import Link from "next/link";
+import FlightImgOne from "@/public/Images/Flight-Img.png";
 
 export default function FlightImage() {
   return (
@@ -29,10 +29,10 @@ export default function FlightImage() {
 
       {/* Mobile-specific image (right half with airplane) */}
       <Image
-        src={FlightImgMobile}
+        src={FlightImgOne}
         alt="Flight Image Mobile"
         layout="fill"
-        objectFit="contain"
+        objectFit="cover"
         className="mobile-image"
       />
 
