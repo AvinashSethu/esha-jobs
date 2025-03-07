@@ -1,11 +1,11 @@
 import { Onest } from "next/font/google";
 import "./globals.css";
-
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { ThemeProvider } from "@mui/material";
+import theme from "./Theme";
 
 const onest = Onest({
-  variable:"--font-onest",
-  subsets: ['latin'],
- 
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -16,8 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${onest.variable}`}>
-        {children}
+      <body className={onest.className}>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

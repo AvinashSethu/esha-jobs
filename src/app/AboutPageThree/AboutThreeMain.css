@@ -15,10 +15,10 @@
     }
     .Three-main{
         height: auto !important;
-        padding-top: 60px !important;
+        margin-top: -70px !important;
         
     }
 }
 .Three-main{
-    padding-top: 120px !important;
+    padding-top: 250px !important;
 }

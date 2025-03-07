@@ -6,6 +6,7 @@
     margin: 20px 40px; /* Left & Right Margin */
     height: auto !important;
     position: relative !important;
+    margin-top: 90px;
   }
   
   /* Top Section: Left-aligned text & Right-aligned Button */
