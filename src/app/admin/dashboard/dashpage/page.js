@@ -7,12 +7,22 @@ import Navbarbottom from "../navbarbotttom/navbarbotttom";
 import NewJob from "../NewJob/NewJob";
 import Applicants from "../Applicants/Applicants";
 import JobList from "../../JobList";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
   const [activeView, setActiveView] = useState("dashboard");
   const [applicants, setApplicants] = useState([]);
   const [loadingApplicants, setLoadingApplicants] = useState(false);
   const [errorApplicants, setErrorApplicants] = useState(null);
+  const router = useRouter();
+
+  // Check login status on mount
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+      router.push("/admin/dashboard/login"); // Updated redirect path
+    }
+  }, [router]);
 
   const handleNewJobsClick = () => {
     setActiveView("newJobs");
