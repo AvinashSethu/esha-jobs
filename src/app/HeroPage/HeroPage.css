@@ -11,7 +11,7 @@
 /* Mobile-first approach: Full height on mobile with no white space */
 @media (max-width: 767px) {
   .hero-container {
-    height: 101vh;
+    height: 70vh !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

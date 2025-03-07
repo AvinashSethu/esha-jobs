@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
     .Nurse-con{
-        height:110vh !important;
+        height:50vh !important;
         
     }
     .mis-con{
@@ -8,12 +8,14 @@
         height: auto !important;
         margin-left: 20px !important;
         margin-top: 10px !important;
+        display: none !important;
     }
     .vis-con{
         width: 250px !important;
         height:  170px !important;
         margin-left: 20px !important;
         margin-top: 10px !important;
+        display: none !important;
     }
     .mis-text{
         font-size: 19px !important;
@@ -26,6 +28,15 @@
     }
     .vis-texttwo{
         font-size: 14px !important;
+    }
+    .hor-line{
+        display: none !important;
+    }
+    .nur-btn{
+        display: none !important;
+    }
+    .nur-img{
+        margin-top: -100px;
     }
 }
 

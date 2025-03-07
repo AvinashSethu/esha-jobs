@@ -66,7 +66,8 @@ export default function() {
                         <hr style={{ width: "136%", border: "0.1px solid #999999", margin: "0 0 20px 0", marginLeft: '30px', marginTop: '30px' }} className="hor-line" />
                         <Box>
                         <Link href="#contact" passHref>
-                        <Button
+                        <Button 
+                               className="nur-btn"
                                 sx={{
                                     backgroundColor: "var(--primary)",
                                     color: "#FFFFFF",
@@ -86,6 +87,7 @@ export default function() {
                         </Link>
                         <Link href="#services" passHref>
                         <Button
+                               className="nur-btn"
                                 sx={{
                                     backgroundColor: "transparent",
                                     color: "#FFFFFF",
@@ -209,6 +211,7 @@ export default function() {
                     }}
                 >
                     <Image 
+                    className="nur-img"
                         src={NurseImg} 
                         alt="Nurse" 
                         style={{ 

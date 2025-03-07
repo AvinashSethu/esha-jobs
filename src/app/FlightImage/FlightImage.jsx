@@ -8,11 +8,12 @@ import Link from 'next/link';
 
 export default function FlightImage() {
   return (
-    <Box sx={{ height: "70vh", width: "100vw", position: "relative",marginTop:'10%' }}>
+    <Box sx={{ height: "70vh", width: "100vw", position: "relative",marginTop:'12%' }}>
       <Image src={FlightImg} alt="Flight Image" layout="fill" objectFit="cover" />
 
       {/* Overlay for text and button on the left side */}
-      <Box
+      <Box 
+        className="fli-over"
         sx={{
           position: "absolute",
           top: "65%",

@@ -6,7 +6,7 @@ job-card {
 
 @media (max-width: 768px) {
   .about-img{
-    height: 550px !important;
-    margin-top: 240px ;
+    height: 450px !important;
+    margin-top: 380px ;
   }
 }

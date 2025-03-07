@@ -93,7 +93,7 @@ export default function HeroPage() {
             variant="h6" 
             sx={{ 
               fontSize: { xs: '1rem', md: '1.5rem' }, 
-              marginBottom: '2rem' 
+              marginBottom: '0.2em' 
             }}
           >
             {heroContent[currentIndex].subtitle}
@@ -101,7 +101,7 @@ export default function HeroPage() {
           <Typography 
             variant="h1" 
             sx={{ 
-              fontSize: { xs: '2.2rem', md: '4rem' }, 
+              fontSize: { xs: '2rem', md: '4rem' }, 
               fontWeight: 'bold', 
               marginBottom: '1rem',
               display: 'block', 

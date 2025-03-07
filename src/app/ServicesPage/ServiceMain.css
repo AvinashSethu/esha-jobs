@@ -77,6 +77,17 @@
     /* Remove stagger effect on mobile for better UX */
     .service-card {
         transform: translateY(0px);
+        padding: 20px !important;
+    }
+    .service-title{
+        font-size: 20px !important;
+        font-weight: normal !important;
+    }
+    .service-desc{
+        font-size: 16px !important;
+    }
+    .arrow-icon{
+        font-size: 22px !important;
     }
 }
 

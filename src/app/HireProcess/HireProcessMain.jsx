@@ -54,7 +54,7 @@ export default function HireProcessMain() {
           <Button 
             className="cta-btn" 
             endIcon={<ArrowForwardIcon />} 
-            sx={{bgcolor:'var(--primary)',borderRadius:'15px',height:'60px',color:'#fff',padding:'25px'}}
+            sx={{bgcolor:'var(--primary)',borderRadius:'30px',height:'60px',color:'#fff',padding:'25px'}}
           >
             Explore Vacancies
           </Button>

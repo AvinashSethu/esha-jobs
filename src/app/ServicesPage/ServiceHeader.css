@@ -6,9 +6,8 @@
     flex-wrap: wrap;
     height: auto;
   }
-  
-  .service-text {
-    max-width: 50%;
+  .service-text{
+    width: 50%;
   }
   
   .service-buttons {
@@ -19,7 +18,7 @@
   .claim-btn {
     background-color: var(--primary) !important;
     color: white;
-    border-radius: 15px !important;
+    border-radius: 30px !important;
     padding: 10px 20px;
     height: 60px !important;
     width: 170px !important;
@@ -27,7 +26,7 @@
   
   .contact-btn {
     border: 1px solid #999999 !important;
-    border-radius: 15px !important;
+    border-radius: 30px !important;
     color: #000 !important;
     padding: 10px 20px;
     height: 60px !important;
@@ -41,25 +40,28 @@
       padding-top: 30px; /* Adjusted for mobile */
       margin-top: 30px;
       height: auto !important;
+      width: 100%;
+      padding: 40px 50px 10px !important;
     }
   
-    .service-text {
-      max-width: 100%;
-      margin-bottom: 15px;
-      
-    }
+   
     .service-buttons {
-      flex-direction: row;
+      flex-direction: column;
       gap: 20px !important; /* Reduced gap for mobile */
       align-items: center;
       justify-content: center;
       width: 100%;
     }
   
-    .claim-btn,
-    .contact-btn {
-      width: 100%;
-      max-width: 200px; /* Keeps buttons from getting too wide */
+    .claim-btn{
+      width: 200px !important;
+      margin-top: 20px !important;
+    }
+    .contact-btn{
+      width: 350px !important;
+    }
+    .service-text{
+      width: 100% !important;
     }
 
   }

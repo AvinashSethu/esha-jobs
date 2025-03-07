@@ -84,6 +84,7 @@ export default function Footer() {
             [theme.breakpoints.down("sm")]: {
               flex: "100%", // Full width on mobile
               textAlign: "center",
+              backgroundColor:'#D4E6FA'
             },
           }}
         >
@@ -122,7 +123,7 @@ export default function Footer() {
             sx={{
               backgroundColor: "var(--primary)",
               color: "#fff",
-              borderRadius: "15px",
+              borderRadius: "30px",
               "&:hover": { backgroundColor: "var(--primary)" },
               [theme.breakpoints.down("sm")]: {
                 width: "100%",

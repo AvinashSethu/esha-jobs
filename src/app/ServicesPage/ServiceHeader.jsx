@@ -16,16 +16,13 @@ export default function ServiceHeader() {
           OUR SERVICES/
         </Typography>
         <Typography
-          component="h1" // Use a semantic tag, avoid variant conflicts
-          className="service-title"
           sx={{
-            fontWeight: "bold",
             mt: 2,
-            fontSize: { xs: 18, md: 42 },
-            "&.service-title": { fontSize: { xs: "21px !important", md: "42px !important" } },
+            fontSize:{xs:30,md:40},
+            fontWeight:'bold'
           }}
         >
-          Unlock Your Dream <br /> Career Worldwide!
+          Unlock Your Dream Career Worldwide!
         </Typography>
       </Box>
 

@@ -93,7 +93,7 @@ export default function CardJob({
                   style={{ objectFit: "cover",borderRadius:'10px' }}
                 />
                 <Box sx={{ overflowX: "hidden",width: "100%", height: "100%" }}>
-                  <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>
+                  <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1rem", sm: "1.5rem" } }}>
                     {jobtitle || "Job Title"}
                   </Typography>
                   <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
@@ -106,8 +106,8 @@ export default function CardJob({
                 sx={{
                   bgcolor: "black",
                   color: "white",
-                  borderRadius: "4px",
-                  padding: "4px 12px",
+                  borderRadius: "30px",
+                  padding: "7px 12px",
                   fontSize: { xs: "12px", sm: "14px" },
                   "&:hover": { bgcolor: "#333" },
                   flexShrink: 0,
@@ -207,7 +207,10 @@ export default function CardJob({
               borderBottomLeftRadius: "8px",
               borderBottomRightRadius: "8px",
               overflowX: "hidden",
-              flexShrink: 0, // Prevent shrinking
+              flexShrink: 0, 
+              height:"40px",
+              overflowY:'hidden'
+
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
@@ -317,7 +320,9 @@ export default function CardJob({
               borderBottomLeftRadius: "8px",
               borderBottomRightRadius: "8px",
               overflowX: "hidden",
-              flexShrink: 0, // Prevent shrinking
+              flexShrink: 0, 
+              height:"40px",
+              overflowY:'hidden'
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
