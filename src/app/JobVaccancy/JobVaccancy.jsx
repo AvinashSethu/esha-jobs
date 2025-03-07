@@ -26,15 +26,18 @@ export default function JobVacancy() {
           Discover the best job
         </Typography>
         <Typography
-          sx={{
-            mt: 3,
-            color: "#999999",
-            fontSize: { xs: "15px", sm: "14px", md: "15px" },
-            px: { xs: 3, sm: 0 },
-          }}
-        >
-          Start career with the best company in the world, we ensure <br /> you to get the best job possible.
-        </Typography>
+  sx={{
+    mt: 3,
+    color: "#999999",
+    fontSize: { xs: "14px", sm: "14px", md: "15px" },
+    px: { xs: 3, sm: 0 },
+    '& br': {
+      display: { xs: 'none', sm: 'inline' }
+    }
+  }}
+>
+  Start career with the best company in the world, we ensure <br /> you to get the best job possible.
+</Typography>
       </Box>
 
       {/* Job Cards */}

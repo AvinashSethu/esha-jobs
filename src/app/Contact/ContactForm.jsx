@@ -99,12 +99,12 @@ export default function ContactForm() {
         sx={{
           backgroundColor: "#000",
           padding: { xs: "30px", sm: "60px", md: "90px" },
-          borderRadius: "1px",
+          borderRadius: {xs:5,md:1},
           color: "#fff",
           width: { xs: "100%", md: "50%" },
           overflow: "visible",
           position: "absolute",
-          top: { md: "10%" },
+          top: { md: "20%" },
           left: { md: "0" },
           zIndex: 10,
         }}
@@ -291,6 +291,7 @@ export default function ContactForm() {
               "&:hover": { backgroundColor: "#0056b3" },
               fontSize: { xs: "14px", sm: "16px" },
               height: "60px",
+              width:{xs:"100%",md:200}
             }}
             endIcon={<ArrowForward sx={{ color: "#fff" }} />}
           >

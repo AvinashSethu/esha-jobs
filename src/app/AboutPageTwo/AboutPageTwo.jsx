@@ -47,7 +47,7 @@ export default function AboutPageTwo() {
           variant="outlined"
           sx={{
             position: 'absolute',
-            top: 16, // 16px from top
+            top: 40, // 16px from top
             left: 16, // 16px from left
             zIndex: 200, // Above the image
             display: { xs: 'block', md: 'none' }, // Block on mobile, none on desktop

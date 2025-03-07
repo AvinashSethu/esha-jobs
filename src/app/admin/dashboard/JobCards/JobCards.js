@@ -94,7 +94,7 @@ export default function JobCards({
                   style={{ objectFit: "cover",borderRadius:'10px' }}
                 />
                 <Box sx={{ overflowX: "hidden",width: "100%", height: "100%" }}>
-                  <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>
+                  <Typography sx={{ fontWeight: "bold", fontSize: { xs: "0.9rem", sm: "1.5rem" } }}>
                     {jobtitle || "Job Title"}
                   </Typography>
                   <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
@@ -107,7 +107,7 @@ export default function JobCards({
                 sx={{
                   bgcolor: "black",
                   color: "white",
-                  borderRadius: "4px",
+                  borderRadius: "30px",
                   padding: "4px 12px",
                   fontSize: { xs: "12px", sm: "14px" },
                   "&:hover": { bgcolor: "#333" },
@@ -141,7 +141,7 @@ export default function JobCards({
                     marginLeft: 90,
                     marginRight: 8,
                     color: "#000",
-                    fontSize: "22px",
+                    fontSize: "18px",
                   }}
                 />
                 {salary || "Salary"}
