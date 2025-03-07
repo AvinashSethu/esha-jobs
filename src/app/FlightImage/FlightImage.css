@@ -1,32 +1,68 @@
-.fli-title{
+.fli-title {
     font-size: 47px !important;
-}
-.fli-subtitle{
+  }
+  
+  .fli-subtitle {
     font-size: 20px !important;
-}
-.fli-btn{
+  }
+  
+  .fli-btn {
     background-color: #000 !important;
     border-radius: 30px !important;
     height: 60px !important;
     width: 200px !important;
     margin-top: 30px !important;
-}
-
-@media (max-width: 768px) {
-    .fli-title{
-        font-size: 28px !important;
-        font-weight: bold !important;
-        width: 75% !important;
+  }
+  .fli-title br {
+    display: inline; /* Default for desktop */
+  }
+  
+  /* Default: Show desktop image, hide mobile image */
+  .desktop-image {
+    display: block;
+  }
+  
+  .mobile-image {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    /* Show mobile image, hide desktop image */
+    .desktop-image {
+      display: none;
     }
-    .fli-subtitle{
-        font-size: 17px !important;
-        width: 75% !important;
+  
+    .mobile-image {
+      display: block;
     }
-    .fli-btn{
-        width:150px !important;
-        height: 50px !important;
-        font-size: 12px !important;
-        margin-top: 20px !important;
+  
+    .fli-title {
+      font-size: 28px !important;
+      font-weight: bold !important;
+      width: 90% !important;
     }
-
-}
+    .fli-title br {
+        display: none; /* Hide <br> on mobile */
+      }
+  
+    .fli-subtitle {
+      font-size: 17px !important;
+      width: 75% !important;
+    }
+  
+    .fli-btn {
+      width: 150px !important;
+      height: 50px !important;
+      font-size: 12px !important;
+      margin-top: 20px !important;
+    }
+  
+    /* Optional: Adjust the overlay padding and positioning for better readability */
+    .fli-over {
+      left: 4% !important;
+      padding: 1rem !important;
+    }
+    .fli-con{
+        margin-top: -30px !important;
+    }
+  }

@@ -99,7 +99,7 @@ export default function AboutPage() {
           className="MuiButton-outlined"
           variant="outlined" 
           sx={{ 
-            borderRadius: "15px", 
+            borderRadius: "30px", 
             padding: "8px 16px", 
             borderColor: "#000",
             color: "#000",

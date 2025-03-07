@@ -14,7 +14,7 @@ export default function JobVacancy() {
       }}
     >
       {/* Header Section */}
-      <Box sx={{ marginTop: { xs: "5%", md: "5%" }, justifyContent: "center", textAlign: "center" }}>
+      <Box sx={{ marginTop: { xs: "-10px", md: "5%" }, justifyContent: "center", textAlign: "center" }}>
         <Typography sx={{ color: "var(--primary)", fontWeight: "bold" }}>JOB VACANCY</Typography>
         <Typography
           sx={{

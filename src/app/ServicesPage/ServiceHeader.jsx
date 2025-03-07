@@ -33,7 +33,7 @@ export default function ServiceHeader() {
         </Button>
       </Link>
       <Link href="#contact" passHref>
-      <Button variant="outlined" className="contact-btn">
+      <Button variant="outlined" className="contact-btn" sx={{ width: { xs: "350px", md: "170px" } }}>
           Contact Us
         </Button>
       </Link>
