@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Box,
   TextField,
@@ -12,71 +13,59 @@ import ArrowForward from "@mui/icons-material/ArrowForward";
 import "../Contact/Contact.css";
 
 export default function ContactForm() {
-  // State for form data
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     services: "",
     jobTitle: "",
-    message: ""
+    message: "",
   });
-  
-  // State for loading and error handling
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   const [servicesAnchorEl, setServicesAnchorEl] = useState(null);
   const [jobTitleAnchorEl, setJobTitleAnchorEl] = useState(null);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Create FormData object
-    const data = new FormData();
-    data.append("fullName", formData.fullName);
-    data.append("email", formData.email);
-    data.append("phone", formData.phone);
-    data.append("services", formData.services);
-    data.append("jobTitle", formData.jobTitle);
-    data.append("message", formData.message);
-
     try {
-      // Replace with your actual API endpoint
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        body: data,
+      // Send form data as JSON to the API endpoint
+      const response = await axios.post("/api/contact", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
-      if (!response.ok) {
-        throw new Error("Submission failed");
-      }
-
-      const result = await response.json();
+      console.log("Success:", response.data);
+      alert("Contact form submitted successfully!");
       setSubmitStatus("success");
-      // Reset form
       setFormData({
         fullName: "",
         email: "",
         phone: "",
         services: "",
         jobTitle: "",
-        message: ""
+        message: "",
       });
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error:", error.response?.data || error.message);
+      alert(
+        "Failed to submit contact form: " +
+          (error.response?.data?.error || error.message)
+      );
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -141,6 +130,7 @@ export default function ContactForm() {
               InputProps={{
                 style: { color: "#fff", borderBottom: "1px solid #fff" },
               }}
+              disabled={isSubmitting}
             />
           </Box>
           <Box sx={{ flex: 1, width: "100%" }}>
@@ -155,6 +145,7 @@ export default function ContactForm() {
               InputProps={{
                 style: { color: "#fff", borderBottom: "1px solid #fff" },
               }}
+              disabled={isSubmitting}
             />
           </Box>
         </Box>
@@ -180,6 +171,7 @@ export default function ContactForm() {
               InputProps={{
                 style: { color: "#fff", borderBottom: "1px solid #fff" },
               }}
+              disabled={isSubmitting}
             />
           </Box>
           <Box sx={{ flex: 1, width: "100%" }}>
@@ -209,13 +201,14 @@ export default function ContactForm() {
                 onOpen: handleServicesClick,
                 MenuProps: { anchorEl: servicesAnchorEl },
               }}
+              disabled={isSubmitting}
             >
-              <MenuItem value="Apostille">Apostille & Certificate Verification</MenuItem>
-              <MenuItem value="Emigration">Emigration & Attestation Services</MenuItem>
-              <MenuItem value="Ticketing">Ticketing & Visa Stamping</MenuItem>
+              <MenuItem value="Apostille">Apostille and Certificate Verification</MenuItem>
+              <MenuItem value="Emigration">Emigration and Attestation Services</MenuItem>
+              <MenuItem value="Ticketing">Ticketing and Visa Stamping</MenuItem>
               <MenuItem value="License">License Assistance</MenuItem>
-              <MenuItem value="Dataflow">Dataflow & Exam Booking</MenuItem>
-              <MenuItem value="Insurance">Travel Insurance & Medical Appointments</MenuItem>
+              <MenuItem value="Dataflow">Dataflow and Exam Booking</MenuItem>
+              <MenuItem value="Insurance">Travel Insurance and Medical Appointments</MenuItem>
             </TextField>
           </Box>
         </Box>
@@ -248,6 +241,7 @@ export default function ContactForm() {
               onOpen: handleJobTitleClick,
               MenuProps: { anchorEl: jobTitleAnchorEl },
             }}
+            disabled={isSubmitting}
           >
             <MenuItem value="Job1">Job1</MenuItem>
             <MenuItem value="Job2">Job2</MenuItem>
@@ -278,6 +272,7 @@ export default function ContactForm() {
             InputProps={{
               style: { color: "#fff", borderBottom: "1px solid #fff" },
             }}
+            disabled={isSubmitting}
           />
         </Box>
 

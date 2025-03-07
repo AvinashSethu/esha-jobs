@@ -133,14 +133,14 @@ export default function JobCards({
                   overflowX: "hidden",
                 }}
               >
-                <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "var(--primary)" }} />
+                <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "#000" }} />
                 {location || "Location"}
                 <PiMoneyWavyBold
                   style={{
                     verticalAlign: "middle",
-                    marginLeft: 160,
+                    marginLeft: 90,
                     marginRight: 8,
-                    color: "var(--primary)",
+                    color: "#000",
                     fontSize: "22px",
                   }}
                 />

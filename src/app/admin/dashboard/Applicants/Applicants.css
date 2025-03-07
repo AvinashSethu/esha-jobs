@@ -1,0 +1,51 @@
+/* Applicants.css */
+.applicants-row {
+  background-color: #84bffa !important;
+}
+
+.applicants-row:hover {
+  background-color: #BBDEFB;
+}
+
+.applicants-cell {
+  padding: 8px 16px;
+  border-bottom: none;
+}
+
+.view-more-btn {
+  background-color: #1976D2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .applicants-row {
+    display: block;
+    margin-bottom: 16px;
+    padding: 8px;
+    width: 100%;
+  }
+  
+  .applicants-cell {
+    display: block;
+    padding: 4px 8px;
+    width: 100%;
+  }
+
+  .MuiTable-root {
+    width: 100% !important;
+    display: block;
+  }
+
+  .MuiTableHead-root {
+    display: none; /* Optional: hide headers on mobile if preferred */
+  }
+
+  .MuiTableBody-root {
+    display: block;
+    width: 100%;
+  }
+}

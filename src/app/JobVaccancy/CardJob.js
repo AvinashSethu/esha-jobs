@@ -5,7 +5,6 @@ import PublicIcon from "@mui/icons-material/Public";
 import { PiMoneyWavyBold } from "react-icons/pi";
 import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
 import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid";
 import Logo from "@/public/Icons/Logo-Esha.png";
 
@@ -133,14 +132,14 @@ export default function CardJob({
                   overflowX: "hidden",
                 }}
               >
-                <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "var(--primary)" }} />
+                <PublicIcon sx={{ verticalAlign: "middle", mr: 1, color: "#000" }} />
                 {location || "Location"}
                 <PiMoneyWavyBold
                   style={{
                     verticalAlign: "middle",
-                    marginLeft: 160,
+                    marginLeft: 90,
                     marginRight: 8,
-                    color: "var(--primary)",
+                    color: "#000",
                     fontSize: "22px",
                   }}
                 />
