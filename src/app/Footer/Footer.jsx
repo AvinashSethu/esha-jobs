@@ -5,19 +5,18 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Image from "next/image"; // Import Next.js Image component
-import Link from "next/link"; // Import Next.js Link for navigation
+import Image from "next/image";
+import Link from "next/link";
 import "../Footer/Footer.css";
 import Logo from "@/public/Icons/Esha-Logo.png";
 
 export default function Footer() {
-  const theme = useTheme(); // Access MUI theme for breakpoints
-  const [activeLink, setActiveLink] = useState('#home'); // Track active link state
+  const theme = useTheme();
+  const [activeLink, setActiveLink] = useState("#home");
 
-  // Handle scroll to update active link
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'jobs', 'process', 'contact'];
+      const sections = ["home", "about", "jobs", "process", "contact"];
       let newActiveLink = activeLink;
 
       sections.forEach((section) => {
@@ -33,20 +32,20 @@ export default function Footer() {
       setActiveLink(newActiveLink);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeLink]); // Include activeLink as dependency to ensure updates
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeLink]);
 
   const handleLinkClick = (link) => {
-    setActiveLink(link); // Set active link immediately
+    setActiveLink(link);
     const element = document.querySelector(link);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handlePhoneCall = () => {
-    window.location.href = 'tel: 9788903129'; // Initiates the call
+    window.location.href = "tel: 9788903129";
   };
 
   return (
@@ -58,7 +57,8 @@ export default function Footer() {
         [theme.breakpoints.down("sm")]: {
           padding: "10px",
         },
-        marginTop:'7%',
+        marginTop: "7%",
+        position: "relative",
       }}
     >
       <Box
@@ -66,38 +66,44 @@ export default function Footer() {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          flexWrap: "wrap", // Allows stacking on smaller screens
+          alignItems: "flex-end", // Align bottoms of the boxes
           [theme.breakpoints.down("sm")]: {
             flexDirection: "column",
             alignItems: "center",
           },
         }}
       >
-        {/* First Box (4 parts) - Esha Arab Nursing Consultancy */}
+        {/* First Box - Esha Arab Nursing Consultancy (Highest Step) */}
         <Box
-        className="first-con"
-          sx={{
-            flex: "4", // 4 parts of the total 12 parts (33.33% on desktop)
-            minWidth: "0", // Ensures box shrinks properly
-            padding: "50px",
-            textAlign: "left",
-            [theme.breakpoints.down("sm")]: {
-              flex: "100%", // Full width on mobile
-              textAlign: "center",
-              backgroundColor:'#D4E6FA'
-            },
-          }}
-        >
+  className="first-con"
+  sx={{
+    flex: "1",
+    minWidth: "0",
+    padding: "20px",
+    textAlign: "left",
+    backgroundColor: "#D4E6FA",
+    height: "300px", // Tallest box for the highest step
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center", // Center content vertically
+    alignItems: "flex-start", // Ensure left alignment of text
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      height: "auto",
+      marginBottom: "10px",
+    },
+  }}
+>
           <Typography
             variant="h6"
             sx={{
               fontWeight: "bold",
               color: "#000",
               marginBottom: "13px",
+              fontSize: "24px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "1.2rem",
               },
-              fontSize: '24px'
             }}
           >
             Esha Arab Nursing Consultancy
@@ -107,49 +113,55 @@ export default function Footer() {
             sx={{
               color: "#000",
               marginBottom: "10px",
+              fontSize: "17px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",
               },
-              fontSize: '17px'
             }}
           >
             Your Dream Job is Just a Step Away!
           </Typography>
           <Link href="#jobs" passHref>
-          <Button
-            className="fot-btn"
-            variant="contained"
-            endIcon={<ArrowForwardIcon />}
-            sx={{
-              backgroundColor: "var(--primary)",
-              color: "#fff",
-              borderRadius: "30px",
-              "&:hover": { backgroundColor: "var(--primary)" },
-              [theme.breakpoints.down("sm")]: {
-                width: "100%",
-                fontSize: "0.8rem",
-              },
-              height: '50px',
-              width: '170px',
-            }}
-          >
-            Vacancies
-          </Button>
+            <Button
+              className="fot-btn"
+              variant="contained"
+              endIcon={<ArrowForwardIcon />}
+              sx={{
+                backgroundColor: "var(--primary)",
+                color: "#fff",
+                borderRadius: "30px",
+                "&:hover": { backgroundColor: "var(--primary)" },
+                height: "50px",
+                width: "170px",
+                [theme.breakpoints.down("sm")]: {
+                  width: "100%",
+                  fontSize: "0.8rem",
+                },
+              }}
+            >
+              Vacancies
+            </Button>
           </Link>
         </Box>
 
-        {/* Second Box (4 parts) - Quick Links and Social Media Icons (All Centered) */}
+        {/* Second Box - Quick Links and Social Media Icons (Middle Step) */}
         <Box
-        className="sec-box"
+          className="sec-box"
           sx={{
-            flex: "4", // 4 parts of the total 12 parts (33.33% on desktop)
-            minWidth: "0", // Ensures box shrinks properly
-            padding: "10px",
-            textAlign: "center", // Center all text in this box on desktop and mobile
+            flex: "1",
+            minWidth: "0",
+            padding: "20px",
+            textAlign: "center",
+            backgroundColor: "#fff",
+            height: "250px", // Slightly shorter than the first box
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
             [theme.breakpoints.down("sm")]: {
-              flex: "100%", // Full width on mobile
+              width: "100%",
+              height: "auto",
+              marginBottom: "10px",
             },
-            paddingTop:'10px'
           }}
         >
           <Typography
@@ -161,20 +173,28 @@ export default function Footer() {
               [theme.breakpoints.down("sm")]: {
                 fontSize: "1rem",
               },
+              marginLeft:'20px'
             }}
           >
-            Quick Links
+            QUICK LINKS <ArrowForwardIcon
+    sx={{
+      marginLeft: '2px',
+      transform: 'rotate(330deg)', 
+      color:'var(--primary)'
+    }}
+  />
           </Typography>
+          
           <Link href="#home" passHref>
             <Typography
               variant="body2"
-              onClick={() => handleLinkClick('#home')}
+              onClick={() => handleLinkClick("#home")}
               sx={{
-                color: activeLink === '#home' ? 'var(--primary)' : '#666',
+                color: activeLink === "#home" ? "var(--primary)" : "#000",
                 marginBottom: "5px",
-                cursor: 'pointer',
-                textDecoration: 'none',
-                '&:hover': { color: 'var(--primary)' },
+                cursor: "pointer",
+                textDecoration: "none",
+                "&:hover": { color: "var(--primary)" },
                 [theme.breakpoints.down("sm")]: {
                   fontSize: "0.9rem",
                 },
@@ -186,13 +206,13 @@ export default function Footer() {
           <Link href="#about" passHref>
             <Typography
               variant="body2"
-              onClick={() => handleLinkClick('#about')}
+              onClick={() => handleLinkClick("#about")}
               sx={{
-                color: activeLink === '#about' ? 'var(--primary)' : '#666',
+                color: activeLink === "#about" ? "var(--primary)" : "#000",
                 marginBottom: "5px",
-                cursor: 'pointer',
-                textDecoration: 'none',
-                '&:hover': { color: 'var(--primary)' },
+                cursor: "pointer",
+                textDecoration: "none",
+                "&:hover": { color: "var(--primary)" },
                 [theme.breakpoints.down("sm")]: {
                   fontSize: "0.9rem",
                 },
@@ -204,13 +224,13 @@ export default function Footer() {
           <Link href="#services" passHref>
             <Typography
               variant="body2"
-              onClick={() => handleLinkClick('#services')}
+              onClick={() => handleLinkClick("#services")}
               sx={{
-                color: activeLink === '#jobs' ? 'var(--primary)' : '#666',
+                color: activeLink === "#jobs" ? "var(--primary)" : "#000",
                 marginBottom: "5px",
-                cursor: 'pointer',
-                textDecoration: 'none',
-                '&:hover': { color: 'var(--primary)' },
+                cursor: "pointer",
+                textDecoration: "none",
+                "&:hover": { color: "var(--primary)" },
                 [theme.breakpoints.down("sm")]: {
                   fontSize: "0.9rem",
                 },
@@ -222,13 +242,13 @@ export default function Footer() {
           <Link href="#jobs" passHref>
             <Typography
               variant="body2"
-              onClick={() => handleLinkClick('#jobs')}
+              onClick={() => handleLinkClick("#jobs")}
               sx={{
-                color: activeLink === '#process' ? 'var(--primary)' : '#666',
+                color: activeLink === "#process" ? "var(--primary)" : "#000",
                 marginBottom: "5px",
-                cursor: 'pointer',
-                textDecoration: 'none',
-                '&:hover': { color: 'var(--primary)' },
+                cursor: "pointer",
+                textDecoration: "none",
+                "&:hover": { color: "var(--primary)" },
                 [theme.breakpoints.down("sm")]: {
                   fontSize: "0.9rem",
                 },
@@ -240,13 +260,13 @@ export default function Footer() {
           <Link href="#contact" passHref>
             <Typography
               variant="body2"
-              onClick={() => handleLinkClick('#contact')}
+              onClick={() => handleLinkClick("#contact")}
               sx={{
-                color: activeLink === '#contact' ? 'var(--primary)' : '#666',
+                color: activeLink === "#contact" ? "var(--primary)" : "#000",
                 marginBottom: "5px",
-                cursor: 'pointer',
-                textDecoration: 'none',
-                '&:hover': { color: 'var(--primary)' },
+                cursor: "pointer",
+                textDecoration: "none",
+                "&:hover": { color: "var(--primary)" },
                 [theme.breakpoints.down("sm")]: {
                   fontSize: "0.9rem",
                 },
@@ -257,9 +277,9 @@ export default function Footer() {
           </Link>
           <Box
             sx={{
-              marginTop: "15px", // Space between Quick Links and social icons
+              marginTop: "15px",
               display: "flex",
-              justifyContent: "center", // Center social icons on both desktop and mobile
+              justifyContent: "center",
             }}
           >
             <IconButton aria-label="Facebook" sx={{ color: "#000" }}>
@@ -274,38 +294,45 @@ export default function Footer() {
           </Box>
         </Box>
 
-        {/* Third Box (4 parts) - Logo and Address */}
+        {/* Third Box - Logo and Address (Lowest Step) */}
         <Box
+          className="third-con"
           sx={{
-            flex: "4", // 4 parts of the total 12 parts (33.33% on desktop)
-            minWidth: "0", // Ensures box shrinks properly
-            padding: "10px",
+            flex: "1",
+            minWidth: "0",
+            padding: "20px",
             textAlign: "left",
+            backgroundColor: "#fff",
+            height: "200px", // Shortest box for the lowest step
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
             [theme.breakpoints.down("sm")]: {
-              flex: "100%", // Full width on mobile
-              textAlign: "center",
+              width: "100%",
+              height: "auto",
+              marginBottom: "10px",
             },
           }}
         >
           <Image
-            src={Logo}  // Replace with the actual path to your logo (airplane icon)
+            src={Logo}
             alt="Logo"
-            width={50} // Default width for desktop
-            height={50} // Default height (adjust based on your logo's aspect ratio)
+            width={50}
+            height={50}
             style={{
               marginBottom: "10px",
               [theme.breakpoints.down("sm")]: {
-                width: "40px", // Adjusted width for mobile
-                height: "40px", // Adjusted height for mobile
+                width: "40px",
+                height: "40px",
               },
             }}
-            layout="fixed" // or "intrinsic", "responsive", etc., depending on your needs
-            priority={true} // Optional: Load this image with priority if it's above the fold
+            layout="fixed"
+            priority={true}
           />
           <Typography
             variant="body2"
             sx={{
-              color: "#666",
+              color: "#000",
               marginBottom: "5px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",
@@ -317,7 +344,7 @@ export default function Footer() {
           <Typography
             variant="body2"
             sx={{
-              color: "#666",
+              color: "#000",
               marginBottom: "5px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",
@@ -327,15 +354,15 @@ export default function Footer() {
             PIN 629173
           </Typography>
           <Typography
-          onClick={handlePhoneCall}
+            onClick={handlePhoneCall}
             variant="body2"
             sx={{
-              color: "#666",
+              color: "#000",
               marginBottom: "5px",
+              cursor: "pointer",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",
               },
-              cursor:'pointer'
             }}
           >
             +91 9788903129
@@ -343,7 +370,7 @@ export default function Footer() {
           <Typography
             variant="body2"
             sx={{
-              color: "#666",
+              color: "#000",
               marginBottom: "5px",
               [theme.breakpoints.down("sm")]: {
                 fontSize: "0.9rem",

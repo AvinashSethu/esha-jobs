@@ -27,8 +27,8 @@ export default function Incrix() {
           <Image
             src={Logo} 
             alt="Incrix Logo"
-            width={100} 
-            height={24} 
+            width={90} 
+            height={20} 
             style={{ cursor: "pointer" }} // Optional: Adds pointer cursor on hover
           />
         </Link>
