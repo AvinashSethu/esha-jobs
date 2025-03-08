@@ -6,17 +6,18 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import "../navbarbotttom/navbarbotttom.css";
+import { useRouter } from "next/navigation";
 
 export default function Navbarbottom({ activeView, onNewJobsClick, onDashboardClick, onApplicantsClick }) {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const router = useRouter();
 
   // Handle logout confirmation
   const handleLogoutConfirm = () => {
-    // Add your logout logic here (e.g., redirect or API call)
-    console.log("Logging out...");
-    setShowLogoutConfirm(false); // Hide the confirmation card after logout
+    localStorage.removeItem("isLoggedIn");
+    router.push("/admin/dashboard/login"); 
+    setShowLogoutConfirm(false); 
   };
-
   // Handle cancel action
   const handleCancelLogout = () => {
     setShowLogoutConfirm(false); // Hide the confirmation card

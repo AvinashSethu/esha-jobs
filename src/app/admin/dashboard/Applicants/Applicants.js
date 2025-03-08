@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import "../Applicants/Applicants.css";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function Applicants({ applicants }) {
   const [showCard, setShowCard] = useState(false);
@@ -99,7 +100,7 @@ export default function Applicants({ applicants }) {
               <TableRow
                 key={applicant._id || index}
                 sx={{
-                  backgroundColor: '#BBDEFB',
+                  backgroundColor: '#D4E6FA',
                   '&:hover': { backgroundColor: '#BBDEFB' },
                   borderBottom: '0.1px solid #666',
                   borderRadius: '20px',
@@ -156,12 +157,13 @@ export default function Applicants({ applicants }) {
                       backgroundColor: 'var(--primary)',
                       color: 'white',
                       '&:hover': { backgroundColor: 'var(--primary)' },
-                      borderRadius: '4px',
-                      fontSize:'12px'
+                      borderRadius: '7px',
+                      fontSize:'12px',
+                      width:{xs:40,md:100},
                     }}
                     onClick={() => handleViewMore(applicant)}
                   >
-                    {isMobile ? "View" : "View More"}
+                   <ArrowForwardIcon sx={{fontSize:'15px'}} /> {isMobile ? "View" : "View More"}
                   </Button>
 
                   {showCard && selectedApplicant?._id === applicant._id && (
@@ -187,11 +189,12 @@ export default function Applicants({ applicants }) {
                             position: 'absolute', 
                             top: 8, 
                             right: 8, 
-                            backgroundColor: 'var(--primary)' 
+                            backgroundColor: 'var(--primary)' ,
+                            '&:hover': { backgroundColor: 'var(--secondary)'},
                           }}
                           onClick={handleCloseCard}
                         >
-                          <CloseIcon sx={{ color: '#fff' }} />
+                          <CloseIcon sx={{ color: '#fff', }} />
                         </IconButton>
 
                         <Stack spacing={2}>

@@ -26,6 +26,14 @@ export default function JobCards({
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
+
+  // Format gender array into a comma-separated string
+  const formatGender = (genderArray) => {
+    if (!genderArray || !Array.isArray(genderArray) || genderArray.length === 0) {
+      return "Gender";
+    }
+    return genderArray.join(", "); // Join with comma and space
+  };
   
 
   return (
@@ -98,7 +106,7 @@ export default function JobCards({
                     {jobtitle || "Job Title"}
                   </Typography>
                   <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
-                    {gender || "Gender"}
+                  {formatGender(gender)}
                   </Typography>
                 </Box>
               </Box>

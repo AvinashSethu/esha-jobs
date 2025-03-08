@@ -4,7 +4,12 @@ const jobSchema = new mongoose.Schema({
   jobTitle: { type: String, required: true, maxlength: 250 },
   salary: { type: String, required: true },
   location: { type: String, required: true },
-  gender: { type: String, enum: ["male", "female", "others"], default: "male" },
+  gender: {
+    type: [String], // Array of strings
+    enum: ["male", "female", "others"], // Restrict values
+    required: true, // Ensure the array isn’t empty
+    default: ["male"], // Default to an array with "male"
+  },
   description: { type: String, required: true, maxlength: 250 },
   keyFeatures: [{ type: String, maxlength: 100 }],
   jobDetails: { type: String, maxlength: 350 },
@@ -14,4 +19,6 @@ const jobSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.models.Job || mongoose.model("Job", jobSchema);
+// Prevent model redefinition by checking if it already exists
+delete mongoose.models.Job; // Clear the existing model from cache
+export default mongoose.model("Job", jobSchema);

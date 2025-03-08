@@ -1,5 +1,6 @@
 import connectMongo from "@/lib/connectMongo";
 import Job from "@/src/app/models/job";
+console.log("Job Model Schema (gender path):", Job.schema.paths.gender);
 
 export async function POST(request) {
   try {
@@ -7,15 +8,16 @@ export async function POST(request) {
 
     // Parse JSON payload
     const jobData = await request.json();
+    console.log("Received jobData:", JSON.stringify(jobData, null, 2)); // Debug log
 
-    // Ensure keyFeatures is an array (in case it's sent as a string)
+    // Ensure keyFeatures is an array
     if (typeof jobData.keyFeatures === "string") {
       jobData.keyFeatures = JSON.parse(jobData.keyFeatures);
     } else if (!Array.isArray(jobData.keyFeatures)) {
       jobData.keyFeatures = ["", ""];
     }
 
-    // Validate required fields (optional, but recommended)
+    // Validate required fields
     const requiredFields = [
       "jobTitle",
       "salary",
@@ -24,7 +26,10 @@ export async function POST(request) {
       "description",
     ];
     for (const field of requiredFields) {
-      if (!jobData[field]) {
+      if (
+        !jobData[field] ||
+        (field === "gender" && (!Array.isArray(jobData[field]) || jobData[field].length === 0))
+      ) {
         return new Response(JSON.stringify({ error: `${field} is required` }), {
           status: 400,
           headers: { "Content-Type": "application/json" },
@@ -32,8 +37,9 @@ export async function POST(request) {
       }
     }
 
-    // Create a new job document using the Job model
-    const newJob = new Job(jobData); // Correct instantiation
+    // Create a new job document
+    const newJob = new Job(jobData);
+    console.log("New job before save:", newJob); // Debug log
     const savedJob = await newJob.save();
 
     return new Response(JSON.stringify({ success: true, job: savedJob }), {
@@ -64,8 +70,3 @@ export async function GET() {
     });
   }
 }
-
-
-
-
-
