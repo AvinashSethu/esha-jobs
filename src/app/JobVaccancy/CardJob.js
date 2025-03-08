@@ -25,7 +25,14 @@ export default function CardJob({
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
-  
+
+  // Format gender array into a comma-separated string
+  const formatGender = (genderArray) => {
+    if (!genderArray || !Array.isArray(genderArray) || genderArray.length === 0) {
+      return "Gender";
+    }
+    return genderArray.join(", "); // Join with comma and space
+  };
 
   return (
     <Box
@@ -59,17 +66,17 @@ export default function CardJob({
             borderRadius: 2,
             boxShadow: 10,
             backfaceVisibility: "hidden",
-            display: "flex", // Use flexbox to structure content
+            display: "flex",
             flexDirection: "column",
-            overflow: "hidden", // Prevent overflow outside card
+            overflow: "hidden",
           }}
         >
           {/* Scrollable Content */}
           <Box
             sx={{
-              flex: 1, // Take available space
-              overflowY: "auto", // Scroll vertically if needed
-              overflowX: "hidden", // No horizontal scroll
+              flex: 1,
+              overflowY: "auto",
+              overflowX: "hidden",
               wordWrap: "break-word",
               p: { xs: 2, sm: 3 },
             }}
@@ -90,14 +97,14 @@ export default function CardJob({
                   alt="Company Logo"
                   width={50}
                   height={50}
-                  style={{ objectFit: "cover",borderRadius:'10px' }}
+                  style={{ objectFit: "cover", borderRadius: "10px" }}
                 />
-                <Box sx={{ overflowX: "hidden",width: "100%", height: "100%" }}>
+                <Box sx={{ overflowX: "hidden", width: "100%", height: "100%" }}>
                   <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1rem", sm: "1.5rem" } }}>
                     {jobtitle || "Job Title"}
                   </Typography>
                   <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
-                    {gender || "Gender"}
+                    {formatGender(gender)}
                   </Typography>
                 </Box>
               </Box>
@@ -207,10 +214,9 @@ export default function CardJob({
               borderBottomLeftRadius: "8px",
               borderBottomRightRadius: "8px",
               overflowX: "hidden",
-              flexShrink: 0, 
-              height:"40px",
-              overflowY:'hidden'
-
+              flexShrink: 0,
+              height: "40px",
+              overflowY: "hidden",
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
@@ -233,7 +239,7 @@ export default function CardJob({
             boxShadow: 1,
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
-            display: "flex", // Use flexbox to structure content
+            display: "flex",
             flexDirection: "column",
             overflow: "hidden",
           }}
@@ -241,9 +247,9 @@ export default function CardJob({
           {/* Scrollable Content */}
           <Box
             sx={{
-              flex: 1, // Take available space
-              overflowY: "auto", // Scroll vertically if needed
-              overflowX: "hidden", // No horizontal scroll
+              flex: 1,
+              overflowY: "auto",
+              overflowX: "hidden",
               wordWrap: "break-word",
               p: { xs: 2, sm: 3 },
             }}
@@ -264,7 +270,7 @@ export default function CardJob({
                   alt="Company Logo"
                   width={50}
                   height={50}
-                  style={{ objectFit: "cover",borderRadius:'10px' }}
+                  style={{ objectFit: "cover", borderRadius: "10px" }}
                 />
                 <Box sx={{ overflowX: "hidden" }}>
                   <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>
@@ -320,9 +326,9 @@ export default function CardJob({
               borderBottomLeftRadius: "8px",
               borderBottomRightRadius: "8px",
               overflowX: "hidden",
-              flexShrink: 0, 
-              height:"40px",
-              overflowY:'hidden'
+              flexShrink: 0,
+              height: "40px",
+              overflowY: "hidden",
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>

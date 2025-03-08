@@ -1,6 +1,5 @@
 import connectMongo from "@/lib/connectMongo";
 import Job from "@/src/app/models/job";
-console.log("Job Model Schema (gender path):", Job.schema.paths.gender);
 
 export async function POST(request) {
   try {
@@ -8,7 +7,6 @@ export async function POST(request) {
 
     // Parse JSON payload
     const jobData = await request.json();
-    console.log("Received jobData:", JSON.stringify(jobData, null, 2)); // Debug log
 
     // Ensure keyFeatures is an array
     if (typeof jobData.keyFeatures === "string") {
@@ -64,6 +62,38 @@ export async function GET() {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    await connectMongo();
+    const { id } = await request.json(); // Expecting { id: "jobId" } in the request body
+    if (!id) {
+      return new Response(JSON.stringify({ error: "Job ID is required" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const deletedJob = await Job.findByIdAndDelete(id);
+    if (!deletedJob) {
+      return new Response(JSON.stringify({ error: "Job not found" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    return new Response(JSON.stringify({ success: true, message: "Job deleted successfully" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error deleting job:", error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },

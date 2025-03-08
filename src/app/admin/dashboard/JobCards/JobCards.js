@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, IconButton } from "@mui/material";
+import { Box, Typography, Button, IconButton, Dialog, DialogContent, DialogContentText, DialogActions } from "@mui/material";
 import Image from "next/image";
 import PublicIcon from "@mui/icons-material/Public";
 import { PiMoneyWavyBold } from "react-icons/pi";
@@ -7,7 +7,9 @@ import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid";
+import WarningIcon from "@mui/icons-material/Warning";
 import Logo from "@/public/Icons/Logo-Esha.png";
+import axios from "axios";
 
 export default function JobCards({
   jobtitle,
@@ -20,21 +22,51 @@ export default function JobCards({
   otherDetails,
   jobDetails,
   jobImage,
+  _id,
+  onDelete,
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
-  // Format gender array into a comma-separated string
   const formatGender = (genderArray) => {
     if (!genderArray || !Array.isArray(genderArray) || genderArray.length === 0) {
       return "Gender";
     }
-    return genderArray.join(", "); // Join with comma and space
+    return genderArray.join(", ");
   };
-  
+
+  const handleDeleteClick = () => {
+    setOpenDialog(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    try {
+      console.log("Attempting to delete job with ID:", _id);
+      const response = await axios.delete("/api/jobs", {
+        data: { id: _id },
+      });
+      console.log("Delete response:", response.data);
+      if (onDelete) {
+        console.log("Calling onDelete with ID:", _id);
+        onDelete(_id, "Job deleted successfully!", "success");
+      }
+    } catch (error) {
+      console.error("Error deleting job:", error);
+      if (onDelete) {
+        onDelete(_id, "Failed to delete job: " + (error.response?.data?.message || error.message), "error");
+      }
+    } finally {
+      setOpenDialog(false);
+    }
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
 
   return (
     <Box
@@ -68,17 +100,16 @@ export default function JobCards({
             borderRadius: 2,
             boxShadow: 10,
             backfaceVisibility: "hidden",
-            display: "flex", // Use flexbox to structure content
+            display: "flex",
             flexDirection: "column",
-            overflow: "hidden", // Prevent overflow outside card
+            overflow: "hidden",
           }}
         >
-          {/* Scrollable Content */}
           <Box
             sx={{
-              flex: 1, // Take available space
-              overflowY: "auto", // Scroll vertically if needed
-              overflowX: "hidden", // No horizontal scroll
+              flex: 1,
+              overflowY: "auto",
+              overflowX: "hidden",
               wordWrap: "break-word",
               p: { xs: 2, sm: 3 },
             }}
@@ -99,14 +130,14 @@ export default function JobCards({
                   alt="Company Logo"
                   width={50}
                   height={50}
-                  style={{ objectFit: "cover",borderRadius:'10px' }}
+                  style={{ objectFit: "cover", borderRadius: "10px" }}
                 />
-                <Box sx={{ overflowX: "hidden",width: "100%", height: "100%" }}>
+                <Box sx={{ overflowX: "hidden", width: "100%", height: "100%" }}>
                   <Typography sx={{ fontWeight: "bold", fontSize: { xs: "0.9rem", sm: "1.5rem" } }}>
                     {jobtitle || "Job Title"}
                   </Typography>
                   <Typography sx={{ color: "#666666", fontSize: { xs: "12px", sm: "14px" } }}>
-                  {formatGender(gender)}
+                    {formatGender(gender)}
                   </Typography>
                 </Box>
               </Box>
@@ -203,7 +234,6 @@ export default function JobCards({
             </Box>
           </Box>
 
-          {/* Fixed Button Box */}
           <Box
             sx={{
               display: "flex",
@@ -216,19 +246,21 @@ export default function JobCards({
               borderBottomLeftRadius: "8px",
               borderBottomRightRadius: "8px",
               overflowX: "hidden",
-              flexShrink: 0, // Prevent shrinking
+              flexShrink: 0,
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Edit Job
             </Button>
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
+            <Button
+              sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}
+              onClick={handleDeleteClick}
+            >
               <DeleteIcon /> Delete
             </Button>
           </Box>
         </Box>
 
-        {/* Back Side */}
         <Box
           sx={{
             position: "absolute",
@@ -242,17 +274,16 @@ export default function JobCards({
             boxShadow: 1,
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
-            display: "flex", // Use flexbox to structure content
+            display: "flex",
             flexDirection: "column",
             overflow: "hidden",
           }}
         >
-          {/* Scrollable Content */}
           <Box
             sx={{
-              flex: 1, // Take available space
-              overflowY: "auto", // Scroll vertically if needed
-              overflowX: "hidden", // No horizontal scroll
+              flex: 1,
+              overflowY: "auto",
+              overflowX: "hidden",
               wordWrap: "break-word",
               p: { xs: 2, sm: 3 },
             }}
@@ -273,7 +304,7 @@ export default function JobCards({
                   alt="Company Logo"
                   width={50}
                   height={50}
-                  style={{ objectFit: "cover",borderRadius:'10px' }}
+                  style={{ objectFit: "cover", borderRadius: "10px" }}
                 />
                 <Box sx={{ overflowX: "hidden" }}>
                   <Typography sx={{ fontWeight: "bold", fontSize: { xs: "1.2rem", sm: "1.5rem" } }}>
@@ -316,7 +347,6 @@ export default function JobCards({
             </Box>
           </Box>
 
-          {/* Fixed Button Box */}
           <Box
             sx={{
               display: "flex",
@@ -329,18 +359,119 @@ export default function JobCards({
               borderBottomLeftRadius: "8px",
               borderBottomRightRadius: "8px",
               overflowX: "hidden",
-              flexShrink: 0, // Prevent shrinking
+              flexShrink: 0,
             }}
           >
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Edit Job
             </Button>
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
+            <Button
+              sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}
+              onClick={handleDeleteClick}
+            >
               <DeleteIcon /> Delete
             </Button>
           </Box>
         </Box>
       </Box>
+
+      <Dialog
+        open={openDialog}
+        onClose={handleDialogClose}
+        PaperProps={{
+          sx: {
+            borderRadius: "8px",
+            padding: "16px",
+            textAlign: "center",
+            maxWidth: "400px",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mb: 2,
+          }}
+        >
+          <WarningIcon
+            sx={{
+              fontSize: 40,
+              color: "white",
+              bgcolor: "red",
+              borderRadius: "50%",
+              padding: "8px",
+            }}
+          />
+        </Box>
+
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "bold",
+            color: "red",
+            mb: 1,
+          }}
+        >
+          Delete?
+        </Typography>
+
+        <DialogContent>
+          <DialogContentText
+            sx={{
+              color: "black",
+              fontSize: "16px",
+            }}
+          >
+            Are you sure you want to delete this job?
+          </DialogContentText>
+        </DialogContent>
+
+        <DialogActions
+          sx={{
+            justifyContent: "center",
+            gap: 2,
+            pb: 2,
+          }}
+        >
+          <Button
+            onClick={handleDeleteConfirm}
+            variant="outlined"
+            sx={{
+              color: "black",
+              borderColor: "black",
+              borderRadius: "4px",
+              px: 4,
+              py: 1,
+              textTransform: "none",
+              "&:hover": {
+                borderColor: "black",
+                bgcolor: "rgba(0, 0, 0, 0.04)",
+              },
+            }}
+          >
+            Yes
+          </Button>
+          <Button
+            onClick={handleDialogClose}
+            variant="contained"
+            sx={{
+              bgcolor: "blue",
+              color: "white",
+              borderRadius: "4px",
+              px: 4,
+              py: 1,
+              textTransform: "none",
+              "&:hover": {
+                bgcolor: "darkblue",
+              },
+            }}
+            autoFocus
+          >
+            No
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
