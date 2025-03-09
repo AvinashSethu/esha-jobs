@@ -8,12 +8,16 @@ import NewJob from "../NewJob/NewJob";
 import Applicants from "../Applicants/Applicants";
 import JobList from "../../JobList";
 import { useRouter } from "next/navigation";
+import PopupCard from "../JobCards/PopupCard";
 
 export default function DashboardPage() {
   const [activeView, setActiveView] = useState("dashboard");
   const [applicants, setApplicants] = useState([]);
   const [loadingApplicants, setLoadingApplicants] = useState(false);
   const [errorApplicants, setErrorApplicants] = useState(null);
+  const [openEditPopup, setOpenEditPopup] = useState(false);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [jobs, setJobs] = useState([]);
   const router = useRouter();
 
   // Check login status on mount
@@ -37,6 +41,28 @@ export default function DashboardPage() {
     if (applicants.length === 0 && !loadingApplicants && !errorApplicants) {
       fetchApplicants();
     }
+  };
+  // Handler to open the popup with job data
+  const handleEditJob = (jobData) => {
+    console.log("Editing job:", jobData);
+    setSelectedJob(jobData);
+    setOpenEditPopup(true);
+  };
+  
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      const res = await fetch("/api/jobs");
+      const data = await res.json();
+      setJobs(data.jobs);
+    };
+    fetchJobs();
+  }, []);
+  
+  const handleEditClose = () => {
+    setOpenEditPopup(false);
+    setSelectedJob(null);
+    fetchJobs(); // Refetch jobs after update
   };
 
   const fetchApplicants = async () => {
@@ -87,7 +113,7 @@ export default function DashboardPage() {
             <Typography variant="h6" sx={{ textAlign: "center", pt: 4 }}>
               Welcome to Esha Jobs Dashboard
             </Typography>
-            <JobList />
+            <JobList onEditJob={handleEditJob} />
           </Box>
         ) : activeView === "newJobs" ? (
           <NewJob />
@@ -115,6 +141,15 @@ export default function DashboardPage() {
           onDashboardClick={handleDashboardClick}
           onApplicantsClick={handleApplicantsClick}
         />
+
+        {/* Render PopupCard here */}
+        {openEditPopup && (
+          <PopupCard
+            open={openEditPopup}
+            onClose={handleEditClose}
+            jobData={selectedJob}
+          />
+        )}
       </Box>
     </Box>
   );

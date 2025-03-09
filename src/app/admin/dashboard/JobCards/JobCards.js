@@ -24,9 +24,11 @@ export default function JobCards({
   jobImage,
   _id,
   onDelete,
+  onEditJob,
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -66,6 +68,26 @@ export default function JobCards({
 
   const handleDialogClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleEditClick = () => {
+    if (onEditJob) { // Check if onEditJob exists
+      onEditJob({
+        jobtitle,
+        gender,
+        location,
+        salary,
+        description,
+        keyFeatures,
+        benefits,
+        otherDetails,
+        jobDetails,
+        jobImage,
+        _id,
+      });
+    } else {
+      console.error("onEditJob is not defined");
+    }
   };
 
   return (
@@ -249,7 +271,9 @@ export default function JobCards({
               flexShrink: 0,
             }}
           >
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
+            <Button
+            onClick={handleEditClick}
+             sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Edit Job
             </Button>
             <Button
@@ -362,7 +386,9 @@ export default function JobCards({
               flexShrink: 0,
             }}
           >
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
+            <Button
+            onClick={handleEditClick}
+             sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Edit Job
             </Button>
             <Button
@@ -415,6 +441,8 @@ export default function JobCards({
         >
           Delete?
         </Typography>
+
+    
 
         <DialogContent>
           <DialogContentText

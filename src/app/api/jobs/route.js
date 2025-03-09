@@ -100,3 +100,71 @@ export async function DELETE(request) {
     });
   }
 }
+
+export async function PATCH(request) {
+  try {
+    await connectMongo();
+    const jobData = await request.json();
+    const jobId = jobData._id; // Expect ID in the request body
+
+    if (!jobId) {
+      return new Response(JSON.stringify({ error: "Job ID is required" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Ensure keyFeatures is an array
+    if (typeof jobData.keyFeatures === "string") {
+      jobData.keyFeatures = JSON.parse(jobData.keyFeatures);
+    } else if (!Array.isArray(jobData.keyFeatures)) {
+      jobData.keyFeatures = ["", ""];
+    }
+
+    // Remove _id from update data to avoid modifying it
+    const updateData = { ...jobData };
+    delete updateData._id;
+
+    // Optional validation: only check fields if they’re provided
+    const requiredFields = ["jobTitle", "salary", "location", "gender", "description"];
+    for (const field of requiredFields) {
+      if (
+        updateData[field] !== undefined &&
+        (!updateData[field] ||
+          (field === "gender" && (!Array.isArray(updateData[field]) || updateData[field].length === 0)))
+      ) {
+        return new Response(JSON.stringify({ error: `${field} is required` }), {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    // Update the existing job
+    const updatedJob = await Job.findByIdAndUpdate(
+      jobId,
+      { $set: updateData }, // Update only provided fields
+      { new: true, runValidators: true } // Return updated document, apply validators
+    );
+
+    if (!updatedJob) {
+      return new Response(JSON.stringify({ error: "Job not found" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    console.log("Updated job:", updatedJob);
+    return new Response(JSON.stringify({ success: true, job: updatedJob }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error updating job:", error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+}
+

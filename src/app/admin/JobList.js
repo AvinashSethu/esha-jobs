@@ -3,7 +3,7 @@ import { Box, Typography, Snackbar, Alert } from "@mui/material";
 import axios from "axios";
 import JobCards from "./dashboard/JobCards/JobCards";
 
-export default function JobList() {
+export default function JobList({ onEditJob }) {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -99,6 +99,8 @@ export default function JobList() {
             jobImage={job.jobImage}
             _id={job._id}
             onDelete={(id, message, severity) => handleDelete(id, message, severity)} // Pass updated onDelete
+            {...job}
+            onEditJob={onEditJob}
           />
         ))}
       </Box>
@@ -107,7 +109,7 @@ export default function JobList() {
         open={snackbarOpen}
         autoHideDuration={6000}
         onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert
           onClose={handleSnackbarClose}
