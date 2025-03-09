@@ -14,10 +14,11 @@ export default function PopupCard({ open, onClose, jobData }) {
       fullScreen // Makes the dialog take full width and height
       PaperProps={{
         sx: {
-          margin: '0 20px', // 20px margin on left and right
+          margin: { xs: 0, sm: '0 20px' }, // 20px margin on left and right
           borderRadius: '8px',
           overflowY: 'auto', // Allow scrolling if content exceeds height
           height: '100%', // Ensure it takes full height
+          width: { xs: '100%', sm: '100%' },
         }
       }}
     >

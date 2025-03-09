@@ -9,6 +9,8 @@ import Applicants from "../Applicants/Applicants";
 import JobList from "../../JobList";
 import { useRouter } from "next/navigation";
 import PopupCard from "../JobCards/PopupCard";
+import Logo from "@/public/Icons/Esha-Logo.png";
+import Image from "next/image";
 
 export default function DashboardPage() {
   const [activeView, setActiveView] = useState("dashboard");
@@ -24,7 +26,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (!isLoggedIn) {
-      router.push("/admin/dashboard/login"); // Updated redirect path
+      router.push("/admin/dashboard/login");
     }
   }, [router]);
 
@@ -42,23 +44,27 @@ export default function DashboardPage() {
       fetchApplicants();
     }
   };
-  // Handler to open the popup with job data
+
   const handleEditJob = (jobData) => {
     console.log("Editing job:", jobData);
     setSelectedJob(jobData);
     setOpenEditPopup(true);
   };
-  
+
+  const fetchJobs = async () => {
+    try {
+      const response = await axios.get("/api/jobs");
+      setJobs(response.data.jobs || []);
+      console.log("Jobs fetched:", response.data.jobs);
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      const res = await fetch("/api/jobs");
-      const data = await res.json();
-      setJobs(data.jobs);
-    };
     fetchJobs();
   }, []);
-  
+
   const handleEditClose = () => {
     setOpenEditPopup(false);
     setSelectedJob(null);
@@ -110,9 +116,28 @@ export default function DashboardPage() {
 
         {activeView === "dashboard" ? (
           <Box>
-            <Typography variant="h6" sx={{ textAlign: "center", pt: 4 }}>
-              Welcome to Esha Jobs Dashboard
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: { xs: "center", sm: "center" },
+                pt: 2,
+                px: 2,
+                gap: 2,
+                py:2
+              }}
+            >
+              <Image
+                src={Logo}
+                alt="Esha Logo"
+                width={32}
+                height={32}
+                style={{ objectFit: "contain" }}
+              />
+              <Typography variant="h6" sx={{ fontWeight: "bold",fontSize:{xs:17,sm:23} }}>
+                Welcome to Esha Jobs Dashboard
+              </Typography>
+            </Box>
             <JobList onEditJob={handleEditJob} />
           </Box>
         ) : activeView === "newJobs" ? (
@@ -128,8 +153,32 @@ export default function DashboardPage() {
                 <Typography color="error">Error: {errorApplicants}</Typography>
               </Box>
             ) : (
-              <Box sx={{ p: 0.5, width: "100%", maxWidth: "100%", mx: "auto" }}>
-                <Applicants applicants={applicants} />
+              <Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: { xs: "center", sm: "center" },
+                    pt: 2,
+                    px: 2,
+                    gap: 2,
+                    py:3
+                  }}
+                >
+                  <Image
+                    src={Logo}
+                    alt="Esha Logo"
+                    width={32}
+                    height={32}
+                    style={{ objectFit: "contain" }}
+                  />
+                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    Esha Applicants
+                  </Typography>
+                </Box>
+                <Box sx={{ p: 0.5, width: "100%", maxWidth: "100%", mx: "auto" }}>
+                  <Applicants applicants={applicants} />
+                </Box>
               </Box>
             )}
           </Box>
@@ -142,7 +191,6 @@ export default function DashboardPage() {
           onApplicantsClick={handleApplicantsClick}
         />
 
-        {/* Render PopupCard here */}
         {openEditPopup && (
           <PopupCard
             open={openEditPopup}
