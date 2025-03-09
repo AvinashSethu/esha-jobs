@@ -7,6 +7,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
 import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid";
 import Logo from "@/public/Icons/Logo-Esha.png";
+import Link from "next/link";
 
 export default function CardJob({
   jobtitle,
@@ -219,9 +220,11 @@ export default function CardJob({
               overflowY: "hidden",
             }}
           >
+            <Link href="#contact" passHref>
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Apply Now
             </Button>
+            </Link>
           </Box>
         </Box>
 
@@ -331,9 +334,11 @@ export default function CardJob({
               overflowY: "hidden",
             }}
           >
+            <Link href="#contact" passHref>
             <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Apply Now
             </Button>
+            </Link>
           </Box>
         </Box>
       </Box>

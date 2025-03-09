@@ -10,6 +10,8 @@ import {
   IconButton,
   Typography,
   Checkbox,
+  Snackbar,
+  Alert as MuiAlert,
 } from "@mui/material";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Image from "next/image";
@@ -226,6 +228,21 @@ export default function NewJob() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({}); // State to store validation errors
 
+  // Added Snackbar state
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success", // "success", "error", "warning", "info"
+  });
+
+  // Snackbar handlers
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbar({ ...snackbar, open: false });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -346,7 +363,11 @@ export default function NewJob() {
       });
 
       console.log("Success:", response.data);
-      alert("Job created successfully!");
+      setSnackbar({
+        open: true,
+        message: "Job created successfully!",
+        severity: "success",
+      });
       setFormData({
         jobTitle: "",
         salary: "",
@@ -363,10 +384,13 @@ export default function NewJob() {
       setErrors({});
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
-      alert(
-        "Failed to create job: " +
-          (error.response?.data?.message || error.message)
-      );
+      setSnackbar({
+        open: true,
+        message:
+          "Failed to create job: " +
+          (error.response?.data?.message || error.message),
+        severity: "error",
+      });
     } finally {
       setIsLoading(false);
     }

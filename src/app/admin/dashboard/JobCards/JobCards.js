@@ -456,7 +456,7 @@ export default function JobCards({
             onClick={handleDialogClose}
             variant="contained"
             sx={{
-              bgcolor: "blue",
+              bgcolor: "var(--primary)",
               color: "white",
               borderRadius: "4px",
               px: 4,
