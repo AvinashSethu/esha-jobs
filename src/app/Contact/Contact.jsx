@@ -114,6 +114,7 @@ export default function Contact({ prefilledJobTitle = "", jobTitles = [] }) {
                   <Typography variant="body1" sx={{ fontWeight: "bold",color:'#999999',cursor:'pointer',fontSize:{xs:"18px",sm:"24px",} }} onClick={handlePhoneCall}>
                     Give me a call
                   </Typography>
+                  <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',cursor:'pointer',fontSize:{xs:'16px',sm:'20px'}}}>Mr.Selvam</Typography>
                   <Typography variant="body2" sx={{color:'#000',fontWeight:'bold',cursor:'pointer',fontSize:{xs:'16px',sm:'20px'}}} onClick={handlePhoneCall}>+91 9788903129</Typography>
                 </Box>
               </Box>

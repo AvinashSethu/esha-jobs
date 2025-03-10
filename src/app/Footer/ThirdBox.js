@@ -67,6 +67,19 @@ export default function ThirdBox({ handlePhoneCall }) {
         PIN 629173
       </Typography>
       <Typography
+        variant="body2"
+        sx={{
+          color: "#000",
+          marginBottom: "5px",
+          [theme.breakpoints.down("sm")]: {
+            fontSize: "0.9rem",
+            
+          },
+        }}
+      >
+        Mr. Selvam
+      </Typography>
+      <Typography
         onClick={handlePhoneCall}
         variant="body2"
         sx={{
