@@ -55,9 +55,10 @@ export default function ShowCard({
                 borderRadius: "50%",
                 height: "30px",
                 width: "30px",
-                paddingLeft: "11px",
-                paddingTop: "5px",
                 color: "#fff",
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center'
               }}
             >
               {index + 1}
