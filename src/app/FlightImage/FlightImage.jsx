@@ -22,8 +22,8 @@ export default function FlightImage() {
       <Image
         src={FlightImg}
         alt="Flight Image"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: "cover" }}
         className="desktop-image"
       />
 
@@ -31,8 +31,8 @@ export default function FlightImage() {
       <Image
         src={FlightImgOne}
         alt="Flight Image Mobile"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: "cover" }}
         className="mobile-image"
       />
 
