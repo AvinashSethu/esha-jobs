@@ -8,7 +8,7 @@ import {
   MenuItem,
   InputAdornment,
   Snackbar,
-  Alert
+  Alert,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowForward from "@mui/icons-material/ArrowForward";
@@ -236,7 +236,10 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
                 open: Boolean(servicesAnchorEl),
                 onClose: handleClose,
                 onOpen: handleServicesClick,
-                MenuProps: { anchorEl: servicesAnchorEl },
+                MenuProps: {
+                   anchorEl: servicesAnchorEl,
+                   },
+                
               }}
               disabled={isSubmitting}
             >
@@ -275,7 +278,7 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
               open: Boolean(jobTitleAnchorEl),
               onClose: handleClose,
               onOpen: handleJobTitleClick,
-              MenuProps: { anchorEl: jobTitleAnchorEl },
+              MenuProps: { anchorEl: jobTitleAnchorEl, },
             }}
             disabled={isSubmitting}
           >
