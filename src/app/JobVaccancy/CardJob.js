@@ -7,7 +7,6 @@ import CheckIcon from "@mui/icons-material/Check";
 import EditIcon from "@mui/icons-material/Edit";
 import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid";
 import Logo from "@/public/Icons/Logo-Esha.png";
-import Link from "next/link";
 
 export default function CardJob({
   jobtitle,
@@ -20,11 +19,17 @@ export default function CardJob({
   otherDetails,
   jobDetails,
   jobImage,
+  onApplyNow,
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
+  };
+  const handleApplyClick = () => {
+    if (onApplyNow) {
+      onApplyNow(jobtitle);
+    }
   };
 
   // Format gender array into a comma-separated string
@@ -220,11 +225,10 @@ export default function CardJob({
               overflowY: "hidden",
             }}
           >
-            <Link href="#contact" passHref>
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
+            <Button onClick={handleApplyClick} sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Apply Now
             </Button>
-            </Link>
+            
           </Box>
         </Box>
 
@@ -334,11 +338,10 @@ export default function CardJob({
               overflowY: "hidden",
             }}
           >
-            <Link href="#contact" passHref>
-            <Button sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
+            <Button onClick={handleApplyClick} sx={{ color: "white", display: "flex", alignItems: "center", gap: 1 }}>
               <EditIcon /> Apply Now
             </Button>
-            </Link>
+          
           </Box>
         </Box>
       </Box>

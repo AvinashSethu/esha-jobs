@@ -3,7 +3,7 @@ import { Box,Typography} from "@mui/material";
 import CardList from "./CardList";
 
 
-export default function JobVacancy() {
+export default function JobVacancy({ onApplyNow, jobTitles, loadingJobs }) {
   return (
     <Box
       sx={{
@@ -42,7 +42,7 @@ export default function JobVacancy() {
 
       {/* Job Cards */}
       <Box sx={{height:'auto',marginTop:'30px'}}>
-      <CardList />
+      <CardList onApplyNow={onApplyNow} jobTitles={jobTitles} loadingJobs={loadingJobs}/>
 
     </Box>
      

@@ -3,10 +3,11 @@ import { Box, Typography, CircularProgress } from "@mui/material"; // Added Circ
 import axios from "axios";
 import CardJob from "./CardJob";
 
-export default function CardList() {
+export default function CardList({ onApplyNow,}) {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
 
   const fetchJobs = async () => {
     try {
@@ -94,6 +95,7 @@ export default function CardList() {
           otherDetails={job.otherDetails}
           jobDetails={job.jobDetails}
           jobImage={job.jobImage}
+          onApplyNow={onApplyNow}
         />
       ))}
     </Box>

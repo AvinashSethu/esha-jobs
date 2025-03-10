@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {
   Box,
@@ -12,13 +12,13 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowForward from "@mui/icons-material/ArrowForward";
 import "../Contact/Contact.css";
 
-export default function ContactForm() {
+export default function ContactForm({ prefilledJobTitle = "" }) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     services: "",
-    jobTitle: "",
+    jobTitle: prefilledJobTitle,
     message: "",
   });
 
@@ -27,6 +27,14 @@ export default function ContactForm() {
 
   const [servicesAnchorEl, setServicesAnchorEl] = useState(null);
   const [jobTitleAnchorEl, setJobTitleAnchorEl] = useState(null);
+
+  // Pre-fill jobTitle from query parameter
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      jobTitle: prefilledJobTitle,
+    }));
+  }, [prefilledJobTitle]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -215,41 +223,17 @@ export default function ContactForm() {
 
         {/* Third Row - Job Title */}
         <Box sx={{ marginBottom: { xs: 4, md: 4 } }}>
-          <TextField
+        <TextField
             fullWidth
-            select
-            label="JOB TITLE"
+            label="JOB TITLE" // Changed to free text input instead of select
             name="jobTitle"
             value={formData.jobTitle}
             onChange={handleChange}
             variant="standard"
             InputLabelProps={{ style: { color: "#fff" } }}
-            InputProps={{
-              style: { color: "#fff", borderBottom: "1px solid #fff" },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <ArrowDropDownIcon
-                    sx={{ color: "#fff", cursor: "pointer" }}
-                    onClick={handleJobTitleClick}
-                  />
-                </InputAdornment>
-              ),
-            }}
-            SelectProps={{
-              open: Boolean(jobTitleAnchorEl),
-              onClose: handleClose,
-              onOpen: handleJobTitleClick,
-              MenuProps: { anchorEl: jobTitleAnchorEl },
-            }}
+            InputProps={{ style: { color: "#fff", borderBottom: "1px solid #fff" } }}
             disabled={isSubmitting}
-          >
-            <MenuItem value="Job1">Job1</MenuItem>
-            <MenuItem value="Job2">Job2</MenuItem>
-            <MenuItem value="Job3">Job3</MenuItem>
-            <MenuItem value="Job4">Job4</MenuItem>
-            <MenuItem value="Job5">Job5</MenuItem>
-            <MenuItem value="Job6">Job6</MenuItem>
-          </TextField>
+          />
         </Box>
 
         {/* Fourth Row - Message */}
