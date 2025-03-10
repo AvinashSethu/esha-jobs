@@ -92,6 +92,15 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
     setServicesAnchorEl(null);
     setJobTitleAnchorEl(null);
   };
+  // Define the full service options
+  const serviceOptions = [
+    "Apostille and Certificate Verification",
+    "Emigration and Attestation Services",
+    "Ticketing and Visa Stamping",
+    "License Assistance",
+    "Dataflow and Exam Booking",
+    "Travel Insurance and Medical Appointments",
+  ];
 
   return (
     <Box
@@ -211,12 +220,14 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
               }}
               disabled={isSubmitting}
             >
-              <MenuItem value="Apostille">Apostille and Certificate Verification</MenuItem>
-              <MenuItem value="Emigration">Emigration and Attestation Services</MenuItem>
-              <MenuItem value="Ticketing">Ticketing and Visa Stamping</MenuItem>
-              <MenuItem value="License">License Assistance</MenuItem>
-              <MenuItem value="Dataflow">Dataflow and Exam Booking</MenuItem>
-              <MenuItem value="Insurance">Travel Insurance and Medical Appointments</MenuItem>
+              <MenuItem value="">
+                <em>Select a service</em>
+              </MenuItem>
+              {serviceOptions.map((service) => (
+                <MenuItem key={service} value={service}>
+                  {service}
+                </MenuItem>
+              ))}
             </TextField>
           </Box>
         </Box>
