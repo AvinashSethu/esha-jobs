@@ -51,15 +51,16 @@ export default function FlightImage() {
           borderRadius: 2,
         }}
       >
-        <Typography variant="h3" gutterBottom className="fli-title">
-          {/* Render title differently for mobile and desktop */}
-          {typeof window !== "undefined" && window.innerWidth < 768 ? (
-            "Take the First Step Towards Your Dream Job!"
-          ) : (
-            <>
-              Take the First Step Towards <br /> Your Dream Job!
-            </>
-          )}
+        <Typography
+          variant="h3"
+          gutterBottom
+          className="fli-title"
+          sx={{
+            // Use CSS to control line breaks
+            whiteSpace: { xs: "normal", md: "pre-line" }, // Normal on mobile, pre-line on desktop
+          }}
+        >
+          Take the First Step Towards{"\n"}Your Dream Job!
         </Typography>
         <Typography variant="h5" gutterBottom className="fli-subtitle">
           Top Nursing Jobs in India & Abroad – No Hassle, No Delays!

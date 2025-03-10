@@ -32,7 +32,7 @@ export default function ThirdBox({ handlePhoneCall }) {
         alt="Logo"
         width={50}
         height={50}
-        style={{
+        sx={{
           marginBottom: "10px",
           [theme.breakpoints.down("sm")]: {
             width: "40px",
