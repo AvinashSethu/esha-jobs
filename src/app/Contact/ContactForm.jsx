@@ -7,6 +7,8 @@ import {
   Button,
   MenuItem,
   InputAdornment,
+  Snackbar,
+  Alert
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowForward from "@mui/icons-material/ArrowForward";
@@ -24,6 +26,11 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success", // "success" or "error"
+  });
 
   const [servicesAnchorEl, setServicesAnchorEl] = useState(null);
   const [jobTitleAnchorEl, setJobTitleAnchorEl] = useState(null);
@@ -58,7 +65,11 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
       });
 
       console.log("Success:", response.data);
-      alert("Contact form submitted successfully!");
+      setSnackbar({
+        open: true,
+        message: "Contact form submitted successfully!",
+        severity: "success"
+      });
       setSubmitStatus("success");
       setFormData({
         fullName: "",
@@ -70,14 +81,23 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
       });
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
-      alert(
-        "Failed to submit contact form: " +
-          (error.response?.data?.error || error.message)
-      );
+      setSnackbar({
+        open: true,
+        message: "Failed to submit contact form: " + 
+          (error.response?.data?.error || error.message),
+        severity: "error"
+      });
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
+  };
+  // Snackbar close handler
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbar({ ...snackbar, open: false });
   };
 
   const handleServicesClick = (event) => {
@@ -247,9 +267,15 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
               style: { color: "#fff", borderBottom: "1px solid #fff" },
               endAdornment: (
                 <InputAdornment position="end">
-                  <ArrowDropDownIcon sx={{ color: "#fff" }} />
+                  <ArrowDropDownIcon sx={{ color: "#fff",cursor: "pointer" }} onClick={handleJobTitleClick}/>
                 </InputAdornment>
               ),
+            }}
+            SelectProps={{
+              open: Boolean(jobTitleAnchorEl),
+              onClose: handleClose,
+              onOpen: handleJobTitleClick,
+              MenuProps: { anchorEl: jobTitleAnchorEl },
             }}
             disabled={isSubmitting}
           >
@@ -316,6 +342,21 @@ export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) 
             <Box sx={{ color: "red", mt: 2 }}>Failed to send message. Please try again.</Box>
           )}
         </Box>
+        {/* Add Snackbar */}
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity={snackbar.severity}
+            sx={{ width: "100%" }}
+          >
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );
