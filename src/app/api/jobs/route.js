@@ -37,7 +37,6 @@ export async function POST(request) {
 
     // Create a new job document
     const newJob = new Job(jobData);
-    console.log("New job before save:", newJob); // Debug log
     const savedJob = await newJob.save();
 
     return new Response(JSON.stringify({ success: true, job: savedJob }), {

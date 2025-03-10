@@ -14,7 +14,6 @@ export default function CardList({ onApplyNow,}) {
       setLoading(true); // Show loading state during fetch
       const response = await axios.get("/api/jobs");
       const fetchedJobs = response.data.jobs || [];
-      console.log("Fetched jobs:", fetchedJobs);
       setJobs(fetchedJobs);
     } catch (err) {
       setError(err.message || "Failed to fetch jobs");
@@ -26,18 +25,6 @@ export default function CardList({ onApplyNow,}) {
 
   useEffect(() => {
     fetchJobs(); // Initial fetch
-
-    // Poll every 10 seconds to check for updates
-    const interval = setInterval(fetchJobs, 10000);
-
-    const handleResize = () => console.log("Window width:", window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      clearInterval(interval); // Cleanup interval
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   if (loading && jobs.length === 0) {

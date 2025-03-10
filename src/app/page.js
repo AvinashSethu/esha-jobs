@@ -38,8 +38,6 @@ export default function Home() {
 
   useEffect(() => {
     fetchJobs();
-    const interval = setInterval(fetchJobs, 10000); // Poll every 10 seconds
-    return () => clearInterval(interval);
   }, []);
 
   const handleApplyNow = (jobTitle) => {

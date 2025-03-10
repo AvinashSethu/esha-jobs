@@ -11,12 +11,9 @@ export default function ApplicantsPage() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        console.log("Fetching contacts from /api/contact...");
         const response = await axios.get("/api/contact");
-        console.log("API Response:", response.data);
 
         const fetchedApplicants = response.data.contacts || [];
-        console.log("Extracted applicants:", fetchedApplicants);
 
         if (fetchedApplicants.length > 0) {
           console.log("Valid applicants found, setting state:", fetchedApplicants);
