@@ -15,6 +15,7 @@ import Contact from "./Contact/Contact";
 import Incrix from "./Incrix/Incrix";
 import JobVaccancy from "./JobVaccancy/JobVaccancy";
 import Footer from "./Footer/Footer";
+import axios from "axios";
 
 export default function Home() {
   const [selectedJobTitle, setSelectedJobTitle] = useState("");

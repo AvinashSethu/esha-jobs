@@ -7,7 +7,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import "../Contact/Contact.css";
 import ContactForm from "./ContactForm";
 
-export default function Contact({ prefilledJobTitle = "" }) {
+export default function Contact({ prefilledJobTitle = "", jobTitles = [] }) {
   const handlePhoneCall = () => {
     window.location.href = 'tel: 9788903129'; // Initiates the call
   };
@@ -37,7 +37,7 @@ export default function Contact({ prefilledJobTitle = "" }) {
         }}
       >
         {/* Left Box (Contact Form) */}
-        <ContactForm prefilledJobTitle={prefilledJobTitle} />
+        <ContactForm prefilledJobTitle={prefilledJobTitle} jobTitles={jobTitles}/>
 
         {/* Right Box (Contact Details) */}
         <Box sx={{ flex: 1, width: { xs: "100%", md: "50%" }, margin: 0 }}>

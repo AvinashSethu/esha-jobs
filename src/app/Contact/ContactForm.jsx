@@ -12,7 +12,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowForward from "@mui/icons-material/ArrowForward";
 import "../Contact/Contact.css";
 
-export default function ContactForm({ prefilledJobTitle = "" }) {
+export default function ContactForm({ prefilledJobTitle = "", jobTitles = [] }) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -225,15 +225,32 @@ export default function ContactForm({ prefilledJobTitle = "" }) {
         <Box sx={{ marginBottom: { xs: 4, md: 4 } }}>
         <TextField
             fullWidth
-            label="JOB TITLE" // Changed to free text input instead of select
+            select
+            label="JOB TITLE"
             name="jobTitle"
-            value={formData.jobTitle}
+            value={formData.jobTitle || ""} // Ensure value is never undefined
             onChange={handleChange}
             variant="standard"
             InputLabelProps={{ style: { color: "#fff" } }}
-            InputProps={{ style: { color: "#fff", borderBottom: "1px solid #fff" } }}
+            InputProps={{
+              style: { color: "#fff", borderBottom: "1px solid #fff" },
+              endAdornment: (
+                <InputAdornment position="end">
+                  <ArrowDropDownIcon sx={{ color: "#fff" }} />
+                </InputAdornment>
+              ),
+            }}
             disabled={isSubmitting}
-          />
+          >
+            <MenuItem value="">
+              <em>Select a job title</em>
+            </MenuItem>
+            {jobTitles.map((title, index) => (
+              <MenuItem key={index} value={title}>
+                {title}
+              </MenuItem>
+            ))}
+          </TextField>
         </Box>
 
         {/* Fourth Row - Message */}
