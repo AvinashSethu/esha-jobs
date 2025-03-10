@@ -31,6 +31,7 @@ export default function ShowCard({
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
         zIndex: 1300,
         overflowY: "auto",
+        position:'fixed'
       }}
     >
       <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
