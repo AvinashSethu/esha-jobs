@@ -10,7 +10,12 @@ import Image from "next/image";
 import Logo from "@/public/Icons/Esha-Logo.png";
 import "../navbar/navbar.css";
 
-export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClick, onApplicantsClick }) {
+export default function NavbarDash({
+  activeView,
+  onNewJobsClick,
+  onDashboardClick,
+  onApplicantsClick,
+}) {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const router = useRouter();
 
@@ -65,10 +70,13 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
           {/* Jobs button with Home icon */}
           <Button
             onClick={onDashboardClick}
-            startIcon={<HomeIcon sx={{ color: "#fff", height: "25px", width: "25px" }} />}
+            startIcon={
+              <HomeIcon sx={{ color: "#fff", height: "25px", width: "25px" }} />
+            }
             sx={{
               color: "#fff",
-              backgroundColor: activeView === "dashboard" ? "var(--primary)" : "transparent",
+              backgroundColor:
+                activeView === "dashboard" ? "var(--primary)" : "transparent",
               "&:hover": {
                 backgroundColor: "var(--primary)",
               },
@@ -84,10 +92,21 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
           {/* Applicants button with person icon */}
           <Button
             onClick={onApplicantsClick}
-            startIcon={<PersonOutlineIcon sx={{ borderRadius: "50%", color: "#fff", border: "1px solid #fff", height: "25px", width: "25px" }} />}
+            startIcon={
+              <PersonOutlineIcon
+                sx={{
+                  borderRadius: "50%",
+                  color: "#fff",
+                  border: "1px solid #fff",
+                  height: "25px",
+                  width: "25px",
+                }}
+              />
+            }
             sx={{
               color: "#fff",
-              backgroundColor: activeView === "applicants" ? "var(--primary)" : "transparent",
+              backgroundColor:
+                activeView === "applicants" ? "var(--primary)" : "transparent",
               "&:hover": {
                 backgroundColor: "var(--primary)",
               },
@@ -104,10 +123,21 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
           {/* New Jobs button with plus icon */}
           <Button
             onClick={onNewJobsClick}
-            startIcon={<AddIcon sx={{ borderRadius: "50%", color: "#fff", border: "1px solid #fff", height: "20px", width: "20px" }} />}
+            startIcon={
+              <AddIcon
+                sx={{
+                  borderRadius: "50%",
+                  color: "#fff",
+                  border: "1px solid #fff",
+                  height: "20px",
+                  width: "20px",
+                }}
+              />
+            }
             sx={{
               color: "#fff",
-              backgroundColor: activeView === "newJobs" ? "var(--primary)" : "transparent",
+              backgroundColor:
+                activeView === "newJobs" ? "var(--primary)" : "transparent",
               "&:hover": { backgroundColor: "#1565c0" },
               marginRight: "25px",
               height: "50px",
@@ -120,14 +150,24 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
           </Button>
 
           {/* Logout button with icon above text */}
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
             <Button
               variant="outlined"
               onClick={() => setShowLogoutConfirm(true)}
               sx={{
                 color: "#fff",
                 border: "1px #fff",
-                "&:hover": { borderColor: "#fff", backgroundColor: "rgba(255, 255, 255, 0.1)" },
+                "&:hover": {
+                  borderColor: "#fff",
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                },
                 minWidth: "0",
                 padding: "4px",
                 marginTop: "3px",
@@ -135,7 +175,10 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
             >
               <LogoutIcon />
             </Button>
-            <Typography variant="caption" sx={{ color: "#fff", marginTop: "4px", fontSize: "15px" }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "#fff", marginTop: "4px", fontSize: "15px" }}
+            >
               Logout
             </Typography>
 
@@ -155,7 +198,13 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
                   textAlign: "center",
                 }}
               >
-                <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "10px" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "10px",
+                  }}
+                >
                   <Box
                     sx={{
                       width: "30px",
@@ -167,16 +216,31 @@ export default function NavbarDash({ activeView, onNewJobsClick, onDashboardClic
                       justifyContent: "center",
                     }}
                   >
-                    <Typography sx={{ color: "var(--primary)", fontSize: "20px" }}>!</Typography>
+                    <Typography
+                      sx={{ color: "var(--primary)", fontSize: "20px" }}
+                    >
+                      !
+                    </Typography>
                   </Box>
                 </Box>
-                <Typography variant="h6" sx={{ color: "var(--primary)", marginBottom: "10px" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "var(--primary)", marginBottom: "10px" }}
+                >
                   Logging out?
                 </Typography>
-                <Typography sx={{ color: "#666", marginBottom: "20px", fontSize: "15px" }}>
+                <Typography
+                  sx={{ color: "#666", marginBottom: "20px", fontSize: "15px" }}
+                >
                   Are you sure you want to log out?
                 </Typography>
-                <Box sx={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "10px",
+                  }}
+                >
                   <Button
                     onClick={handleCancelLogout}
                     sx={{

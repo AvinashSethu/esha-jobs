@@ -2,21 +2,15 @@ import React, { useState } from "react";
 import {
   Box,
   TextField,
-  Select,
-  MenuItem,
-  FormControlLabel,
   Button,
-  Avatar,
-  IconButton,
   Typography,
-  Checkbox,
   Snackbar,
-  Alert as MuiAlert,
 } from "@mui/material";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import Image from "next/image";
-import "../NewJob/NewJob.css";
+import MuiAlert from "@mui/material/Alert";
 import axios from "axios";
+import LeftNewJob from "./LeftNewJob";
+import RightNewJob from "./RightNewJob";
+import "../NewJob/NewJob.css";
 
 const countries = [
   { code: "AF", name: "Afghanistan" },
@@ -226,175 +220,173 @@ export default function NewJob() {
 
   const [imagePreview, setImagePreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({}); // State to store validation errors
-
-  // Added Snackbar state
+  const [errors, setErrors] = useState({});
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
-    severity: "success", // "success", "error", "warning", "info"
+    severity: "success",
   });
 
-  // Snackbar handlers
-  const handleCloseSnackbar = (event, reason) => {
-    if (reason === "clickaway") {
+ // Snackbar handlers
+ const handleCloseSnackbar = (event, reason) => {
+  if (reason === "clickaway") {
+    return;
+  }
+  setSnackbar({ ...snackbar, open: false });
+};
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+  // Clear error for this field when user starts typing
+  setErrors((prev) => ({ ...prev, [name]: "" }));
+};
+
+const handleKeyFeaturesChange = (index, value) => {
+  const newKeyFeatures = [...formData.keyFeatures];
+  newKeyFeatures[index] = value;
+  setFormData((prev) => ({
+    ...prev,
+    keyFeatures: newKeyFeatures,
+  }));
+};
+
+const handleGenderChange = (value) => {
+  setFormData((prev) => {
+    const genderArray = prev.gender.includes(value)
+      ? prev.gender.filter((g) => g !== value)
+      : [...prev.gender, value];
+    return { ...prev, gender: genderArray };
+  });
+  // Clear gender error when user selects a gender
+  if (formData.gender.length === 0 || !formData.gender.includes(value)) {
+    setErrors((prev) => ({ ...prev, gender: "" }));
+  }
+};
+
+const handleImageUpload = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    if (file.size > 2 * 1024 * 1024) {
+      alert("Image must be less than 2MB");
       return;
     }
-    setSnackbar({ ...snackbar, open: false });
-  };
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload an image file");
+      return;
+    }
+    setFormData((prev) => ({ ...prev, jobImage: file }));
+    setImagePreview(URL.createObjectURL(file));
+  }
+};
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error for this field when user starts typing
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
+const removeImage = () => {
+  setFormData((prev) => ({
+    ...prev,
+    jobImage: null,
+  }));
+  setImagePreview(null);
+  URL.revokeObjectURL(imagePreview);
+};
 
-  const handleKeyFeaturesChange = (index, value) => {
-    const newKeyFeatures = [...formData.keyFeatures];
-    newKeyFeatures[index] = value;
-    setFormData((prev) => ({
-      ...prev,
-      keyFeatures: newKeyFeatures,
-    }));
-  };
+const fileToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+};
 
-  const handleGenderChange = (value) => {
-    setFormData((prev) => {
-      const genderArray = prev.gender.includes(value)
-        ? prev.gender.filter((g) => g !== value)
-        : [...prev.gender, value];
-      return { ...prev, gender: genderArray };
+const validateForm = () => {
+  const newErrors = {};
+  const requiredFields = [
+    "jobTitle",
+    "salary",
+    "location",
+    "gender",
+    "description",
+  ];
+
+  requiredFields.forEach((field) => {
+    if (field === "gender") {
+      if (!formData.gender || formData.gender.length === 0) {
+        newErrors[field] = "At least one gender must be selected";
+      }
+    } else if (!formData[field]) {
+      newErrors[field] = `${
+        field.charAt(0).toUpperCase() + field.slice(1)
+      } is required`;
+    }
+  });
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Validate form before submission
+  if (!validateForm()) {
+    return;
+  }
+
+  setIsLoading(true);
+
+  try {
+    let jsonData = { ...formData };
+    console.log("Submitting jsonData:", JSON.stringify(jsonData, null, 2));
+
+    if (formData.jobImage) {
+      const base64Image = await fileToBase64(formData.jobImage);
+      jsonData.jobImage = base64Image;
+    } else {
+      jsonData.jobImage = null;
+    }
+
+    const response = await axios.post("/api/jobs", jsonData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-    // Clear gender error when user selects a gender
-    if (formData.gender.length === 0 || !formData.gender.includes(value)) {
-      setErrors((prev) => ({ ...prev, gender: "" }));
-    }
-  };
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert("Image must be less than 2MB");
-        return;
-      }
-      if (!file.type.startsWith("image/")) {
-        alert("Please upload an image file");
-        return;
-      }
-      setFormData((prev) => ({ ...prev, jobImage: file }));
-      setImagePreview(URL.createObjectURL(file));
-    }
-  };
-
-  const removeImage = () => {
-    setFormData((prev) => ({
-      ...prev,
+    console.log("Success:", response.data);
+    setSnackbar({
+      open: true,
+      message: "Job created successfully!",
+      severity: "success",
+    });
+    setFormData({
+      jobTitle: "",
+      salary: "",
+      location: "",
+      gender: [],
+      description: "",
+      keyFeatures: ["", ""],
+      jobDetails: "",
+      benefits: "",
+      otherDetails: "",
       jobImage: null,
-    }));
+    });
     setImagePreview(null);
-    URL.revokeObjectURL(imagePreview);
-  };
-
-  const fileToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
+    setErrors({});
+  } catch (error) {
+    console.error("Error:", error.response?.data || error.message);
+    setSnackbar({
+      open: true,
+      message:
+        "Failed to create job: " +
+        (error.response?.data?.message || error.message),
+      severity: "error",
     });
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    const requiredFields = [
-      "jobTitle",
-      "salary",
-      "location",
-      "gender",
-      "description",
-    ];
-
-    requiredFields.forEach((field) => {
-      if (field === "gender") {
-        if (!formData.gender || formData.gender.length === 0) {
-          newErrors[field] = "At least one gender must be selected";
-        }
-      } else if (!formData[field]) {
-        newErrors[field] = `${
-          field.charAt(0).toUpperCase() + field.slice(1)
-        } is required`;
-      }
-    });
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Validate form before submission
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      let jsonData = { ...formData };
-      console.log("Submitting jsonData:", JSON.stringify(jsonData, null, 2));
-
-      if (formData.jobImage) {
-        const base64Image = await fileToBase64(formData.jobImage);
-        jsonData.jobImage = base64Image;
-      } else {
-        jsonData.jobImage = null;
-      }
-
-      const response = await axios.post("/api/jobs", jsonData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log("Success:", response.data);
-      setSnackbar({
-        open: true,
-        message: "Job created successfully!",
-        severity: "success",
-      });
-      setFormData({
-        jobTitle: "",
-        salary: "",
-        location: "",
-        gender: [],
-        description: "",
-        keyFeatures: ["", ""],
-        jobDetails: "",
-        benefits: "",
-        otherDetails: "",
-        jobImage: null,
-      });
-      setImagePreview(null);
-      setErrors({});
-    } catch (error) {
-      console.error("Error:", error.response?.data || error.message);
-      setSnackbar({
-        open: true,
-        message:
-          "Failed to create job: " +
-          (error.response?.data?.message || error.message),
-        severity: "error",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <Box className="new-job-container">
@@ -403,238 +395,24 @@ export default function NewJob() {
       </Typography>
       <form onSubmit={handleSubmit}>
         <Box className="grid-container">
-          {/* Left Column */}
-          <Box className="left-column">
-            <TextField
-              name="jobTitle"
-              label="Enter Job Title"
-              placeholder="Enter Job Title"
-              value={formData.jobTitle}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              InputProps={{ maxLength: 250 }}
-              className="custom-textfield job-field"
-              disabled={isLoading}
-              error={!!errors.jobTitle}
-              helperText={errors.jobTitle}
-            />
-            <Select
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              displayEmpty
-              fullWidth
-              margin="normal"
-              className="custom-select"
-              disabled={isLoading}
-              error={!!errors.location}
-            >
-              <MenuItem value="" disabled>
-                Choose country
-              </MenuItem>
-              {countries.map((location) => (
-                <MenuItem key={location.code} value={location.name}>
-                  {location.name}
-                </MenuItem>
-              ))}
-            </Select>
-            {errors.location && (
-              <Typography sx={{ color: "red", fontSize: "0.75rem", mt: 0.5 }}>
-                {errors.location}
-              </Typography>
-            )}
-            <TextField
-              name="description"
-              label="Description"
-              placeholder="Enter job description"
-              value={formData.description}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              multiline
-              rows={6}
-              InputProps={{ maxLength: 250 }}
-              className="custom-textfield no-background-change"
-              disabled={isLoading}
-              error={!!errors.description}
-              helperText={errors.description}
-            />
-            <Typography sx={{ color: "#666" }}>(Max 250 Characters)</Typography>
-            <TextField
-              name="jobDetails"
-              label="Job Details"
-              placeholder="Enter job description"
-              value={formData.jobDetails}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              multiline
-              rows={6}
-              InputProps={{ maxLength: 350 }}
-              className="custom-textfield no-background-change"
-              disabled={isLoading}
-            />
-            <Typography sx={{ color: "#666" }}>(Max 350 Characters)</Typography>
-          </Box>
-
-          {/* Right Column */}
-          <Box className="right-column">
-            <Box className="salary-image-row">
-              <TextField
-                name="salary"
-                label="Salary"
-                placeholder="Enter salary"
-                value={formData.salary}
-                onChange={handleChange}
-                margin="normal"
-                className="custom-textfield salary-field"
-                disabled={isLoading}
-                error={!!errors.salary}
-                helperText={errors.salary}
-              />
-              <Box className="job-image">
-                <Avatar className="job-avatar">
-                  {imagePreview ? (
-                    <Image
-                      src={imagePreview}
-                      alt="Job Image"
-                      width={90}
-                      height={90}
-                      style={{
-                        objectFit: "cover",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    />
-                  ) : null}
-                </Avatar>
-                <IconButton
-                  color="inherit"
-                  aria-label="upload picture"
-                  component="label"
-                  disabled={isLoading}
-                >
-                  <input
-                    hidden
-                    accept="image/*"
-                    type="file"
-                    onChange={handleImageUpload}
-                    disabled={isLoading}
-                  />
-                  <PhotoCamera
-                    sx={{
-                      height: "25px",
-                      width: "25px",
-                      marginTop: "-40px",
-                      color: "var(--primary)",
-                      backgroundColor: "black",
-                      borderRadius: "50%",
-                      padding: "4px",
-                    }}
-                  />
-                </IconButton>
-                {imagePreview && (
-                  <Button
-                    onClick={removeImage}
-                    color="error"
-                    disabled={isLoading}
-                  >
-                    Remove
-                  </Button>
-                )}
-                <span style={{ fontWeight: "bold" }}>Company Logo</span>
-              </Box>
-            </Box>
-            <Box className="gender-checkbox-group">
-              <Typography variant="subtitle1" sx={{ mb: 1 }}>
-                Gender
-              </Typography>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={formData.gender.includes("male")}
-                    onChange={() => handleGenderChange("male")}
-                    disabled={isLoading}
-                  />
-                }
-                label="Male"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={formData.gender.includes("female")}
-                    onChange={() => handleGenderChange("female")}
-                    disabled={isLoading}
-                  />
-                }
-                label="Female"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={formData.gender.includes("others")}
-                    onChange={() => handleGenderChange("others")}
-                    disabled={isLoading}
-                  />
-                }
-                label="Others"
-              />
-              {errors.gender && (
-                <Typography sx={{ color: "red", fontSize: "0.75rem", mt: 0.5 }}>
-                  {errors.gender}
-                </Typography>
-              )}
-            </Box>
-            <Box>
-              <Typography variant="h6" className="key-features-title">
-                List Two Key Features
-              </Typography>
-              <TextField
-                name="keyFeatures1"
-                placeholder="E.g., Zoom Interview"
-                value={formData.keyFeatures[0]}
-                onChange={(e) => handleKeyFeaturesChange(0, e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-                rows={2}
-                InputProps={{ maxLength: 100 }}
-                className="custom-textfield no-background-change"
-                disabled={isLoading}
-              />
-              <Typography sx={{ color: "#666" }}>(Max 100 Characters)</Typography>
-              <TextField
-                name="keyFeatures2"
-                placeholder="E.g., Prometric Passed Required"
-                value={formData.keyFeatures[1]}
-                onChange={(e) => handleKeyFeaturesChange(1, e.target.value)}
-                fullWidth
-                margin="normal"
-                multiline
-                rows={2}
-                InputProps={{ maxLength: 100 }}
-                className="custom-textfield no-background-change"
-                disabled={isLoading}
-              />
-              <Typography sx={{ color: "#666" }}>(Max 100 Characters)</Typography>
-            </Box>
-            <TextField
-              name="benefits"
-              label="Benefits"
-              placeholder="Enter job benefits"
-              value={formData.benefits}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              multiline
-              rows={4}
-              InputProps={{ maxLength: 350 }}
-              className="custom-textfield no-background-change"
-              disabled={isLoading}
-            />
-            <Typography sx={{ color: "#666" }}>(Max 350 Characters)</Typography>
-          </Box>
+          <LeftNewJob
+            formData={formData}
+            handleChange={handleChange}
+            countries={countries}
+            errors={errors}
+            isLoading={isLoading}
+          />
+          <RightNewJob
+            formData={formData}
+            handleChange={handleChange}
+            handleGenderChange={handleGenderChange}
+            handleKeyFeaturesChange={handleKeyFeaturesChange}
+            handleImageUpload={handleImageUpload}
+            removeImage={removeImage}
+            imagePreview={imagePreview}
+            errors={errors}
+            isLoading={isLoading}
+          />
         </Box>
 
         <Box className="other-details">
@@ -688,12 +466,11 @@ export default function NewJob() {
         </Box>
       </form>
 
-      {/* Add Snackbar here */}
       <Snackbar
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <MuiAlert
           elevation={6}
