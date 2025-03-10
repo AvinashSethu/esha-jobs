@@ -37,7 +37,7 @@
     font-size: 20px; /* Adjust icon size as needed */
 }
 
-@media screen and (min-width: 770px) {
+@media screen and (min-width: 870px) {
     .navbar-bottom {
         display: none; /* Hide navbar on screens 670px and wider */
     }
