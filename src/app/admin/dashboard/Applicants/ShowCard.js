@@ -73,7 +73,7 @@ export default function ShowCard({
             <span style={{ fontWeight: "bold" }}>Email:</span>{" "}
             {applicant.email || "Email"}
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="body2" sx={{cursor:'pointer'}}>
             <span style={{ fontWeight: "bold" }}>Phone:</span>{" "}
             {applicant.phone || "Phone"}
           </Typography>
